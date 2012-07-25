@@ -15,11 +15,6 @@
 #
 DEVICE_PACKAGE_OVERLAYS := device/samsung/galaxys2-common/overlay
 
-# This device is hdpi.
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-PRODUCT_LOCALES += hdpi
-
 # Init files
 PRODUCT_COPY_FILES := \
     device/samsung/galaxys2-common/lpm.rc:root/lpm.rc \
@@ -163,9 +158,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     hwui.render_dirty_regions=false
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=240
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
