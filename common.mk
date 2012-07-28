@@ -19,6 +19,7 @@ DEVICE_PACKAGE_OVERLAYS := device/samsung/galaxys2-common/overlay
 PRODUCT_COPY_FILES := \
     device/samsung/galaxys2-common/lpm.rc:root/lpm.rc \
     device/samsung/galaxys2-common/init.smdk4210.usb.rc:root/init.smdk4210.usb.rc \
+    device/samsung/galaxys2-common/init.smdk4210.rc:root/init.smdk4210.rc \
     device/samsung/galaxys2-common/ueventd.smdk4210.rc:root/ueventd.smdk4210.rc
 
 # Audio
