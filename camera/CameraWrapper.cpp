@@ -92,6 +92,8 @@ static int check_vendor_module()
 }
 
 const static char * iso_values[] = {"auto,ISO50,ISO100,ISO200,ISO400,ISO800","auto"};
+const static char * video_preview_sizes[] = {"1920x1080,1280x720,640x480",
+                                             "640x480,352x288,320x240,176x144"};
 
 static char * camera_fixup_getparams(int id, const char * settings)
 {
@@ -99,6 +101,14 @@ static char * camera_fixup_getparams(int id, const char * settings)
     params.unflatten(android::String8(settings));
 
     // fix params here
+
+    params.remove(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES);
+
+    if(params.get("cam_mode") && !strcmp(params.get("cam_mode"), "1")) {
+        params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, video_preview_sizes[id]);
+        const char* videoSize = params.get(android::CameraParameters::KEY_VIDEO_SIZE);
+        params.set(android::CameraParameters::KEY_PREVIEW_SIZE, videoSize);
+    }
 
     params.set("iso-values", iso_values[id]);
 
