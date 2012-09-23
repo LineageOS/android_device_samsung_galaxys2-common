@@ -30,7 +30,7 @@ on early-init
     chmod 0777 /dev/graphics/fb11
     chown media graphics /sys/class/switch/hdmi
     chmod 0777 /sys/class/switch/hdmi
-
+    
 # FIXME: permission for HDMI audio path
     chown media audio /sys/class/hdmi_audio/hdmi_audio/hdmi_audio_set_ext
     chmod 0777 /sys/class/hdmi_audio/hdmi_audio/hdmi_audio_set_ext
