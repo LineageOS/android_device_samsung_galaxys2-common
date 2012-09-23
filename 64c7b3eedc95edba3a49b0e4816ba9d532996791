@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAYX//9E0\u003d",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 523
+      },
+      "writtenOn": "2012-09-23T19:03:25Z",
+      "side": 1,
+      "message": "have a look at surfaceflingerclient folder.\nthis define makes some stuff unneeded.",
+      "revId": "64c7b3eedc95edba3a49b0e4816ba9d532996791",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAYX//9E4\u003d",
+        "filename": "init.smdk4210.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 523
+      },
+      "writtenOn": "2012-09-23T19:03:25Z",
+      "side": 1,
+      "message": "bad guy!",
+      "revId": "64c7b3eedc95edba3a49b0e4816ba9d532996791",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
