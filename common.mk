@@ -66,8 +66,7 @@ PRODUCT_PACKAGES += \
     lights.exynos4 \
     libhwconverter \
     libs5pjpeg \
-    libfimg \
-    libsync
+    libfimg
 
 # Charger
 PRODUCT_PACKAGES += \
