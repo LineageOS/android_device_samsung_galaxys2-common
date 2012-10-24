@@ -24,7 +24,8 @@ PRODUCT_COPY_FILES := \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys2-common/configs/asound.conf:system/etc/asound.conf
+    device/samsung/galaxys2-common/configs/asound.conf:system/etc/asound.conf \
+    device/samsung/galaxys2-common/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Vold and Storage
 PRODUCT_COPY_FILES += \
