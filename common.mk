@@ -24,7 +24,8 @@ PRODUCT_COPY_FILES := \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys2-common/configs/asound.conf:system/etc/asound.conf
+    device/samsung/galaxys2-common/configs/tinyalsa-audio.xml:system/etc/tinyalsa-audio.xml \
+    device/samsung/galaxys2-common/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Vold and Storage
 PRODUCT_COPY_FILES += \
@@ -52,17 +53,22 @@ PRODUCT_COPY_FILES += \
 
 # Packages
 PRODUCT_PACKAGES := \
-	audio.a2dp.default \
-	libaudiohw_legacy \
-    camera.exynos4 \
     libsurfaceflinger_client \
     com.android.future.usb.accessory \
     SamsungServiceMode \
     Torch \
     TvOut
 
+# Audio Packages
+PRODUCT_PACKAGES += \
+    audio.primary.exynos4 \
+    audio.a2dp.default \
+    audio.usb.default \
+    libaudiohw_legacy
+
 # HAL
 PRODUCT_PACKAGES += \
+	camera.exynos4 \
     gralloc.exynos4 \
     hwcomposer.exynos4 \
     libnetcmdiface \
