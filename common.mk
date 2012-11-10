@@ -24,7 +24,8 @@ PRODUCT_COPY_FILES := \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys2-common/configs/asound.conf:system/etc/asound.conf
+    device/samsung/galaxys2-common/configs/tinyalsa-audio.xml:system/etc/tinyalsa-audio.xml \
+    device/samsung/galaxys2-common/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Vold and Storage
 PRODUCT_COPY_FILES += \
@@ -60,6 +61,10 @@ PRODUCT_PACKAGES := \
     SamsungServiceMode \
     Torch \
     TvOut
+
+# Audio Packages
+PRODUCT_PACKAGES += \
+    audio.primary.exynos4
 
 # HAL
 PRODUCT_PACKAGES += \
