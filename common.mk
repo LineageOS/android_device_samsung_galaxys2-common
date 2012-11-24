@@ -57,7 +57,6 @@ PRODUCT_PACKAGES := \
     camera.exynos4 \
     libsurfaceflinger_client \
     com.android.future.usb.accessory \
-    SamsungServiceMode \
     Torch \
     TvOut
 
@@ -78,23 +77,23 @@ PRODUCT_PACKAGES += \
     libsecmfcapi
 
 # OMX
-PRODUCT_PACKAGES += \
-    libstagefrighthw \
-    libseccscapi \
-    libsecbasecomponent \
-    libsecosal \
-    libSEC_OMX_Resourcemanager \
-    libSEC_OMX_Core \
-    libSEC_OMX_Vdec \
-    libOMX.SEC.AVC.Decoder \
-    libOMX.SEC.M4V.Decoder \
-    libOMX.SEC.WMV.Decoder \
-    libOMX.SEC.VP8.Decoder \
-    libSEC_OMX_Venc \
-    libOMX.SEC.AVC.Encoder \
-    libOMX.SEC.M4V.Encoder \
-    libSEC_OMX_Adec \
-    libOMX.SEC.MP3.Decoder
+ PRODUCT_PACKAGES += \
+     libstagefrighthw \
+     libseccscapi \
+     libsecbasecomponent \
+     libsecosal \
+     libSEC_OMX_Resourcemanager \
+     libSEC_OMX_Core \
+     libSEC_OMX_Vdec \
+     libOMX.SEC.AVC.Decoder \
+     libOMX.SEC.M4V.Decoder \
+     libOMX.SEC.WMV.Decoder \
+     libOMX.SEC.VP8.Decoder \
+     libSEC_OMX_Venc \
+     libOMX.SEC.AVC.Encoder \
+     libOMX.SEC.M4V.Encoder \
+     libSEC_OMX_Adec \
+     libOMX.SEC.MP3.Decoder
 
 PRODUCT_COPY_FILES += \
     device/samsung/galaxys2-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
@@ -168,7 +167,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 # Include exynos4 platform specific parts
-TARGET_HAL_PATH := hardware/samsung/exynos4/hal
+TARGET_HAL_PATH := hardware/samsung/exynos4
 TARGET_OMX_PATH := hardware/samsung/exynos/multimedia/openmax
 $(call inherit-product, hardware/samsung/exynos4210.mk)
 
