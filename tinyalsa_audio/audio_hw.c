@@ -40,23 +40,6 @@
  * Functions
  */
 
-static uint32_t audio_hw_get_supported_devices(const struct audio_hw_device *dev)
-{
-	struct tinyalsa_audio_device *device;
-
-	ALOGD("%s(%p)", __func__, dev);
-
-	if(dev == NULL)
-		return -1;
-
-	device = (struct tinyalsa_audio_device *) dev;
-
-	if(device->mixer == NULL)
-		return -1;
-
-	return (uint32_t) tinyalsa_mixer_get_supported_devices(device->mixer);
-}
-
 static int audio_hw_init_check(const struct audio_hw_device *dev)
 {
 	struct tinyalsa_audio_device *device;
@@ -457,11 +440,10 @@ int audio_hw_open(const hw_module_t *module, const char *name,
 	dev = &(tinyalsa_audio_device->device);
 
 	dev->common.tag = HARDWARE_DEVICE_TAG;
-	dev->common.version = AUDIO_DEVICE_API_VERSION_1_0;
+	dev->common.version = AUDIO_DEVICE_API_VERSION_2_0;
 	dev->common.module = (struct hw_module_t *) module;
 	dev->common.close = audio_hw_close;
 
-	dev->get_supported_devices = audio_hw_get_supported_devices;
 	dev->init_check = audio_hw_init_check;
 	dev->set_voice_volume = audio_hw_set_voice_volume;
 	dev->set_master_volume = audio_hw_set_master_volume;

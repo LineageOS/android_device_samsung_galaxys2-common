@@ -399,7 +399,7 @@ static size_t audio_in_get_buffer_size(const struct audio_stream *stream)
 	return size;
 }
 
-static uint32_t audio_in_get_channels(const struct audio_stream *stream)
+static audio_channel_mask_t audio_in_get_channels(const struct audio_stream *stream)
 {
 	struct tinyalsa_audio_stream_in *stream_in;
 

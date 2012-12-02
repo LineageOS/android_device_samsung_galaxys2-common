@@ -115,7 +115,6 @@ int tinyalsa_mixer_set_input_gain(struct tinyalsa_mixer *mixer,
 int tinyalsa_mixer_set_voice_volume(struct tinyalsa_mixer *mixer,
 	audio_devices_t device, float volume);
 
-audio_devices_t tinyalsa_mixer_get_supported_devices(struct tinyalsa_mixer *mixer);
 struct tinyalsa_mixer_io_props *tinyalsa_mixer_get_output_props(struct tinyalsa_mixer *mixer);
 struct tinyalsa_mixer_io_props *tinyalsa_mixer_get_input_props(struct tinyalsa_mixer *mixer);
 struct tinyalsa_mixer_io_props *tinyalsa_mixer_get_modem_props(struct tinyalsa_mixer *mixer);

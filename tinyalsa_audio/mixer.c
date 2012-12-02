@@ -1204,50 +1204,6 @@ int tinyalsa_mixer_set_voice_volume(struct tinyalsa_mixer *mixer,
 		"voice-volume", volume);
 }
 
-audio_devices_t tinyalsa_mixer_get_supported_devices(struct tinyalsa_mixer *mixer)
-{
-	struct tinyalsa_mixer_device *mixer_device;
-	audio_devices_t devices = 0x00;
-	struct list_head *list;
-
-	ALOGD("%s(%p)", __func__, mixer);
-
-	if(mixer == NULL)
-		return -1;
-
-	list = mixer->output.devices;
-	while(list != NULL) {
-		if(list->data != NULL) {
-			mixer_device = (struct tinyalsa_mixer_device *) list->data;
-			devices |= mixer_device->props.type;
-		}
-
-		list = list->next;
-	}
-
-	list = mixer->input.devices;
-	while(list != NULL) {
-		if(list->data != NULL) {
-			mixer_device = (struct tinyalsa_mixer_device *) list->data;
-			devices |= mixer_device->props.type;
-		}
-
-		list = list->next;
-	}
-
-	list = mixer->modem.devices;
-	while(list != NULL) {
-		if(list->data != NULL) {
-			mixer_device = (struct tinyalsa_mixer_device *) list->data;
-			devices |= mixer_device->props.type;
-		}
-
-		list = list->next;
-	}
-
-	return devices;
-}
-
 struct tinyalsa_mixer_io_props *tinyalsa_mixer_get_output_props(struct tinyalsa_mixer *mixer)
 {
 	ALOGD("%s(%p)", __func__, mixer);
