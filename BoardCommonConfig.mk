@@ -127,6 +127,7 @@ BOARD_LEGACY_NL80211_STA_EVENTS  := true
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUEDROID_VENDOR_CONF := device/samsung/galaxys2-common/bluetooth/vnd_smdk4210.txt
 
 # Vold
 BOARD_VOLD_MAX_PARTITIONS := 12

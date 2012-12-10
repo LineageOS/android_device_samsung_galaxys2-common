@@ -380,16 +380,6 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-# for bluetooth
-service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm --no2bytes --tosleep 50000 \
-    --baudrate 3000000 --use_baudrate_for_download --patchram /system/bin/bcm4330B1.hcd \
-    --scopcm=0,0,0,0,0,0,0,3,3,0  /dev/ttySAC0
-    class main
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
 # bluetooth mac address
 service bdaddr /system/bin/bdaddr_read
     class main
