@@ -60,7 +60,6 @@ PRODUCT_PACKAGES += \\
     libhdmiclient \\
     libsecion
 PRODUCT_COPY_FILES += \\
-
 EOF
 
 LINEEND=" \\"
