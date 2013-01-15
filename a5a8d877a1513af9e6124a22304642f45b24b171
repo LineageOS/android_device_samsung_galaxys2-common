@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAcn//85Q\u003d",
+        "filename": "extract-files.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 3035
+      },
+      "writtenOn": "2013-01-15T22:15:19Z",
+      "side": 1,
+      "message": "Please remove this empty line",
+      "revId": "a5a8d877a1513af9e6124a22304642f45b24b171",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
