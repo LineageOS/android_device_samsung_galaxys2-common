@@ -1,7 +1,7 @@
 import init.smdk4210.usb.rc
 import init.gps.rc
 
-on early-init
+on init
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
     mkdir /storage 0775 system system
