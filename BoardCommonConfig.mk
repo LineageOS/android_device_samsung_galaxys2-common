@@ -17,9 +17,7 @@
 
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
-USE_CAMERA_STUB := true
 BOARD_USES_GENERIC_AUDIO := false
-BOARD_USES_LIBSECRIL_STUB := true
 
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
@@ -46,17 +44,13 @@ TARGET_NO_RADIOIMAGE := true
 
 TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
-TARGET_RECOVERY_INITRC := device/samsung/galaxys2-common/recovery.rc
+TARGET_RECOVERY_INITRC := device/samsung/galaxys2-common/rootdir/recovery.rc
 
 BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0
-
-# Use old kernel toolchain.  GCC 4.6 may be the root cause of our modem
-# interface dying all the time.
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -81,10 +75,6 @@ ENABLE_WEBGL := true
 BOARD_USES_HWCOMPOSER := true
 BOARD_USE_SYSFS_VSYNC_NOTIFICATION := true
 
-# TVOut
-BOARD_USE_SECTVOUT := true
-BOARD_USES_SKTEXTBOX := true
-
 # OMX
 BOARD_USE_SAMSUNG_COLORFORMAT := true
 BOARD_NONBLOCK_MODE_PROCESS := true
@@ -100,7 +90,6 @@ BOARD_USE_YAMAHA_MC1N2_AUDIO := true
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
 
 # Camera
-BOARD_USES_PROPRIETARY_LIBCAMERA := true
 BOARD_USES_PROPRIETARY_LIBFIMC := true
 BOARD_CAMERA_HAVE_ISO := true
 COMMON_GLOBAL_CFLAGS += -DHAVE_ISO
@@ -116,13 +105,14 @@ BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/dhd.ko"
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcm4330_sta.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcm4330_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/wifi/bcm4330_p2p.bin"
+WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/wifi/bcmdhd_p2p.bin"
 WIFI_DRIVER_MODULE_NAME          := "dhd"
-WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/etc/wifi/bcm4330_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
+WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/etc/wifi/bcmdhd_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
+WIFI_DRIVER_MODULE_AP_ARG        := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                        := 802_11_ABG
-BOARD_LEGACY_NL80211_STA_EVENTS  := true
+BOARD_HAVE_SAMSUNG_WIFI          := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
