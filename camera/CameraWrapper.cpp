@@ -21,7 +21,6 @@
 *
 */
 
-
 #define LOG_NDEBUG 0
 //#define LOG_PARAMETERS
 

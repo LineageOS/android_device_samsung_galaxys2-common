@@ -13,23 +13,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-DEVICE_PACKAGE_OVERLAYS := device/samsung/galaxys2-common/overlay
+COMMON_PATH := device/samsung/galaxys2-common
+
+DEVICE_PACKAGE_OVERLAYS := $(COMMON_PATH)/overlay
 
 # Init files
 PRODUCT_COPY_FILES := \
-    device/samsung/galaxys2-common/lpm.rc:root/lpm.rc \
-    device/samsung/galaxys2-common/init.smdk4210.usb.rc:root/init.smdk4210.usb.rc \
-    device/samsung/galaxys2-common/init.smdk4210.rc:root/init.smdk4210.rc \
-    device/samsung/galaxys2-common/ueventd.smdk4210.rc:root/ueventd.smdk4210.rc
+    $(COMMON_PATH)/rootdir/fstab.smdk4210:root/fstab.smdk4210 \
+    $(COMMON_PATH)/rootdir/lpm.rc:root/lpm.rc \
+    $(COMMON_PATH)/rootdir/init.smdk4210.usb.rc:root/init.smdk4210.usb.rc \
+    $(COMMON_PATH)/rootdir/init.smdk4210.rc:root/init.smdk4210.rc \
+    $(COMMON_PATH)/rootdir/ueventd.smdk4210.rc:root/ueventd.smdk4210.rc
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys2-common/configs/tinyalsa-audio.xml:system/etc/tinyalsa-audio.xml \
-    device/samsung/galaxys2-common/configs/audio_policy.conf:system/etc/audio_policy.conf
+    $(COMMON_PATH)/configs/tinyalsa-audio.xml:system/etc/tinyalsa-audio.xml \
+    $(COMMON_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Vold and Storage
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys2-common/configs/vold.fstab:system/etc/vold.fstab
+    $(COMMON_PATH)/configs/vold.fstab:system/etc/vold.fstab
 
 # Bluetooth configuration files
 PRODUCT_COPY_FILES += \
@@ -37,8 +40,8 @@ PRODUCT_COPY_FILES += \
 
 # Wifi
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys2-common/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/samsung/galaxys2-common/configs/bcmdhd.cal:system/etc/wifi/bcmdhd.cal
+    $(COMMON_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    $(COMMON_PATH)/configs/bcmdhd.cal:system/etc/wifi/bcmdhd.cal
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
@@ -48,12 +51,11 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330
 
 # Gps
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys2-common/configs/gps.conf:system/etc/gps.conf \
-    device/samsung/galaxys2-common/configs/sirfgps.conf:system/etc/sirfgps.conf
+    $(COMMON_PATH)/configs/gps.conf:system/etc/gps.conf \
+    $(COMMON_PATH)/configs/sirfgps.conf:system/etc/sirfgps.conf
 
 # Packages
 PRODUCT_PACKAGES := \
-    libsurfaceflinger_client \
     com.android.future.usb.accessory \
     SamsungServiceMode \
     Torch \
@@ -106,8 +108,8 @@ PRODUCT_PACKAGES += \
     libOMX.SEC.MP3.Decoder
 
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxys2-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/samsung/galaxys2-common/configs/media_profiles.xml:system/etc/media_profiles.xml
+    $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
