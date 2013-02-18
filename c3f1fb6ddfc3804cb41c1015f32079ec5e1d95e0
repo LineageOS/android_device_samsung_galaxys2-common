@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdX//90g\u003d",
+        "filename": "camera/exynos_camera.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 2847,
+      "author": {
+        "id": 4832
+      },
+      "writtenOn": "2013-02-18T02:57:05Z",
+      "side": 1,
+      "message": "It\u0027s deprecated, use \"module_api_version \u003d CAMERA_DEVICE_API_VERSION_1_0\" instead",
+      "revId": "c3f1fb6ddfc3804cb41c1015f32079ec5e1d95e0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdX//90c\u003d",
+        "filename": "camera/exynos_camera.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 2848,
+      "author": {
+        "id": 4832
+      },
+      "writtenOn": "2013-02-18T02:57:05Z",
+      "side": 1,
+      "message": "The same: use \"hal_api_version\" instead",
+      "revId": "c3f1fb6ddfc3804cb41c1015f32079ec5e1d95e0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
