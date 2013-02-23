@@ -1605,6 +1605,7 @@ void *exynos_camera_auto_focus_thread(void *data)
 			case 0x5: // in progress
 				usleep(500);
 				break;
+			case 0x1: // success
 			case 0x2: // success
 				auto_focus_result = 1;
 				pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
