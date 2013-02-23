@@ -61,9 +61,9 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.preview_size_values = "1280x720,640x480,720x480,800x480,800x450,352x288,320x240,176x144",
 			.preview_size = "640x480",
 			.preview_format_values = "yuv420sp,yuv420p,rgb565",
-			.preview_format = "rgb565",
+			.preview_format = "yuv420sp",
 			.preview_frame_rate_values = "30,25,20,15,10,7",
-			.preview_frame_rate = 20,
+			.preview_frame_rate = 30,
 			.preview_fps_range_values = "(7000,30000)",
 			.preview_fps_range = "7000,30000",
 
@@ -130,9 +130,9 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.preview_size_values = "640x480,352x288,320x240,176x144",
 			.preview_size = "640x480",
 			.preview_format_values = "yuv420sp,yuv420p,rgb565",
-			.preview_format = "rgb565",
+			.preview_format = "yuv420sp",
 			.preview_frame_rate_values = "30,25,20,15,10,7",
-			.preview_frame_rate = 15,
+			.preview_frame_rate = 30,
 			.preview_fps_range_values = "(7000,30000)",
 			.preview_fps_range = "7000,30000",
 
@@ -1602,22 +1602,20 @@ void *exynos_camera_auto_focus_thread(void *data)
 		}
 
 		switch (auto_focus_status) {
-			case 0x5: // in progress
+			case CAMERA_AF_STATUS_IN_PROGRESS:
 				usleep(500);
 				break;
-			case 0x2: // success
+			case CAMERA_AF_STATUS_SUCCESS:
+			case CAMERA_AF_STATUS_1ST_SUCCESS:
 				auto_focus_result = 1;
 				pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
 				goto thread_exit;
-			case 0x0: // fail
+			case CAMERA_AF_STATUS_FAIL:
+			default:
+				ALOGE("Unknown AF result flag: 0x%x", auto_focus_status);
 				auto_focus_result = 0;
 				pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
 				goto thread_exit;				
-			default:
-				ALOGE("Unknown AF result flag: 0x%x", auto_focus_status);
-				pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
-				goto thread_exit;				
-				
 		}
 
 		pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
@@ -2312,8 +2310,10 @@ int exynos_camera_set_preview_window(struct camera_device *dev,
 	if (w->set_buffer_count == NULL || w->set_usage == NULL || w->set_buffers_geometry == NULL)
 		return -EINVAL;
 
-        if (exynos_camera->preview_width == 640 || exynos_camera->preview_buffers_count <= 0)
+	if (exynos_camera->preview_buffers_count <= 0) {
+		ALOGE("%s: Invalid preview buffers count", __func__);
 		exynos_camera->preview_buffers_count = EXYNOS_CAMERA_MAX_BUFFERS_COUNT;
+	}
 
 	rc = w->set_buffer_count(w, exynos_camera->preview_buffers_count);
 	if (rc) {
