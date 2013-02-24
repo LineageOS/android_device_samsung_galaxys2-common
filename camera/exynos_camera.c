@@ -1610,9 +1610,9 @@ void *exynos_camera_auto_focus_thread(void *data)
 				auto_focus_result = 1;
 				pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
 				goto thread_exit;
-			case CAMERA_AF_STATUS_FAIL:
 			default:
 				ALOGE("Unknown AF result flag: 0x%x", auto_focus_status);
+			case CAMERA_AF_STATUS_FAIL:
 				auto_focus_result = 0;
 				pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
 				goto thread_exit;
