@@ -1601,21 +1601,17 @@ void *exynos_camera_auto_focus_thread(void *data)
 			goto thread_exit;
 		}
 
-		switch (auto_focus_status) {
-			case M5MO_AF_STATUS_IN_PROGRESS:
-				usleep(500);
-				break;
-			case M5MO_AF_STATUS_SUCCESS:
-			case M5MO_AF_STATUS_1ST_SUCCESS:
-				auto_focus_result = 1;
-				pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
-				goto thread_exit;
-			case M5MO_AF_STATUS_FAIL:
-			default:
-				ALOGE("AF failed or unknown result flag: 0x%x", auto_focus_status);
-				auto_focus_result = 0;
-				pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
-				goto thread_exit;
+		if (auto_focus_status & M5MO_AF_STATUS_IN_PROGRESS) { // Progress
+			usleep(10000); // Sleep 10 ms
+		} else if (auto_focus_status == M5MO_AF_STATUS_SUCCESS || auto_focus_status == M5MO_AF_STATUS_1ST_SUCCESS) { // Success
+			auto_focus_result = 1;
+			pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
+			goto thread_exit;
+		} else {
+			auto_focus_result = 0;
+			ALOGE("AF failed or unknown result flag: 0x%x", auto_focus_status);
+			pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
+			goto thread_exit;
 		}
 
 		pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
