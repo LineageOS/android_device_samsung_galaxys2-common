@@ -20,7 +20,6 @@ system/lib/libUMP.so
 system/lib/libfactoryutil.so
 system/lib/libfimc.so
 system/lib/libomission_avoidance.so
-system/lib/libsecion.so
 system/lib/libsecnativefeature.so
 system/vendor/firmware/libpn544_fw.so
 system/vendor/firmware/mfc_fw.bin
