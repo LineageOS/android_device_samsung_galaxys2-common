@@ -22,8 +22,8 @@
     <bool name="needsEarlyVideoSize">true</bool>
     <!-- Samsung Camcorder Mode -->
     <bool name="needsSamsungCamMode">true</bool>
-    <!-- Samsung Camera Settings -->
-    <bool name="hasSamsungCamSettings">true</bool>
+    <!-- Force use of profile video size -->
+    <bool name="useProfileVideoSize">true</bool>
     <!-- The camera removes the focus modes by default when touch-to-focus
          exists. Use this option to change that behavior -->
     <bool name="wantsFocusModes">true</bool>
