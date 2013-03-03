@@ -37,7 +37,7 @@
 		</device>
 		<device type="earpiece">
 			<path type="enable">
-				<ctrl name="Receiver Playback Volume" value="31" />
+				<ctrl name="Receiver Playback Volume" value="30" />
 				<ctrl name="Receiver Playback Switch" value="on" />
 			</path>
 			<path type="disable">
@@ -47,7 +47,7 @@
 		</device>
 		<device type="speaker">
 			<path type="enable">
-				<ctrl name="Speaker Playback Volume" value="26" />
+				<ctrl name="Speaker Playback Volume" value="27" />
 				<ctrl name="Speaker Playback Switch" value="on" />
 			</path>
 			<path type="disable">
