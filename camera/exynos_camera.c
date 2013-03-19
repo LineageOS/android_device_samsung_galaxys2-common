@@ -587,13 +587,10 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 	if (picture_size_string != NULL) {
 		sscanf(picture_size_string, "%dx%d", &picture_width, &picture_height);
 
-		if (picture_width != 0 && picture_height != 0 &&
-			picture_width != exynos_camera->picture_width &&
-			picture_height != exynos_camera->picture_height) {
+		if (picture_width != 0 && picture_width != exynos_camera->picture_width)
 			exynos_camera->picture_width = picture_width;
+		if (picture_height != 0 && picture_height != exynos_camera->picture_height)
 			exynos_camera->picture_height = picture_height;
-		}
-		
 	}
 
 	picture_format_string = exynos_param_string_get(exynos_camera, "picture-format");
