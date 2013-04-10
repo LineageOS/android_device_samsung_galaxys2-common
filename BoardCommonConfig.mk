@@ -88,7 +88,7 @@ BOARD_USE_TINYALSA_AUDIO := true
 BOARD_USE_YAMAHA_MC1N2_AUDIO := true
 
 # RIL
-BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
+BOARD_PROVIDES_LIBRIL := true
 
 # Camera
 BOARD_USES_PROPRIETARY_LIBFIMC := true
@@ -135,7 +135,7 @@ BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_SUPPRESS_EMMC_WIPE := true
 
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/overlay/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/include
 
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
