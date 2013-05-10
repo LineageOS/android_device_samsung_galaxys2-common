@@ -81,9 +81,9 @@ int exynos_exif_attributes_create_static(struct exynos_camera *exynos_camera,
 
 	av = APEX_FNUM_TO_APERTURE((double) exif_attributes->fnumber.num /
 		exif_attributes->fnumber.den);
-	exif_attributes->aperture.num = av * EXIF_DEF_APEX_DEN;
+	exif_attributes->aperture.num = av;
 	exif_attributes->aperture.den = EXIF_DEF_APEX_DEN;
-	exif_attributes->max_aperture.num = av * EXIF_DEF_APEX_DEN;
+	exif_attributes->max_aperture.num = av;
 	exif_attributes->max_aperture.den = EXIF_DEF_APEX_DEN;
 
 	strcpy((char *) exif_attributes->user_comment, EXIF_DEF_USERCOMMENTS);
@@ -256,17 +256,20 @@ int exynos_exif_attributes_create_params(struct exynos_camera *exynos_camera,
 	if (rc < 0)
 		ALOGE("%s: g ctrl failed!", __func__);
 
-	exif_attributes->shutter_speed.num = 1;
-	exif_attributes->shutter_speed.den = shutter_speed;
+	exif_attributes->shutter_speed.num = shutter_speed;
+	exif_attributes->shutter_speed.den = 100;
 
-	exposure_time = shutter_speed;
-	rc = exynos_v4l2_g_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_EXIF_EXPTIME,
-		&exposure_time);
-	if (rc < 0)
-		ALOGE("%s: g ctrl failed!", __func__);
+	/* the exposure_time value read from the camera doesn't work
+	 * exposure_time = shutter_speed;
+	 * rc = exynos_v4l2_g_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_EXIF_EXPTIME,
+	 * 	&exposure_time);
+	 * if (rc < 0)
+	 *	ALOGE("%s: g ctrl failed!", __func__);
+	 */
 
+	// calculate exposure time from the shutter speed value instead
 	exif_attributes->exposure_time.num = 1;
-	exif_attributes->exposure_time.den = exposure_time;
+	exif_attributes->exposure_time.den = APEX_SHUTTER_TO_EXPOSURE(shutter_speed);
 
 	rc = exynos_v4l2_g_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_EXIF_ISO,
 		&iso_speed);
@@ -312,7 +315,7 @@ bv_static:
 	ev = exposure - EV_DEFAULT;
 
 bv_ioctl:
-	exif_attributes->brightness.num = bv * EXIF_DEF_APEX_DEN;
+	exif_attributes->brightness.num = bv;
 	exif_attributes->brightness.den = EXIF_DEF_APEX_DEN;
 
 	if (exynos_camera->scene_mode == SCENE_MODE_BEACH_SNOW) {
@@ -572,7 +575,7 @@ int exynos_exif_create(struct exynos_camera *exynos_camera,
 	pointer += count;
 
 	count = exynos_exif_write_data(pointer, EXIF_TAG_APERTURE,
-		EXIF_TYPE_RATIONAL, 1, &offset, exif_ifd_start, &exif_attributes->aperture, sizeof(exif_attributes->shutter_speed));
+		EXIF_TYPE_RATIONAL, 1, &offset, exif_ifd_start, &exif_attributes->aperture, sizeof(exif_attributes->aperture));
 	pointer += count;
 
 	count = exynos_exif_write_data(pointer, EXIF_TAG_BRIGHTNESS,
