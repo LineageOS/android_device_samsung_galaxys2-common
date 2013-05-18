@@ -20,6 +20,7 @@
 
 #define LOG_TAG "TinyALSA-Audio Mixer"
 
+#include <fcntl.h>
 #include <errno.h>
 #include <pthread.h>
 #include <stdint.h>
@@ -509,6 +510,43 @@ void tinyalsa_mixer_config_start(void *data, const XML_Char *elem,
 			tinyalsa_mixer_data_free(mixer_data);
 			list_head_free(list);
 		}
+	} else if(strcmp(elem, "write") == 0) {
+		if(config_data->device != NULL && config_data->list_start != NULL) {
+			list = list_head_alloc();
+			mixer_data = tinyalsa_mixer_data_alloc();
+
+			mixer_data->type = MIXER_DATA_TYPE_WRITE;
+			list->data = (void *) mixer_data;
+		} else {
+			LOGE("Missing device/path for elem: %s", elem);
+			return;
+		}
+
+		for(i=0 ; attr[i] != NULL && attr[i+1] != NULL ; i++) {
+			if(strcmp(attr[i], "name") == 0) {
+				i++;
+				mixer_data->name = strdup((char *) attr[i]);
+			} else if(strcmp(attr[i], "value") == 0) {
+				i++;
+				mixer_data->value = strdup((char *) attr[i]);
+			} else {
+				LOGE("Unknown write attr: %s", attr[i]);
+			}
+		}
+
+		if(mixer_data->name != NULL && mixer_data->value != NULL) {
+			if(*config_data->list_start == NULL) {
+				*config_data->list_start = list;
+			} else {
+				config_data->list->next = list;
+				list->prev = config_data->list;
+			}
+
+			config_data->list = list;
+		} else {
+			tinyalsa_mixer_data_free(mixer_data);
+			list_head_free(list);
+		}
 	}
 }
 
@@ -704,6 +742,36 @@ int tinyalsa_mixer_set_route_ctrl(struct tinyalsa_mixer *mixer,
 	return 0;
 }
 
+int tinyalsa_mixer_set_route_write(struct tinyalsa_mixer *mixer,
+	struct tinyalsa_mixer_data *mixer_data)
+{
+	char *buffer = NULL;
+	int fd;
+
+	if(mixer_data->type != MIXER_DATA_TYPE_WRITE)
+		return -1;
+
+	LOGD("Writing %s to %s", mixer_data->value, mixer_data->name);
+
+	asprintf(&buffer, "%s\n", mixer_data->value);
+	if(buffer == NULL)
+		return -1;
+
+	fd = open(mixer_data->name, O_WRONLY);
+	if(fd < 0) {
+		free(buffer);
+		return -1;
+	}
+
+	write(fd, buffer, strlen(buffer) + 1);
+
+	free(buffer);
+
+	close(fd);
+
+	return 0;
+}
+
 int tinyalsa_mixer_set_route_list(struct tinyalsa_mixer *mixer, struct list_head *list)
 {
 	struct tinyalsa_mixer_data *mixer_data = NULL;
@@ -725,6 +793,12 @@ int tinyalsa_mixer_set_route_list(struct tinyalsa_mixer *mixer, struct list_head
 					ALOGE("Unable to set control!");
 					return -1;
 				}
+			}
+		} else if(mixer_data->type == MIXER_DATA_TYPE_WRITE) {
+			rc = tinyalsa_mixer_set_route_write(mixer, mixer_data);
+			if(rc < 0) {
+				LOGE("Unable to write!");
+				return -1;
 			}
 		}
 
