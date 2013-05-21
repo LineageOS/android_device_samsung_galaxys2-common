@@ -177,7 +177,7 @@ on post-fs-data
     chown system radio /sys/devices/virtual/sec/sec_touchkey/touchkey_firm_update_status
     chown system radio /sys/devices/virtual/sec/sec_touchkey/touchkey_firm_update
     chown system radio /sys/devices/virtual/sec/sec_touchkey/updated_version
-    chown system radio /sys/devices/virtual/sec/sec_touchkey/led_timeout
+    chown system radio /sys/devices/virtual/sec/sec_touchkey/timeout
 
     chown system radio /sys/devices/virtual/sec/tsp_noise_test/set_firm_version
     chown system radio /sys/devices/virtual/sec/tsp_noise_test/set_threshould
