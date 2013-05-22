@@ -42,7 +42,6 @@ int (*_ril_is_connected)(void *);
 int (*_ril_disconnect)(void *);
 int (*_ril_set_call_volume)(void *, enum ril_sound_type, int);
 int (*_ril_set_call_audio_path)(void *, enum ril_audio_path);
-int (*_ril_set_call_clock_sync)(void *, enum ril_clock_state);
 int (*_ril_set_call_twomic)(void *, enum ril_twomic_device, enum ril_twomic_enable);
 int (*_ril_register_unsolicited_handler)(void *, int, void *);
 int (*_ril_get_wb_amr)(void *, void *);
@@ -320,7 +319,6 @@ int audio_ril_interface_open(struct audio_hw_device *dev, audio_devices_t device
 	_ril_disconnect = dlsym(dl_handle, "Disconnect_RILD");
 	_ril_set_call_volume = dlsym(dl_handle, "SetCallVolume");
 	_ril_set_call_audio_path = dlsym(dl_handle, "SetCallAudioPath");
-	_ril_set_call_clock_sync = dlsym(dl_handle, "SetCallClockSync");
         _ril_set_call_twomic = dlsym(dl_handle, "SetTwoMicControl");
 
 	_ril_register_unsolicited_handler = dlsym(dl_handle,
@@ -330,7 +328,7 @@ int audio_ril_interface_open(struct audio_hw_device *dev, audio_devices_t device
 
 	if (!_ril_open_client || !_ril_close_client || !_ril_connect ||
 	    !_ril_is_connected || !_ril_disconnect || !_ril_set_call_volume ||
-	    !_ril_set_call_audio_path || !_ril_set_call_clock_sync ||
+	    !_ril_set_call_audio_path ||
 	    !_ril_register_unsolicited_handler || !_ril_set_call_twomic) {
 	  ALOGE("Cannot get symbols from '%s'", RIL_CLIENT_LIBPATH);
 	  dlclose(dl_handle);
