@@ -350,7 +350,6 @@ void ril_event_loop()
     struct timeval tv;
     struct timeval * ptv;
 
-
     for (;;) {
 
         // make local copy of read fd_set
