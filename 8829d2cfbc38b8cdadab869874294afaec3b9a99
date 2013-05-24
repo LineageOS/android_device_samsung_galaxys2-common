@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "iC8X.e4",
+        "filename": "libril/ril.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 5911
+      },
+      "writtenOn": "2013-05-24T15:37:04Z",
+      "side": 1,
+      "message": "this memset() is the offending function...",
+      "revId": "8829d2cfbc38b8cdadab869874294afaec3b9a99",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
