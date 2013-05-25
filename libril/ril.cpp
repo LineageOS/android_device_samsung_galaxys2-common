@@ -1902,6 +1902,21 @@ static int responseRilSignalStrength(Parcel &p,
             gsmSignalStrength = 31;
         }
         ALOGD("gsmSignalStrength (corrected)=%d", gsmSignalStrength);
+
+        /* 
+         * if gsmSignalStrength isn't a valid value, use cdmaDbm as fallback.
+         * This is needed for old modem firmwares.
+         */
+        if (gsmSignalStrength < 0 || (gsmSignalStrength > 31 && p_cur->GW_SignalStrength.signalStrength != 99)) {
+            ALOGD("gsmSignalStrength-fallback (raw)=%d", p_cur->CDMA_SignalStrength.dbm);
+            gsmSignalStrength = p_cur->CDMA_SignalStrength.dbm & 0xFF;
+            if (gsmSignalStrength < 0) {
+                gsmSignalStrength = 99;
+            } else if (gsmSignalStrength > 31 && gsmSignalStrength != 99) {
+                gsmSignalStrength = 31;
+            }
+            ALOGD("gsmSignalStrength-fallback (corrected)=%d", gsmSignalStrength);
+        }
         p.writeInt32(gsmSignalStrength);
 
         /* gsmBitErrorRate */
