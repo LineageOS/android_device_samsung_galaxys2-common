@@ -518,7 +518,7 @@ void tinyalsa_mixer_config_start(void *data, const XML_Char *elem,
 			mixer_data->type = MIXER_DATA_TYPE_WRITE;
 			list->data = (void *) mixer_data;
 		} else {
-			LOGE("Missing device/path for elem: %s", elem);
+			ALOGE("Missing device/path for elem: %s", elem);
 			return;
 		}
 
@@ -530,7 +530,7 @@ void tinyalsa_mixer_config_start(void *data, const XML_Char *elem,
 				i++;
 				mixer_data->value = strdup((char *) attr[i]);
 			} else {
-				LOGE("Unknown write attr: %s", attr[i]);
+				ALOGE("Unknown write attr: %s", attr[i]);
 			}
 		}
 
@@ -751,7 +751,7 @@ int tinyalsa_mixer_set_route_write(struct tinyalsa_mixer *mixer,
 	if(mixer_data->type != MIXER_DATA_TYPE_WRITE)
 		return -1;
 
-	LOGD("Writing %s to %s", mixer_data->value, mixer_data->name);
+	ALOGD("Writing %s to %s", mixer_data->value, mixer_data->name);
 
 	asprintf(&buffer, "%s\n", mixer_data->value);
 	if(buffer == NULL)
@@ -792,16 +792,19 @@ int tinyalsa_mixer_set_route_list(struct tinyalsa_mixer *mixer, struct list_head
 				if(rc < 0) {
 					ALOGE("Unable to set control!");
 					return -1;
+					ALOGE("Unable to set control!");
+					goto list_continue;
 				}
 			}
 		} else if(mixer_data->type == MIXER_DATA_TYPE_WRITE) {
 			rc = tinyalsa_mixer_set_route_write(mixer, mixer_data);
 			if(rc < 0) {
-				LOGE("Unable to write!");
-				return -1;
+				ALOGE("Unable to write!");
+				goto list_continue;
 			}
 		}
 
+list_continue:
 		if(list->next != NULL)
 			list = list->next;
 		else
