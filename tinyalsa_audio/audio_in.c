@@ -427,7 +427,7 @@ static int audio_in_set_format(struct audio_stream *stream, audio_format_t forma
 {
 	struct tinyalsa_audio_stream_in *stream_in;
 
-	ALOGD("%s(%p, %d)", __func__, stream, format);
+	//ALOGD("%s(%p, %d)", __func__, stream, format);
 
 	if(stream == NULL)
 		return -1;
@@ -453,7 +453,7 @@ static int audio_in_standby(struct audio_stream *stream)
 	struct tinyalsa_audio_stream_in *stream_in;
 	int rc;
 
-	ALOGD("%s(%p)", __func__, stream);
+	//ALOGD("%s(%p)", __func__, stream);
 
 	if(stream == NULL)
 		return -1;
@@ -483,7 +483,7 @@ static int audio_in_standby(struct audio_stream *stream)
 
 static int audio_in_dump(const struct audio_stream *stream, int fd)
 {
-	ALOGD("%s(%p, %d)", __func__, stream, fd);
+	//ALOGD("%s(%p, %d)", __func__, stream, fd);
 
 	return 0;
 }
@@ -496,7 +496,7 @@ static int audio_in_set_parameters(struct audio_stream *stream, const char *kvpa
 	int value;
 	int rc;
 
-	ALOGD("%s(%p, %s)", __func__, stream, kvpairs);
+	//ALOGD("%s(%p, %s)", __func__, stream, kvpairs);
 
 	if(stream == NULL || kvpairs == NULL)
 		return -1;
@@ -539,7 +539,7 @@ error_params:
 static char *audio_in_get_parameters(const struct audio_stream *stream,
 	const char *keys)
 {
-	ALOGD("%s(%p, %s)", __func__, stream, keys);
+	//ALOGD("%s(%p, %s)", __func__, stream, keys);
 
 	return strdup("");
 }
@@ -625,14 +625,14 @@ static uint32_t audio_in_get_input_frames_lost(struct audio_stream_in *stream)
 
 static int audio_in_add_audio_effect(const struct audio_stream *stream, effect_handle_t effect)
 {
-	ALOGD("%s(%p, %p)", __func__, stream, effect);
+	//ALOGD("%s(%p, %p)", __func__, stream, effect);
 
 	return 0;
 }
 
 static int audio_in_remove_audio_effect(const struct audio_stream *stream, effect_handle_t effect)
 {
-	ALOGD("%s(%p, %p)", __func__, stream, effect);
+	//ALOGD("%s(%p, %p)", __func__, stream, effect);
 
 	return 0;
 }
