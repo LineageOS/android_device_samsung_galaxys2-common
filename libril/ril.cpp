@@ -1880,8 +1880,6 @@ static int responseRilSignalStrength(Parcel &p,
                     void *response, size_t responselen) {
 
     int gsmSignalStrength;
-    int cdmaDbm;
-    int evdoDbm;
 
     if (response == NULL && responselen != 0) {
         ALOGE("invalid response: NULL");
@@ -1896,42 +1894,32 @@ static int responseRilSignalStrength(Parcel &p,
         /* gsmSignalStrength */
         ALOGD("gsmSignalStrength (raw)=%d", p_cur->GW_SignalStrength.signalStrength);
         gsmSignalStrength = p_cur->GW_SignalStrength.signalStrength & 0xFF;
-        if (gsmSignalStrength < 0) {
-            gsmSignalStrength = 99;
-        } else if (gsmSignalStrength > 31 && gsmSignalStrength != 99) {
-            gsmSignalStrength = 31;
-        }
         ALOGD("gsmSignalStrength (corrected)=%d", gsmSignalStrength);
+
+        /* 
+         * if gsmSignalStrength isn't a valid value, use cdmaDbm as fallback.
+         * This is needed for old modem firmwares.
+         */
+        if (gsmSignalStrength < 0 || (gsmSignalStrength > 31 && p_cur->GW_SignalStrength.signalStrength != 99)) {
+            ALOGD("gsmSignalStrength-fallback (raw)=%d", p_cur->CDMA_SignalStrength.dbm);
+            gsmSignalStrength = p_cur->CDMA_SignalStrength.dbm;
+            if (gsmSignalStrength < 0) {
+                gsmSignalStrength = 99;
+            } else if (gsmSignalStrength > 31 && gsmSignalStrength != 99) {
+                gsmSignalStrength = 31;
+            }
+            ALOGD("gsmSignalStrength-fallback (corrected)=%d", gsmSignalStrength);
+        }
         p.writeInt32(gsmSignalStrength);
 
         /* gsmBitErrorRate */
         p.writeInt32(p_cur->GW_SignalStrength.bitErrorRate);
-
         /* cdmaDbm */
-        //ALOGD("cdmaDbm (raw)=%d", p_cur->CDMA_SignalStrength.dbm);
-        cdmaDbm = p_cur->CDMA_SignalStrength.dbm & 0xFF;
-        if (cdmaDbm < 0) {
-            cdmaDbm = 99;
-        } else if (cdmaDbm > 31 && cdmaDbm != 99) {
-            cdmaDbm = 31;
-        }
-        //ALOGD("cdmaDbm (corrected)=%d", cdmaDbm);
-        p.writeInt32(cdmaDbm);
-
+        p.writeInt32(p_cur->CDMA_SignalStrength.dbm);
         /* cdmaEcio */
         p.writeInt32(p_cur->CDMA_SignalStrength.ecio);
-
         /* evdoDbm */
-        //ALOGD("evdoDbm (raw)=%d", p_cur->EVDO_SignalStrength.dbm);
-        evdoDbm = p_cur->EVDO_SignalStrength.dbm & 0xFF;
-        if (evdoDbm < 0) {
-            evdoDbm = 99;
-        } else if (evdoDbm > 31 && evdoDbm != 99) {
-            evdoDbm = 31;
-        }
-        //ALOGD("evdoDbm (corrected)=%d", evdoDbm);
-        p.writeInt32(evdoDbm);
-
+        p.writeInt32(p_cur->EVDO_SignalStrength.dbm);
         /* evdoEcio */
         p.writeInt32(p_cur->EVDO_SignalStrength.ecio);
         /* evdoSnr */
@@ -1972,9 +1960,9 @@ static int responseRilSignalStrength(Parcel &p,
                 printBuf,
                 gsmSignalStrength,
                 p_cur->GW_SignalStrength.bitErrorRate,
-                cdmaDbm,
+                p_cur->CDMA_SignalStrength.dbm,
                 p_cur->CDMA_SignalStrength.ecio,
-                evdoDbm,
+                p_cur->EVDO_SignalStrength.dbm,
                 p_cur->EVDO_SignalStrength.ecio,
                 p_cur->EVDO_SignalStrength.signalNoiseRatio,
                 p_cur->LTE_SignalStrength.signalStrength,
