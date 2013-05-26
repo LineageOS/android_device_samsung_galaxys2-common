@@ -791,8 +791,6 @@ int tinyalsa_mixer_set_route_list(struct tinyalsa_mixer *mixer, struct list_head
 				rc = tinyalsa_mixer_set_route_ctrl(mixer, mixer_data);
 				if(rc < 0) {
 					ALOGE("Unable to set control!");
-					return -1;
-					ALOGE("Unable to set control!");
 					goto list_continue;
 				}
 			}
