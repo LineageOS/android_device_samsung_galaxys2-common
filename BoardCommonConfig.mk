@@ -28,6 +28,7 @@ TARGET_ARCH_VARIANT_CPU := cortex-a9
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 EXYNOS4210_ENHANCEMENTS := true
+ARCH_ARM_USE_NON_NEON_MEMCPY := true
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 
