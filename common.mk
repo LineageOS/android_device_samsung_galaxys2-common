@@ -114,8 +114,8 @@ PRODUCT_COPY_FILES += \
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
     mobiledata.interfaces=pdp0,wlan0,gprs,ppp0 \
-    ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10
+    ro.telephony.call_ring.multiple=false \
+    ro.telephony.call_ring.delay=3000
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
