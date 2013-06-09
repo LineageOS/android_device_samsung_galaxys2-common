@@ -49,11 +49,6 @@
     <string name="accelerometer_dialog_head">校准完成</string>
     <string name="accelerometer_dialog_message">感应器已被成功的校准。</string>
 
-    <string name="category_haptic_title">振动</string>
-    <string name="vibrator_subcat_title">振动器</string>
-    <string name="vibrator_intensity_title_head">振动器强度</string>
-    <string name="vibrator_intensity_summary_head">设置振动器强度</string>
-
     <string name="category_radio_title">无线电</string>
     <string name="hspa_title_head">HSPA</string>
     <string name="hspa_summary_head">启用 HSDPA/HSUPA</string>
