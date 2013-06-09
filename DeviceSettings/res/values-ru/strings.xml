@@ -34,10 +34,14 @@
     <string name="accelerometer_dialog_head">Калибровка выполнена</string>
     <string name="accelerometer_dialog_message">Датчик успешно откалиброван</string>
 
+    <!-- Haptic Preference -->
     <string name="category_haptic_title">Отклик</string>
-    <string name="vibrator_subcat_title">Вибрация</string>
-    <string name="vibrator_intensity_title_head">Интенсивность вибрации</string>
-    <string name="vibrator_intensity_summary_head">Установка интенсивности вибрации</string>
+
+    <!-- VibratorTuning -->
+    <string name="vibrator_title">Вибрация</string>
+    <string name="vibrator_tuning_title">Интенсивность вибрации</string>
+    <string name="vibrator_tuning_summary_head">Установка интенсивности вибрации</string>
+    <string name="vibrator_warning">Не рекомендуется установка значения выше %1$d</string>
 
     <string name="category_radio_title">Модем</string>
     <string name="hspa_title_head">HSPA</string>
