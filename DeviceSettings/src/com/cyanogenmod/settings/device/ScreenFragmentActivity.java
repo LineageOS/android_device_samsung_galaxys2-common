@@ -37,6 +37,7 @@ public class ScreenFragmentActivity extends PreferenceFragment {
     private static final String FILE_TOUCHKEY_DISABLE = "/sys/class/sec/sec_touchkey/force_disable";
     private static final String FILE_TOUCHKEY_BRIGHTNESS = "/sys/class/sec/sec_touchkey/brightness";
 
+    private CABC mCABC;
     private mDNIeScenario mmDNIeScenario;
     private mDNIeMode mmDNIeMode;
     private mDNIeNegative mmDNIeNegative;
@@ -50,6 +51,9 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.screen_preferences);
         PreferenceScreen prefSet = getPreferenceScreen();
+
+        mCABC = (CABC) findPreference(DeviceSettings.KEY_CABC);
+        mCABC.setEnabled(CABC.isSupported());
 
         mmDNIeScenario = (mDNIeScenario) findPreference(DeviceSettings.KEY_MDNIE_SCENARIO);
         mmDNIeScenario.setEnabled(mDNIeScenario.isSupported());

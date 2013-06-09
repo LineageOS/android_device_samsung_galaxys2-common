@@ -3,8 +3,15 @@
     android:title="@string/app_name">
 
     <PreferenceCategory
-                android:title="@string/screen_colors_title">
-    
+            android:title="@string/screen_colors_title">
+
+    <!-- CABC -->
+    <com.cyanogenmod.settings.device.CABC
+            android:key="cabc"
+            android:title="@string/cabc_title_head"
+            android:summary="@string/cabc_summary_head"
+            android:defaultValue="true" />
+
     <!-- mDNIe Scenario modes -->
     <com.cyanogenmod.settings.device.mDNIeScenario
 	        android:key="mdnie_scenario"
@@ -43,41 +50,41 @@
 
     <!-- Panel gamma -->
     <com.cyanogenmod.settings.device.PanelGamma
-                android:key="panel_gamma"
-                android:title="@string/panel_gamma_title_head"
-                android:summary="@string/panel_gamma_summary_head"
-                android:entries="@array/panel_gamma_entries"
-                        android:entryValues="@array/panel_gamma_entries_values"
-                        android:defaultValue="0" />
-
+	        android:key="panel_gamma"
+	        android:title="@string/panel_gamma_title_head"
+	        android:summary="@string/panel_gamma_summary_head"
+	        android:entries="@array/panel_gamma_entries"
+	        android:entryValues="@array/panel_gamma_entries_values"
+	        android:defaultValue="0" />
     </PreferenceCategory>
+
+    <!-- Touchscreen -->
     <PreferenceCategory
                 android:title="@string/touchscreen_subcat_title">
     <com.cyanogenmod.settings.device.TouchscreenSensitivity
-                android:key="touchscreen_sensitivity"
-                android:title="@string/touchscreen_sensitivity_title_head"
-                android:summary="@string/touchscreen_sensitivity_summary_head"
-                android:entries="@array/touchscreen_sensitivity_entries"
-                android:entryValues="@array/touchscreen_sensitivity_entries_values"
-                android:defaultValue="50" />
+	        android:key="touchscreen_sensitivity"
+	        android:title="@string/touchscreen_sensitivity_title_head"
+	        android:summary="@string/touchscreen_sensitivity_summary_head"
+	        android:entries="@array/touchscreen_sensitivity_entries"
+	        android:entryValues="@array/touchscreen_sensitivity_entries_values"
+	        android:defaultValue="50" />
     </PreferenceCategory>
 
+    <!-- Touchkeys -->
     <PreferenceCategory
                 android:title="@string/touchkey_subcat_title">
-    <!-- Touchkey backlight -->
     <CheckBoxPreference
-                android:key="touchkey_light"
-                android:title="@string/touchkey_light_title_head"
-                android:summary="@string/touchkey_light_summary_head"
-                android:defaultValue="true"
-                />
+	        android:key="touchkey_light"
+	        android:title="@string/touchkey_light_title_head"
+	        android:summary="@string/touchkey_light_summary_head"
+	        android:defaultValue="true" />
     <com.cyanogenmod.settings.device.TouchkeyTimeout
-                android:key="touchkey_timeout"
-                android:title="@string/touchkey_timeout_title_head"
-                android:summary="@string/touchkey_timeout_summary_head"
-                android:entries="@array/touchkey_timeout_entries"
-                android:entryValues="@array/touchkey_timeout_entries_values"
-                android:defaultValue="3"
-                />
+	        android:key="touchkey_timeout"
+	        android:title="@string/touchkey_timeout_title_head"
+	        android:summary="@string/touchkey_timeout_summary_head"
+	        android:entries="@array/touchkey_timeout_entries"
+	        android:entryValues="@array/touchkey_timeout_entries_values"
+	        android:defaultValue="3" />
     </PreferenceCategory>
+
 </PreferenceScreen>
