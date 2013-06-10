@@ -15,8 +15,11 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Ajustes avanzados</string>
+    <string name="defaults_button">Restablecer</string>
     <string name="category_screen_title">Pantalla</string>
     <string name="screen_colors_title">Colores</string>
+    <string name="cabc_title_head">Brillo adaptativo</string>
+    <string name="cabc_summary_head">Activar el control de brillo adaptado al contenido</string>
     <string name="mdnie_scenario_title_head">Escenario</string>
     <string name="mdnie_scenario_summary_head">Establecer escenario mDNIe</string>
     <string name="mdnie_mode_title_head">Modo</string>
