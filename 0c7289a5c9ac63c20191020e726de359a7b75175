@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "iD7u.CI",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1573
+      },
+      "writtenOn": "2013-06-12T02:25:12Z",
+      "side": 1,
+      "message": "Nem emlékszem és nem tudom megnézni, de ezt nem Haladónak forditottuk (forditottad) mindenhol mashol?",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iP73YPM",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1573
+      },
+      "writtenOn": "2013-06-12T02:25:12Z",
+      "side": 1,
+      "message": "... alaphelyzetbe állitása szerintem jobb lenne",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
