@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "iNmjlp0",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "Ez a pont a Rendszerbeállítások/Haladó alatt jelenik meg, ahol jelenleg ez a fels? felirat: \"Advanced settings\"\n\nÉn a Haladó beállítások -at javaslom.",
+      "parentUuid": "iLnkYg0",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "iP73YPM",
         "filename": "DeviceSettings/res/values-hu/strings.xml",
         "patchSetId": 2
@@ -65,6 +83,194 @@
       "writtenOn": "2013-06-13T11:38:55Z",
       "side": 1,
       "message": "Ezt meg az automatikus fényerö részröl mintáztam, de meggyözhetö vagyok.",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iPmdOlo",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "Ezt támogatom én is.\n\nBeállítások alaphelyzetbe állítása",
+      "parentUuid": "iP73YPM",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iFm2Zt0",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "CAPS LOCK",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iLmg4pE",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "Ez (és több társa is) jelenleg CAPS LOCK üzemmódban látszik... direkt kisbet?sre változtatjuk ezeket?",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iJmtHos",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "CASP LOCK",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iHmqSnI",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "CAPS LOCK",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iDm7ssY",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "CAPS LOCK",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iBmw7tw",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "CAPS LOCK",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iPm0GtI",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "CAPS LOCK",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iNnKdk8",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "CAPS LOCK",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iLnHwkQ",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "CAPS LOCK",
+      "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iJnE-kA",
+        "filename": "DeviceSettings/res/values-hu/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5393
+      },
+      "writtenOn": "2013-06-13T14:03:25Z",
+      "side": 1,
+      "message": "CAPS LOCK",
       "revId": "0c7289a5c9ac63c20191020e726de359a7b75175",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
