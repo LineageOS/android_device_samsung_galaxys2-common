@@ -16,6 +16,24 @@
       "revId": "c398641db6923a709c1f7bc9e2a815fe4ab36614",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "iDQKl9M",
+        "filename": "DeviceSettings/res/values-nl/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2881
+      },
+      "writtenOn": "2013-06-13T19:35:54Z",
+      "side": 1,
+      "message": "Witregels zitten ook in de Engelse file en dit maakt het veel overzichtelijker. \nHet maakt ook totaal niet uit of je die erin laat zitten, dus waarom moeten het 1 groot blok tekst worden?",
+      "parentUuid": "iLlRAmU",
+      "revId": "c398641db6923a709c1f7bc9e2a815fe4ab36614",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
