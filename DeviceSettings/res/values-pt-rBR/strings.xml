@@ -55,4 +55,7 @@
     <string name="dockaudio_subcat_title">Áudio</string>
     <string name="use_dock_audio_title_head">Usar áudio USB do dock</string>
     <string name="use_dock_audio_summary_head">Usar a saída de áudio passiva no dock</string>
+    <string name="defaults_button">Redefinir para padrão</string>
+    <string name="cabc_summary_head">Ativar controle de luz de fundo adaptivo ao conteúdo</string>
+    <string name="cabc_title_head">CLAC</string>
 </resources>
