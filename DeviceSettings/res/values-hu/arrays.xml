@@ -25,29 +25,24 @@
         <item>Galéria</item>
         <item>VT</item>
     </string-array>
-
     <string-array name="mdnie_mode_entries">
         <item>Dinamikus</item>
         <item>Hagyományos (Alapbeállítás)</item>
         <item>Természetes</item>
         <item>Film</item>
     </string-array>
-
     <string-array name="mdnie_negative_entries">
         <item>Hagyományos</item>
         <item>Fordított</item>
     </string-array>
-
     <string-array name="mdnie_outdoor_entries">
         <item>Kikapcsolva (Alapbeállítás)</item>
         <item>Bekapcsolva</item>
     </string-array>
-
     <string-array name="panel_gamma_entries">
         <item>2.2 (Alapbeállítás)</item>
         <item>1.9</item>
     </string-array>
-
     <string-array name="touchscreen_sensitivity_entries">
         <item>10</item>
         <item>20</item>
@@ -56,20 +51,18 @@
         <item>70</item>
         <item>100</item>
     </string-array>
-
     <string-array name="hspa_entries">
         <item>UMTS</item>
         <item>HSDPA</item>
         <item>HSDPA + HSUPA</item>
     </string-array>
-
     <string-array name="touchkey_timeout_entries">
-            <item>Soha</item>
-            <item>1 másodperc</item>
-            <item>2 másodperc</item>
-            <item>3 másodperc (Alapbeállítás)</item>
-            <item>4 másodperc</item>
-            <item>5 másodperc</item>
-            <item>6 másodperc</item>
+        <item>Soha</item>
+        <item>1 másodperc</item>
+        <item>2 másodperc</item>
+        <item>3 másodperc (Alapbeállítás)</item>
+        <item>4 másodperc</item>
+        <item>5 másodperc</item>
+        <item>6 másodperc</item>
     </string-array>
 </resources>
