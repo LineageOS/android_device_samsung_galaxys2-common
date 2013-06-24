@@ -69,10 +69,6 @@ TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxys2-common/re
 BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 
-# FIMG Acceleration
-BOARD_USES_FIMGAPI := true
-BOARD_USES_SKIA_FIMGAPI := true
-
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
 
