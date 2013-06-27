@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dac4157f_4d20f9f7",
+        "filename": "DeviceSettings/res/values-it/arrays.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3184
+      },
+      "writtenOn": "2013-06-27T22:46:33Z",
+      "side": 1,
+      "message": "\"Predefinito\" in \"predefinito\"\nIdem per le stringhe al di sotto",
+      "revId": "ee22f09fd136e5fea5de1013c9f802fb332b518b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dac4157f_2d1dc5bd",
+        "filename": "DeviceSettings/res/values-it/arrays.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 3184
+      },
+      "writtenOn": "2013-06-27T22:46:33Z",
+      "side": 1,
+      "message": "\"Caldo\" in \"caldo\"",
+      "revId": "ee22f09fd136e5fea5de1013c9f802fb332b518b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
