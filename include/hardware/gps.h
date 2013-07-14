@@ -340,6 +340,11 @@ typedef uint8_t                         GnssConstellationType;
  */
 #define GNSS_CONFIGURATION_INTERFACE     "gnss_configuration"
 
+/**
+ * The GPS chipset can use Psc for AGPS.
+ */
+#define AGPS_USE_PSC
+
 /** Represents a location. */
 typedef struct {
     /** set to sizeof(GpsLocation) */
@@ -481,6 +486,9 @@ typedef struct {
      * might rely in the old (wrong) behavior.
      */
     uint16_t lac;
+#ifdef AGPS_USE_PSC
+    uint16_t psc;
+#endif
     /** Cell id in 2G. Utran Cell id in 3G. Cell Global Id EUTRA in LTE. */
     uint32_t cid;
     /** Tracking Area Code in LTE. */
