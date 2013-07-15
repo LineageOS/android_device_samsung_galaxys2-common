@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dac4157f_9a206ef9",
+        "filename": "include/hardware/gps.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 523
+      },
+      "writtenOn": "2013-07-15T18:17:14Z",
+      "side": 1,
+      "message": "#define AGPS_USE_PSC",
+      "revId": "3d5afde06c9b849b492f1ecc5846c5804a6d38aa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dac4157f_7a1d9abc",
+        "filename": "include/hardware/gps.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 523
+      },
+      "writtenOn": "2013-07-15T18:17:14Z",
+      "side": 1,
+      "message": "#ifdef AGPS_USE_PSC",
+      "revId": "3d5afde06c9b849b492f1ecc5846c5804a6d38aa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dac4157f_5a79b6fb",
+        "filename": "include/hardware/gps.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 523
+      },
+      "writtenOn": "2013-07-15T18:17:14Z",
+      "side": 1,
+      "message": "#endif",
+      "revId": "3d5afde06c9b849b492f1ecc5846c5804a6d38aa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
