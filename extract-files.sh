@@ -89,7 +89,7 @@ done
 
 LOCAL_PATH := \$(call my-dir)
 
-ifneq (\$(filter i777 i9100 n7000,\$(TARGET_DEVICE)),)
+ifeq (\$(TARGET_COMMON_DEVICE),galaxys2-common)
 
 include \$(CLEAR_VARS)
 LOCAL_MODULE := libUMP

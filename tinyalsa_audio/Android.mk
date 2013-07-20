@@ -43,27 +43,9 @@ LOCAL_SHARED_LIBRARIES := \
 	libdl
 
 ifeq ($(strip $(BOARD_USE_YAMAHA_MC1N2_AUDIO)),true)
-	LOCAL_CFLAGS += -DYAMAHA_MC1N2_AUDIO
+	LOCAL_CFLAGS += -DYAMAHA_MC1N2_AUDIO -DYAMAHA_MC1N2_AUDIO_DEVICE=\"galaxys2\"
 	LOCAL_C_INCLUDES += $(LOCAL_PATH)/../yamaha-mc1n2-audio/include
 	LOCAL_SHARED_LIBRARIES += libyamaha-mc1n2-audio
-
-#this really needs to get cleaned up to properly inherit from -common
-	ifeq ($(TARGET_DEVICE),n7000)
-		LOCAL_CFLAGS += -DYAMAHA_MC1N2_AUDIO_DEVICE=\"galaxys2\"
-	endif
-
-	ifeq ($(TARGET_DEVICE),i9100)
-		LOCAL_CFLAGS += -DYAMAHA_MC1N2_AUDIO_DEVICE=\"galaxys2\"
-	endif
-
-	ifeq ($(TARGET_DEVICE),i777)
-		LOCAL_CFLAGS += -DYAMAHA_MC1N2_AUDIO_DEVICE=\"galaxys2\"
-	endif
-
-	ifeq ($(TARGET_DEVICE),d710)
-		LOCAL_CFLAGS += -DYAMAHA_MC1N2_AUDIO_DEVICE=\"galaxys2\"
-	endif
-
 endif
 
 LOCAL_PRELINK_MODULE := false
