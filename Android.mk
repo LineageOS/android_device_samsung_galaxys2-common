@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter i777 i9100 n7000 d710,$(TARGET_DEVICE)),)
+ifneq ($(filter i777 i9100 i9100p n7000 d710,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 include $(call all-makefiles-under,$(LOCAL_PATH))
