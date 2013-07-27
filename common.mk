@@ -30,10 +30,6 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/tinyalsa-audio.xml:system/etc/tinyalsa-audio.xml \
     $(COMMON_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
-# Vold and Storage
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/vold.fstab:system/etc/vold.fstab
-
 # Bluetooth configuration files
 PRODUCT_COPY_FILES += \
     system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
