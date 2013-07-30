@@ -54,7 +54,7 @@ int exynos_v4l2_find_index(struct exynos_camera *exynos_camera, int exynos_v4l2_
 		return -1;
 
 	index = -1;
-	for (i=0 ; i < exynos_camera->config->v4l2_nodes_count ; i++) {
+	for (i = 0; i < exynos_camera->config->v4l2_nodes_count; i++) {
 		if (exynos_camera->config->v4l2_nodes[i].id == exynos_v4l2_id &&
 			exynos_camera->config->v4l2_nodes[i].node != NULL) {
 			index = i;
