@@ -242,7 +242,7 @@ int exynos_exif_attributes_create_params(struct exynos_camera *exynos_camera,
 	}
 
 	// Time
-    	time(&time_data);
+	time(&time_data);
 	time_info = localtime(&time_data);
 	strftime((char *) exif_attributes->date_time, sizeof(exif_attributes->date_time),
 		"%Y:%m:%d %H:%M:%S", time_info);
@@ -372,7 +372,7 @@ bv_ioctl:
 }
 
 int exynos_exif_write_data(void *exif_data, unsigned short tag,
-	unsigned short type, unsigned int count, int *offset, void *start, 
+	unsigned short type, unsigned int count, int *offset, void *start,
 	void *data, int length)
 {
 	unsigned char *pointer;
@@ -397,7 +397,7 @@ int exynos_exif_write_data(void *exif_data, unsigned short tag,
 		pointer += sizeof(*offset);
 
 		memcpy((void *) ((int) start + *offset), data, count * length);
-		*offset += count * length;		
+		*offset += count * length;
 	} else {
 		memcpy(pointer, data, count * length);
 		pointer += 4;
@@ -655,7 +655,7 @@ int exynos_exif_create(struct exynos_camera *exynos_camera,
 		pointer += NUM_SIZE;
 
 		offset += NUM_SIZE + value * IFD_SIZE + OFFSET_SIZE;
-		
+
 		count = exynos_exif_write_data(pointer, EXIF_TAG_GPS_VERSION_ID,
 			EXIF_TYPE_BYTE, 4, NULL, NULL, &exif_attributes->gps_version_id, sizeof(char));
 		pointer += count;
@@ -773,7 +773,7 @@ int exynos_exif_create(struct exynos_camera *exynos_camera,
 	} else {
 		value = 0;
 		memcpy(exif_ifd_thumb, &value, OFFSET_SIZE);
-		
+
 	}
 
 	pointer = (unsigned char *) exif_ifd_data_start;
