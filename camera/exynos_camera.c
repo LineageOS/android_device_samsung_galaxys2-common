@@ -1764,7 +1764,7 @@ int exynos_camera_preview(struct exynos_camera *exynos_camera)
 		return -1;
 	}
 
-	frame_size = (int) ((float) width * (float) height * format_bpp);
+	frame_size = exynos_camera->preview_frame_size;
 	offset = index * frame_size;
 
 	preview_data = (void *) ((int) exynos_camera->preview_memory->data + offset);
@@ -1959,9 +1959,14 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 			return -1;
 		}
 
-		if (rc != frame_size)
-			ALOGE("%s: Frame size mismatch: %d/%d", __func__, frame_size, rc);
+		if (rc < frame_size) {
+			ALOGE("%s: problematic frame size: %d/%d", __func__, rc, frame_size);
+			return -1;
+		}
 	}
+
+	frame_size = rc;
+	exynos_camera->preview_frame_size = frame_size;
 
 	if (exynos_camera->callbacks.request_memory != NULL) {
 		fd = exynos_v4l2_find_fd(exynos_camera, 0);
