@@ -213,6 +213,7 @@ struct exynos_camera {
 	struct preview_stream_ops *preview_window;
 	camera_memory_t *preview_memory;
 	int preview_buffers_count;
+	int preview_frame_size;
 	int preview_params_set;
 
 	// Recording
