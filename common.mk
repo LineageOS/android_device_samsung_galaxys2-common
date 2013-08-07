@@ -107,6 +107,12 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# Graphics
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=131072 \
+    hwui.render_dirty_regions=false \
+    ro.bq.gpu_to_cpu_unsupported=1
+
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SamsungExynos4RIL \
@@ -161,10 +167,6 @@ PRODUCT_COPY_FILES += \
 # Feature live wallpaper
 PRODUCT_COPY_FILES += \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=131072 \
-    hwui.render_dirty_regions=false
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
