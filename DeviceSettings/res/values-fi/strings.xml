@@ -14,10 +14,14 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Advanced settings</string>
+    <string name="app_name">Lisäasetukset</string>
+
+    <string name="defaults_button">Palauta oletusasetukset</string>
 
     <string name="category_screen_title">Näyttö</string>
     <string name="screen_colors_title">Värit</string>
+    <string name="cabc_title_head">CABC</string>
+    <string name="cabc_summary_head">Ota sisältöön mukautuva taustavalon kirkkaus käyttöön</string>
     <string name="mdnie_scenario_title_head">Skenaario</string>
     <string name="mdnie_scenario_summary_head">Vaihda mDNIe-skenaario</string>
     <string name="mdnie_mode_title_head">Tila</string>
@@ -47,6 +51,12 @@
     <string name="calibrate_accelerometer_summary_head">Aseta puhelin tasaiselle alustalle ja paina tätä kalibroidaksesi</string>
     <string name="accelerometer_dialog_head">Kalibrointi valmis</string>
     <string name="accelerometer_dialog_message">Sensori kalibroitu onnistuneesti</string>
+
+    <string name="category_haptic_title">Haptinen</string>
+    <string name="vibrator_title">Värinä</string>
+    <string name="vibrator_tuning_title">Värinän voimakkuus</string>
+    <string name="vibrator_tuning_summary_head">Säädä värinän voimakkuutta</string>
+    <string name="vibrator_warning">Arvoja jotka ylittävät %1$d ei suositella</string>
 
     <string name="category_radio_title">Radio</string>
     <string name="hspa_title_head">HSPA</string>
