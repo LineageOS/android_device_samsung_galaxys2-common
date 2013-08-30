@@ -105,6 +105,18 @@
 				<ctrl name="Mic 2 Gain Volume" value="0" />
 			</path>
 		</device>
+		<device type="back-mic">
+			<path type="enable">
+				<ctrl name="AD Analog Volume" value="26" />
+				<ctrl name="Mic 1 Gain Volume" value="2" />
+				<ctrl name="Mic 3 Gain Volume" value="2" />
+			</path>
+			<path type="disable">
+				<ctrl name="AD Analog Volume" value="19" />
+				<ctrl name="Mic 1 Gain Volume" value="0" />
+				<ctrl name="Mic 3 Gain Volume" value="0" />
+			</path>
+		</device>
 	</input>
 
 	<modem card="0" device="0">
