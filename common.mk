@@ -185,5 +185,5 @@ TARGET_HAL_PATH := hardware/samsung/exynos4/hal
 TARGET_OMX_PATH := hardware/samsung/exynos/multimedia/openmax
 $(call inherit-product, hardware/samsung/exynos4210.mk)
 
-# Use the non-open-source parts, if they're present
--include vendor/samsung/galaxys2-common/common-vendor.mk
+# Include non-open-source parts
+$(call inherit-product, vendor/samsung/galaxys2-common/common-vendor.mk)
