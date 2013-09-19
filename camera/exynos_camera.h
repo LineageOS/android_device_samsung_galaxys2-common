@@ -98,6 +98,9 @@ struct exynos_camera_params {
 	int jpeg_thumbnail_quality;
 	int jpeg_quality;
 
+	int video_snapshot_supported;
+	int full_video_snap_supported;
+
 	char *recording_size;
 	char *recording_size_values;
 	char *recording_format;

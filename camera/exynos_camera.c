@@ -77,6 +77,9 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.jpeg_thumbnail_quality = 100,
 			.jpeg_quality = 90,
 
+			.video_snapshot_supported = 0,
+			.full_video_snap_supported = 0,
+
 			.recording_size = "720x480",
 			.recording_size_values = "1920x1080,1280x720,720x480,640x480",
 			.recording_format = "yuv420sp",
@@ -145,6 +148,9 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.jpeg_thumbnail_height = 120,
 			.jpeg_thumbnail_quality = 100,
 			.jpeg_quality = 90,
+
+			.video_snapshot_supported = 0,
+			.full_video_snap_supported = 0,
 
 			.recording_size = "640x480",
 			.recording_size_values = "640x480",
@@ -364,6 +370,16 @@ int exynos_camera_params_init(struct exynos_camera *exynos_camera, int id)
 		exynos_camera->config->presets[id].params.jpeg_thumbnail_quality);
 	exynos_param_int_set(exynos_camera, "jpeg-quality",
 		exynos_camera->config->presets[id].params.jpeg_quality);
+
+	if (exynos_camera->config->presets[id].params.video_snapshot_supported == 1)
+		exynos_param_string_set(exynos_camera, "video-snapshot-supported", "true");
+	else
+		exynos_param_string_set(exynos_camera, "video-snapshot-supported", "false");
+
+	if (exynos_camera->config->presets[id].params.full_video_snap_supported == 1)
+		exynos_param_string_set(exynos_camera, "full-video-snap-supported", "true");
+	else
+		exynos_param_string_set(exynos_camera, "full-video-snap-supported", "false");
 
 	// Recording
 	exynos_param_string_set(exynos_camera, "video-size",
