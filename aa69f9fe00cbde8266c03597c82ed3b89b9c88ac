@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a43c5e1_a06d34ce",
+        "filename": "rootdir/fstab.smdk4210",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2881
+      },
+      "writtenOn": "2013-10-07T22:49:00Z",
+      "side": 1,
+      "message": "/devices/platform/dw_mmc/mmc_host/mmc0/mmc0 /storage/sdcard0        auto      defaults      voldmanaged\u003dsdcard0:11,encryptable\u003dsdcard",
+      "revId": "aa69f9fe00cbde8266c03597c82ed3b89b9c88ac",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
