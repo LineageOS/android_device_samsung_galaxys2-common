@@ -61,7 +61,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
       metadata=metadata,
       info_dict=OPTIONS.info_dict)
 
-  AppendAssertions(script, input_zip)
+  AppendAssertions(script, OPTIONS.info_dict)
   device_specific.FullOTA_Assertions()
   if OPTIONS.backuptool:
     script.Mount("/system")
