@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a4dcd0f_9be66be7",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 523
+      },
+      "writtenOn": "2013-10-24T18:06:35Z",
+      "side": 1,
+      "message": "\u003cbool name\u003d\"config_enableTorch\"\u003etrue\u003c/bool\u003e",
+      "revId": "17c64fa8593959787644217c82b4aec2e48940fb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
