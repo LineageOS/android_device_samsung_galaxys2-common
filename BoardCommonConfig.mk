@@ -72,6 +72,7 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
 # Graphics
 BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
 USE_OPENGL_RENDERER := true
+COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
 
 # FIMG Acceleration
 BOARD_USES_FIMGAPI := true
