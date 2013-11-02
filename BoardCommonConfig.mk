@@ -137,10 +137,10 @@ BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/lun%d/file"
 
 # Selinux
-BOARD_SEPOLICY_DIRS := \
+BOARD_SEPOLICY_DIRS += \
     device/samsung/galaxys2-common/selinux
 
-BOARD_SEPOLICY_UNION := \
+BOARD_SEPOLICY_UNION += \
     device.te \
     domain.te \
     file.te \
