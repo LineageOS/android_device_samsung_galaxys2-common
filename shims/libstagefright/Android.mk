@@ -16,18 +16,27 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := CameraSource.cpp
+LOCAL_SRC_FILES := CameraSource.cpp \
+    ACodec.cpp
 
 LOCAL_C_INCLUDES := \
     $(TOP)/frameworks/av/include \
+    $(TOP)/frameworks/av/media/libstagefright/omx/include \
     $(TOP)/frameworks/native/include/media/hardware \
     $(TOP)/frameworks/native/include/media/openmax \
     $(TOP)/frameworks/native/libs/arect/include \
-    $(TOP)/frameworks/native/libs/nativebase/include
+    $(TOP)/frameworks/native/libs/nativebase/include \
+    $(TOP)/frameworks/native/libs/nativewindow/include \
+    $(TOP)/hardware/samsung/exynos4/hal/include
 
 LOCAL_SHARED_LIBRARIES := \
     android.hardware.graphics.bufferqueue@1.0 \
+    android.hardware.media.omx@1.0 \
+    android.hidl.allocator@1.0 \
+    android.hidl.memory@1.0 \
     android.hidl.token@1.0-utils \
+    libstagefright \
+    libstagefright_foundation \
     libbase \
     libcamera_client \
     liblog
