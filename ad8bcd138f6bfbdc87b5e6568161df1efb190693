@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa1b9901_4e9a4516",
+        "filename": "common.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2013-11-14T05:40:37Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be doing anything, init makes sure the value is set long before the properties are read, including default.prop. Check the value of ro.boot.selinux on a running device, please",
+      "revId": "ad8bcd138f6bfbdc87b5e6568161df1efb190693",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
