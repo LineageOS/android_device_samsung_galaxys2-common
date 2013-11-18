@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da20952f_a5cea958",
+        "filename": "rootdir/fstab.smdk4210",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2881
+      },
+      "writtenOn": "2013-11-18T15:07:09Z",
+      "side": 1,
+      "message": "I think you need to uses spaces, not tabs",
+      "revId": "a028ca37e8242f81643d137c7646fe296ba15ed8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
