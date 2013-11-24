@@ -4,10 +4,15 @@ import init.gps.rc
 on init
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
-    mkdir /storage 0775 system system
-    mkdir /storage/sdcard0 0775 system system
-    mkdir /storage/sdcard1 0775 system system
-    mkdir /storage/usbdisk0 0775 system system
+
+    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /mnt/media_rw/usbdisk0 0700 media_rw media_rw
+
+    mkdir /storage/sdcard0 0770 root root
+    mkdir /storage/sdcard1 0770 root root
+    mkdir /storage/usbdisk0 0770 root root
+
     mkdir /efs 0771 radio system
     mkdir /preload 0771 system system
     mkdir /mnt 0775 root system
@@ -395,9 +400,9 @@ service iprenew_p2p /system/bin/dhcpcd -n
     oneshot
 
 service iprenew_bnep0 /system/bin/dhcpcd -n
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 # bluetooth mac address
 service bdaddr /system/bin/bdaddr_read
@@ -412,3 +417,15 @@ service bugreport /system/bin/bugmailer.sh -v
     disabled
     oneshot
     keycodes 114 115 116
+
+service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
+    class late_start
+    disabled
+
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk0 /storage/usbdisk0
+    class late_start
+    disabled
