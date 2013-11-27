@@ -40,7 +40,8 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth configuration files
 PRODUCT_COPY_FILES += \
-    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
+    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf \
+    $(COMMON_PATH)/configs/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
 # Wifi
 PRODUCT_COPY_FILES += \
