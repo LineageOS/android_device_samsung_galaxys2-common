@@ -22,4 +22,6 @@
     <bool name="needsEarlyVideoSize">true</bool>
     <!-- Samsung Camcorder Mode -->
     <bool name="needsSamsungCamMode">true</bool>
+    <!-- Always use recording dimensions for preview -->
+    <bool name="useVideoSizeForPreview">true</bool>
 </resources>
