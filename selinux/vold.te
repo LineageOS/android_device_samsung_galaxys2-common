@@ -1,0 +1,1 @@
+allow vold sdcard_external:file rw_file_perms;
