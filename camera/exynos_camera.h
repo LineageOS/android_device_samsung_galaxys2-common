@@ -336,6 +336,7 @@ int exynos_param_string_set(struct exynos_camera *exynos_camera,
 
 char *exynos_params_string_get(struct exynos_camera *exynos_camera);
 int exynos_params_string_set(struct exynos_camera *exynos_camera, char *string);
+void camera_fixup_setparams(struct exynos_camera *exynos_camera);
 
 /*
  * V4L2

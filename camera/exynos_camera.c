@@ -2621,6 +2621,12 @@ int exynos_camera_cancel_picture(struct camera_device *dev)
 	return 0;
 }
 
+void camera_fixup_getparams(struct exynos_camera *exynos_camera)
+{
+    exynos_param_string_set(exynos_camera, "cam_mode",
+        exynos_camera->camera_sensor_mode == SENSOR_MOVIE ? "1" : "0");
+}
+
 int exynos_camera_set_parameters(struct camera_device *dev,
 	const char *params)
 {
@@ -2639,6 +2645,8 @@ int exynos_camera_set_parameters(struct camera_device *dev,
 		ALOGE("%s: Unable to set params string", __func__);
 		return -1;
 	}
+
+        camera_fixup_setparams(exynos_camera);
 
 	rc = exynos_camera_params_apply(exynos_camera);
 	if (rc < 0) {
