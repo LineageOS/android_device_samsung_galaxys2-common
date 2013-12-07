@@ -2640,6 +2640,9 @@ int exynos_camera_set_parameters(struct camera_device *dev,
 		return -1;
 	}
 
+	exynos_param_string_set(exynos_camera, "cam_mode",
+                exynos_camera->camera_sensor_mode == SENSOR_MOVIE ? "1" : "0");
+
 	rc = exynos_camera_params_apply(exynos_camera);
 	if (rc < 0) {
 		ALOGE("%s: Unable to apply params", __func__);
