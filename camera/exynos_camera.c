@@ -108,7 +108,7 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.whitebalance_values = "auto,incandescent,fluorescent,daylight,cloudy-daylight",
 
 			.scene_mode = "auto",
-			.scene_mode_values = "auto,portrait,landscape,night,beach,snow,sunset,fireworks,sports,party,candlelight,dusk-dawn,fall-color,back-light,text",
+			.scene_mode_values = "auto,portrait,landscape,night,beach,snow,sunset,fireworks,action,party,candlelight,dusk-dawn,fall-color,back-light,text",
 
 			.effect = "none",
 			.effect_values = "none,mono,negative,sepia,aqua",
@@ -885,7 +885,7 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 			scene_mode = SCENE_MODE_SUNSET;
 		else if (strcmp(scene_mode_string, "fireworks") == 0)
 			scene_mode = SCENE_MODE_FIREWORKS;
-		else if (strcmp(scene_mode_string, "sports") == 0)
+		else if (strcmp(scene_mode_string, "action") == 0)
 			scene_mode = SCENE_MODE_SPORTS;
 		else if (strcmp(scene_mode_string, "party") == 0)
 			scene_mode = SCENE_MODE_PARTY_INDOOR;
@@ -2639,6 +2639,14 @@ int exynos_camera_set_parameters(struct camera_device *dev,
 		ALOGE("%s: Unable to set params string", __func__);
 		return -1;
 	}
+
+	char *recording_hint_string = exynos_param_string_get(exynos_camera, "recording-hint");
+	int cam_mode = 0; // photo
+	if (recording_hint_string != NULL && strcmp(recording_hint_string, "true") == 0) {
+		cam_mode = 1; // video
+	}
+
+	exynos_param_int_set(exynos_camera, "cam_mode", cam_mode);
 
 	rc = exynos_camera_params_apply(exynos_camera);
 	if (rc < 0) {
