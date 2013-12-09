@@ -191,6 +191,7 @@ int exynos_exif_attributes_create_gps(struct exynos_camera *exynos_camera,
 	snprintf((char *) exif_attributes->gps_datestamp, sizeof(exif_attributes->gps_datestamp),
 		"%04d:%02d:%02d", time_info.tm_year + 1900, time_info.tm_mon + 1, time_info.tm_mday);
 
+	strcpy((char *) attributes->gps_processing_method, gps_processing_method_string);
 	exif_attributes->enableGps = true;
 
 	return 0;
