@@ -2640,6 +2640,15 @@ int exynos_camera_set_parameters(struct camera_device *dev,
 		return -1;
 	}
 
+        if (strstr(params, "gps-timestamp=") == NULL) {
+                /* Make sure the GPS data is ignored, it may have
+                 * been explicitly erased with removeGpsData()
+                 */
+                exynos_param_int_set(exynos_camera, "gps-timestamp", -1);
+                exynos_param_int_set(exynos_camera, "gps-latitude", -1);
+                exynos_param_int_set(exynos_camera, "gps-longitude", -1);
+        }
+
 	char *recording_hint_string = exynos_param_string_get(exynos_camera, "recording-hint");
 	int cam_mode = 0; // photo
 	if (recording_hint_string != NULL && strcmp(recording_hint_string, "true") == 0) {
