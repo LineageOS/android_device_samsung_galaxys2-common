@@ -80,7 +80,7 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.video_snapshot_supported = 0,
 			.full_video_snap_supported = 0,
 
-			.recording_size = "720x480",
+			.recording_size = "1920x1080",
 			.recording_size_values = "1920x1080,1280x720,720x480,640x480",
 			.recording_format = "yuv420sp",
 
@@ -643,7 +643,7 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 	// Recording
 	video_size_string = exynos_param_string_get(exynos_camera, "video-size");
 	if (video_size_string == NULL)
-		video_size_string = exynos_param_string_get(exynos_camera, "preview-size");
+		video_size_string = preview_size_string;
 
 	if (video_size_string != NULL) {
 		sscanf(video_size_string, "%dx%d", &recording_width, &recording_height);
@@ -959,6 +959,9 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 				ALOGE("%s: s ctrl failed!", __func__);
 		}
 	}
+
+	// Camera mode
+	exynos_param_int_set(exynos_camera, "cam_mode", camera_sensor_mode == SENSOR_MOVIE ? 1 : 0);
 
 	ALOGD("%s: Preview size: %dx%d, picture size: %dx%d, recording size: %dx%d",
 		__func__, preview_width, preview_height, picture_width, picture_height,
@@ -2640,13 +2643,14 @@ int exynos_camera_set_parameters(struct camera_device *dev,
 		return -1;
 	}
 
-	char *recording_hint_string = exynos_param_string_get(exynos_camera, "recording-hint");
-	int cam_mode = 0; // photo
-	if (recording_hint_string != NULL && strcmp(recording_hint_string, "true") == 0) {
-		cam_mode = 1; // video
+	if (strstr(params, "gps-timestamp=") == NULL) {
+		/* Make sure the GPS data is ignored, it may have
+		 * been explicitly erased with removeGpsData()
+		 */
+		exynos_param_int_set(exynos_camera, "gps-timestamp", -1);
+		exynos_param_int_set(exynos_camera, "gps-latitude", -1);
+		exynos_param_int_set(exynos_camera, "gps-longitude", -1);
 	}
-
-	exynos_param_int_set(exynos_camera, "cam_mode", cam_mode);
 
 	rc = exynos_camera_params_apply(exynos_camera);
 	if (rc < 0) {
