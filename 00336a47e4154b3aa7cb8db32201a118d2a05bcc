@@ -34,6 +34,23 @@
       "revId": "00336a47e4154b3aa7cb8db32201a118d2a05bcc",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fade3982_9f73814d",
+        "filename": "AdvancedDisplay/res/values-nl/arrays.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 2597
+      },
+      "writtenOn": "2014-02-13T10:05:00Z",
+      "side": 1,
+      "message": "\u0026amp; hebben we eerder in dit soort gevallen gebruikt, volgens mij.",
+      "revId": "00336a47e4154b3aa7cb8db32201a118d2a05bcc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
