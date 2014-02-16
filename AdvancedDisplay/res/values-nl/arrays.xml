@@ -37,25 +37,4 @@
         <item>Normaal</item>
         <item>Omgedraaid</item>
     </string-array>
-
-    <string-array name="touchkey_timeout_entries">
-        <item>Nooit</item>
-        <item>1 sec.</item>
-        <item>2 sec.</item>
-        <item>3 sec. (standaard)</item>
-        <item>4 sec.</item>
-        <item>5 sec.</item>
-        <item>6 sec.</item>
-    </string-array>
-
-    <string-array name="led_fade_entries">
-        <item>Knipperen</item>
-        <item>Vervagen</item>
-    </string-array>
-
-    <string-array name="hspa_entries">
-        <item>Alleen UMTS</item>
-        <item>Alleen HSDPA</item>
-        <item>HSDPA/HSUPA</item>
-    </string-array>
 </resources>
