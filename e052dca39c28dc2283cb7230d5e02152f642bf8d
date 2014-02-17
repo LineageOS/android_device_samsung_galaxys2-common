@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fade3982_eb2008fa",
+        "filename": "AdvancedDisplay/res/values-cs/arrays.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2014-02-17T01:27:15Z",
+      "side": 1,
+      "message": "please remove touchkey_timeout_entries led_fade_entries hspa_entries\n\nthey are unused and will be removed soon",
+      "revId": "e052dca39c28dc2283cb7230d5e02152f642bf8d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
