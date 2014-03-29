@@ -18,20 +18,20 @@
 <resources>
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (default)</item>
-    <item>Interface utilisateur</item>
+    <item>UI</item>
     <item>Video</item>
     <item>Video warm</item>
     <item>Video cold</item>
     <item>Camera</item>
-    <item>Navigation</item>
-    <item>Gallery</item>
+    <item>ניווט</item>
+    <item>גלרייה</item>
     <item>VT</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
     <item>Dynamic (default)</item>
     <item>Standard</item>
     <item>Natural</item>
-    <item>Movie</item>
+    <item>סרט</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
     <item>Normal</item>

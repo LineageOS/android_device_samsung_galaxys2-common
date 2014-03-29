@@ -18,13 +18,13 @@
 <resources>
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (default)</item>
-    <item>Interface utilisateur</item>
+    <item>UI</item>
     <item>Video</item>
     <item>Video warm</item>
     <item>Video cold</item>
-    <item>Camera</item>
+    <item>Câmara</item>
     <item>Navigation</item>
-    <item>Gallery</item>
+    <item>Galeria</item>
     <item>VT</item>
   </string-array>
   <string-array name="mdnie_mode_entries">

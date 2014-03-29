@@ -17,24 +17,24 @@
 -->
 <resources>
   <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (default)</item>
-    <item>Interface utilisateur</item>
-    <item>Video</item>
-    <item>Video warm</item>
-    <item>Video cold</item>
-    <item>Camera</item>
-    <item>Navigation</item>
-    <item>Gallery</item>
+    <item>CyanogenMod (per defecte)</item>
+    <item>IU</item>
+    <item>Vídeo</item>
+    <item>Video càlid</item>
+    <item>Vídeo fred</item>
+    <item>Càmera</item>
+    <item>Navegació</item>
+    <item>Galeria</item>
     <item>VT</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
-    <item>Dynamic (default)</item>
-    <item>Standard</item>
+    <item>Dinàmic (per defecte)</item>
+    <item>Estàndard</item>
     <item>Natural</item>
-    <item>Movie</item>
+    <item>Películes</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
     <item>Normal</item>
-    <item>Inverted</item>
+    <item>Invertit</item>
   </string-array>
 </resources>

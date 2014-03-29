@@ -16,25 +16,14 @@
      limitations under the License.
 -->
 <resources>
-  <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (default)</item>
-    <item>Interface utilisateur</item>
-    <item>Video</item>
-    <item>Video warm</item>
-    <item>Video cold</item>
-    <item>Camera</item>
-    <item>Navigation</item>
-    <item>Gallery</item>
-    <item>VT</item>
-  </string-array>
-  <string-array name="mdnie_mode_entries">
-    <item>Dynamic (default)</item>
-    <item>Standard</item>
-    <item>Natural</item>
-    <item>Movie</item>
-  </string-array>
-  <string-array name="mdnie_negative_entries">
-    <item>Normal</item>
-    <item>Inverted</item>
-  </string-array>
+  <string name="app_name">Pantalla avançada</string>
+  <string name="defaults_button">Restableix els valors per defecte</string>
+  <string name="category_screen_title">Pantalla</string>
+  <string name="screen_colors_title">Colors</string>
+  <string name="mdnie_scenario_title_head">Escenari</string>
+  <string name="mdnie_scenario_summary_head">Estableix l\'escenari de mDNIe</string>
+  <string name="mdnie_mode_title_head">Mode</string>
+  <string name="mdnie_mode_summary_head">Estableix el mode de mDNIe</string>
+  <string name="mdnie_negative_title_head">Mode negatiu</string>
+  <string name="mdnie_negative_summary_head">Habilita/inhabilita els colors invertits</string>
 </resources>
