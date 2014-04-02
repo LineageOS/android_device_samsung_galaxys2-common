@@ -16,14 +16,25 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Geavanceerde instellingen</string>
-  <string name="defaults_button">Standaardwaarden</string>
-  <string name="category_screen_title">Scherm</string>
-  <string name="screen_colors_title">Kleuren</string>
-  <string name="mdnie_scenario_title_head">Scenario</string>
-  <string name="mdnie_scenario_summary_head">mDNIe-scenario instellen</string>
-  <string name="mdnie_mode_title_head">Modus</string>
-  <string name="mdnie_mode_summary_head">mDNIe-modus instellen</string>
-  <string name="mdnie_negative_title_head">Negatieve modus</string>
-  <string name="mdnie_negative_summary_head">Negatieve kleuren in-/uitschakelen</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod (per defecte)</item>
+    <item>IU</item>
+    <item>Vídeo</item>
+    <item>Video càlid</item>
+    <item>Vídeo fred</item>
+    <item>Càmera</item>
+    <item>Navegació</item>
+    <item>Galeria</item>
+    <item>VT</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>Dinàmic (per defecte)</item>
+    <item>Estàndard</item>
+    <item>Natural</item>
+    <item>Películes</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>Normal</item>
+    <item>Invertit</item>
+  </string-array>
 </resources>

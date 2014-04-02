@@ -16,14 +16,14 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Geavanceerde instellingen</string>
-  <string name="defaults_button">Standaardwaarden</string>
-  <string name="category_screen_title">Scherm</string>
-  <string name="screen_colors_title">Kleuren</string>
-  <string name="mdnie_scenario_title_head">Scenario</string>
-  <string name="mdnie_scenario_summary_head">mDNIe-scenario instellen</string>
-  <string name="mdnie_mode_title_head">Modus</string>
-  <string name="mdnie_mode_summary_head">mDNIe-modus instellen</string>
-  <string name="mdnie_negative_title_head">Negatieve modus</string>
-  <string name="mdnie_negative_summary_head">Negatieve kleuren in-/uitschakelen</string>
+  <string name="app_name">Axustes avanzaos</string>
+  <string name="defaults_button">Valores predeterminaos</string>
+  <string name="category_screen_title">Pantalla</string>
+  <string name="screen_colors_title">Colores</string>
+  <string name="mdnie_scenario_title_head">Escenariu</string>
+  <string name="mdnie_scenario_summary_head">Definir l\'escenariu mDNIe</string>
+  <string name="mdnie_mode_title_head">Mou</string>
+  <string name="mdnie_mode_summary_head">Definir el mou mDNIe</string>
+  <string name="mdnie_negative_title_head">Mou negativu</string>
+  <string name="mdnie_negative_summary_head">Activar/desactivar los colores invertíos</string>
 </resources>
