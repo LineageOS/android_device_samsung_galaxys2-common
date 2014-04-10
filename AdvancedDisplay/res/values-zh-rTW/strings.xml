@@ -16,14 +16,10 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">高级显示</string>
-  <string name="defaults_button">重置默认设置</string>
-  <string name="category_screen_title">屏幕</string>
-  <string name="screen_colors_title">颜色</string>
-  <string name="mdnie_scenario_title_head">场景</string>
-  <string name="mdnie_scenario_summary_head">设置 mDNIe 场景</string>
+  <string name="app_name">進階顯示</string>
+  <string name="defaults_button">重設為預設植</string>
+  <string name="category_screen_title">螢幕</string>
+  <string name="screen_colors_title">顏色</string>
   <string name="mdnie_mode_title_head">模式</string>
-  <string name="mdnie_mode_summary_head">设置 mDNIe 模式</string>
-  <string name="mdnie_negative_title_head">负极模式</string>
-  <string name="mdnie_negative_summary_head">启用/禁用反色</string>
+  <string name="mdnie_mode_summary_head">設定 mDNIe 模式</string>
 </resources>

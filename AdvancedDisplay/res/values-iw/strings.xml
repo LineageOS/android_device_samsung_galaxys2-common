@@ -16,14 +16,14 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">高级显示</string>
-  <string name="defaults_button">重置默认设置</string>
-  <string name="category_screen_title">屏幕</string>
-  <string name="screen_colors_title">颜色</string>
-  <string name="mdnie_scenario_title_head">场景</string>
-  <string name="mdnie_scenario_summary_head">设置 mDNIe 场景</string>
-  <string name="mdnie_mode_title_head">模式</string>
-  <string name="mdnie_mode_summary_head">设置 mDNIe 模式</string>
-  <string name="mdnie_negative_title_head">负极模式</string>
-  <string name="mdnie_negative_summary_head">启用/禁用反色</string>
+  <string name="app_name">תצוגה מתקדמת</string>
+  <string name="defaults_button">אפס לברירת מחדל</string>
+  <string name="category_screen_title">מסך</string>
+  <string name="screen_colors_title">צבעים</string>
+  <string name="mdnie_scenario_title_head">תרחיש</string>
+  <string name="mdnie_scenario_summary_head">הגדר את תרחיש mDNIe</string>
+  <string name="mdnie_mode_title_head">מצב</string>
+  <string name="mdnie_mode_summary_head">הגדר את מצב mDNIe</string>
+  <string name="mdnie_negative_title_head">מצב שלילי</string>
+  <string name="mdnie_negative_summary_head">הפעל/השבת צבעים הפוכים</string>
 </resources>
