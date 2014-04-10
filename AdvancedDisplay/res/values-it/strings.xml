@@ -17,7 +17,7 @@
 -->
 <resources>
   <string name="app_name">Schermo avanzato</string>
-  <string name="defaults_button">Ripristina predefinito </string>
+  <string name="defaults_button">Ripristina predefinito</string>
   <string name="category_screen_title">Schermo</string>
   <string name="screen_colors_title">Colori</string>
   <string name="mdnie_scenario_title_head">Scenario</string>

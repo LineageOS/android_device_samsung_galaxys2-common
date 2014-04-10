@@ -16,14 +16,14 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">高级显示</string>
-  <string name="defaults_button">重置默认设置</string>
-  <string name="category_screen_title">屏幕</string>
-  <string name="screen_colors_title">颜色</string>
-  <string name="mdnie_scenario_title_head">场景</string>
-  <string name="mdnie_scenario_summary_head">设置 mDNIe 场景</string>
-  <string name="mdnie_mode_title_head">模式</string>
-  <string name="mdnie_mode_summary_head">设置 mDNIe 模式</string>
-  <string name="mdnie_negative_title_head">负极模式</string>
-  <string name="mdnie_negative_summary_head">启用/禁用反色</string>
+  <string name="app_name">Avancerede skærmindstillinger</string>
+  <string name="defaults_button">Nulstil til standard</string>
+  <string name="category_screen_title">Skærm</string>
+  <string name="screen_colors_title">Farver</string>
+  <string name="mdnie_scenario_title_head">Scenarie</string>
+  <string name="mdnie_scenario_summary_head">Angiv mDNIe-scenariet</string>
+  <string name="mdnie_mode_title_head">Tilstand</string>
+  <string name="mdnie_mode_summary_head">Angiv mDNIe-tilstanden</string>
+  <string name="mdnie_negative_title_head">Negativ tilstand</string>
+  <string name="mdnie_negative_summary_head">Aktivér/deaktivér omvendte farver</string>
 </resources>
