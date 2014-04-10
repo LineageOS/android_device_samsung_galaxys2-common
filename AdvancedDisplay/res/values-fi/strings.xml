@@ -16,14 +16,14 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">高级显示</string>
-  <string name="defaults_button">重置默认设置</string>
-  <string name="category_screen_title">屏幕</string>
-  <string name="screen_colors_title">颜色</string>
-  <string name="mdnie_scenario_title_head">场景</string>
-  <string name="mdnie_scenario_summary_head">设置 mDNIe 场景</string>
-  <string name="mdnie_mode_title_head">模式</string>
-  <string name="mdnie_mode_summary_head">设置 mDNIe 模式</string>
-  <string name="mdnie_negative_title_head">负极模式</string>
-  <string name="mdnie_negative_summary_head">启用/禁用反色</string>
+  <string name="app_name">Näytön lisäasetukset</string>
+  <string name="defaults_button">Palauta oletukset</string>
+  <string name="category_screen_title">Näyttö</string>
+  <string name="screen_colors_title">Värit</string>
+  <string name="mdnie_scenario_title_head">Skenaario</string>
+  <string name="mdnie_scenario_summary_head">Aseta mDNIe-skenaario</string>
+  <string name="mdnie_mode_title_head">Tila</string>
+  <string name="mdnie_mode_summary_head">Aseta mDNIe-tila</string>
+  <string name="mdnie_negative_title_head">Negatiivitila</string>
+  <string name="mdnie_negative_summary_head">Käytä käänteisiä värejä</string>
 </resources>
