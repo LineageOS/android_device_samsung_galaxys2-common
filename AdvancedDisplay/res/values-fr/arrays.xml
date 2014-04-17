@@ -18,7 +18,7 @@
 <resources>
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (Défaut)</item>
-    <item>Interface utilisateur</item>
+    <item>UI</item>
     <item>Vidéo</item>
     <item>Vidéo chaude</item>
     <item>Vidéo froide</item>

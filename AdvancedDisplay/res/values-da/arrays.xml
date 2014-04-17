@@ -18,10 +18,10 @@
 <resources>
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (standard)</item>
-    <item>UI-tilstand</item>
-    <item>Video-tilstand</item>
-    <item>Varm video-tilstand</item>
-    <item>Kold video-tilstand</item>
+    <item>UI</item>
+    <item>Video</item>
+    <item>Varm video</item>
+    <item>Kold video</item>
     <item>Kamera</item>
     <item>Navigation</item>
     <item>Galleri</item>

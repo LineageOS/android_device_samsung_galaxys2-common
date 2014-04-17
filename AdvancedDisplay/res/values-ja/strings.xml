@@ -16,25 +16,5 @@
      limitations under the License.
 -->
 <resources>
-  <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (predefinito)</item>
-    <item>UI</item>
-    <item>Video</item>
-    <item>Video caldo</item>
-    <item>Video freddo</item>
-    <item>Camera</item>
-    <item>Navigazione</item>
-    <item>Galleria</item>
-    <item>VT</item>
-  </string-array>
-  <string-array name="mdnie_mode_entries">
-    <item>Dinamico (predefinito)</item>
-    <item>Predefinito</item>
-    <item>Naturale</item>
-    <item>Video</item>
-  </string-array>
-  <string-array name="mdnie_negative_entries">
-    <item>Normale</item>
-    <item>Invertito</item>
-  </string-array>
+  <string name="mdnie_mode_title_head">モード</string>
 </resources>
