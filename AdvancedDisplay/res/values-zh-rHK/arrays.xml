@@ -17,24 +17,20 @@
 -->
 <resources>
   <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (predefinito)</item>
+    <item>CyanogenMod (預設)</item>
     <item>UI</item>
     <item>Video</item>
-    <item>Video caldo</item>
-    <item>Video freddo</item>
-    <item>Fotocamera</item>
-    <item>Navigazione</item>
-    <item>Galleria</item>
+    <item>Video warm</item>
+    <item>Video cold</item>
+    <item>相機</item>
+    <item>Navigation</item>
+    <item>Gallery</item>
     <item>VT</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
-    <item>Dinamico (predefinito)</item>
-    <item>Predefinito</item>
-    <item>Naturale</item>
-    <item>Video</item>
-  </string-array>
-  <string-array name="mdnie_negative_entries">
-    <item>Normale</item>
-    <item>Invertito</item>
+    <item>動態 (預設)</item>
+    <item>Standard</item>
+    <item>Natural</item>
+    <item>Movie</item>
   </string-array>
 </resources>

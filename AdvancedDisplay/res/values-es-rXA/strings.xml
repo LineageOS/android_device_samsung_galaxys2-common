@@ -19,6 +19,7 @@
   <string name="app_name">Axustes avanzaos</string>
   <string name="defaults_button">Valores predeterminaos</string>
   <string name="category_screen_title">Pantalla</string>
+  <string name="screen_colors_title">Colores</string>
   <string name="mdnie_scenario_title_head">Escenariu</string>
   <string name="mdnie_scenario_summary_head">Definir l\'escenariu mDNIe</string>
   <string name="mdnie_mode_title_head">Mou</string>

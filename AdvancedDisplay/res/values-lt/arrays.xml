@@ -17,24 +17,24 @@
 -->
 <resources>
   <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (predefinito)</item>
-    <item>UI</item>
-    <item>Video</item>
-    <item>Video caldo</item>
-    <item>Video freddo</item>
-    <item>Fotocamera</item>
-    <item>Navigazione</item>
-    <item>Galleria</item>
-    <item>VT</item>
+    <item>CyanogenMod (numatytasis)</item>
+    <item>Vartotojo sąsaja</item>
+    <item>Vaizdo režimas</item>
+    <item>Vaizdo režimas (šiltas)</item>
+    <item>Vaizdo režimas (šaltas)</item>
+    <item>Fotoaparatas</item>
+    <item>Navigacija</item>
+    <item>Galerija</item>
+    <item>Vaizdo perdavimas</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
-    <item>Dinamico (predefinito)</item>
-    <item>Predefinito</item>
-    <item>Naturale</item>
-    <item>Video</item>
+    <item>Dinaminis (numatytasis)</item>
+    <item>Standartinis</item>
+    <item>Natūralus</item>
+    <item>Filmas</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
-    <item>Normale</item>
-    <item>Invertito</item>
+    <item>Įprastas</item>
+    <item>Apverstas</item>
   </string-array>
 </resources>

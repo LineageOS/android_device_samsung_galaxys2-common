@@ -18,7 +18,7 @@
 <resources>
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (domyślny)</item>
-    <item>UI</item>
+    <item>Interfejs</item>
     <item>Wideo</item>
     <item>Wideo - ciepły</item>
     <item>Wideo - zimny</item>

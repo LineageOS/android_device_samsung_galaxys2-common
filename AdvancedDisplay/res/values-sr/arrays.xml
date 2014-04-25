@@ -17,24 +17,24 @@
 -->
 <resources>
   <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (predefinito)</item>
-    <item>UI</item>
-    <item>Video</item>
-    <item>Video caldo</item>
-    <item>Video freddo</item>
-    <item>Fotocamera</item>
-    <item>Navigazione</item>
-    <item>Galleria</item>
-    <item>VT</item>
+    <item>CyanogenMod (подразумевано)</item>
+    <item>Кориснички интерфејс</item>
+    <item>Видео</item>
+    <item>Видео топло</item>
+    <item>Видео хладно</item>
+    <item>Камера</item>
+    <item>Навигација</item>
+    <item>Галерија</item>
+    <item>ВТ</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
-    <item>Dinamico (predefinito)</item>
-    <item>Predefinito</item>
-    <item>Naturale</item>
-    <item>Video</item>
+    <item>Динамично (подразумевано)</item>
+    <item>Стандардно</item>
+    <item>Природно</item>
+    <item>Филм</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
-    <item>Normale</item>
-    <item>Invertito</item>
+    <item>Нормално</item>
+    <item>Обрнуто</item>
   </string-array>
 </resources>
