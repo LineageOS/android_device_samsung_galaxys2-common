@@ -21,9 +21,9 @@
   <string name="category_screen_title">Екран</string>
   <string name="screen_colors_title">Боје</string>
   <string name="mdnie_scenario_title_head">Сценарио</string>
-  <string name="mdnie_scenario_summary_head">Постави mDNIe сценарио</string>
+  <string name="mdnie_scenario_summary_head">Поставите mDNIe сценарио</string>
   <string name="mdnie_mode_title_head">Режим</string>
-  <string name="mdnie_mode_summary_head">Постави mDNIe режим</string>
+  <string name="mdnie_mode_summary_head">Поставите mDNIe режим</string>
   <string name="mdnie_negative_title_head">Негатив режим</string>
-  <string name="mdnie_negative_summary_head">Омогући / онемогући обрнуте боје</string>
+  <string name="mdnie_negative_summary_head">Омогући/онемогући обрнуте боје</string>
 </resources>
