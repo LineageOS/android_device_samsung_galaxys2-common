@@ -15,7 +15,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Avancerad skärm</string>
   <string name="defaults_button">Återställ till standard</string>
   <string name="category_screen_title">Skärm</string>

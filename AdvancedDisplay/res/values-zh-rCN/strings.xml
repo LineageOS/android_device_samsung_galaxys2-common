@@ -15,7 +15,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">高级显示</string>
   <string name="defaults_button">重置默认设置</string>
   <string name="category_screen_title">屏幕</string>
