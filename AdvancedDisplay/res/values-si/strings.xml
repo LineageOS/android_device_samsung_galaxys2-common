@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">සංකීර්ණ සංදර්ශකය</string>
-  <string name="defaults_button">පෙරනිමියට ප්‍රත්‍යාරම්භ කරන්න</string>
+  <string name="defaults_button">පෙරනිමියට යලි පිහිටුවන්න</string>
   <string name="category_screen_title">තිරය</string>
   <string name="screen_colors_title">වර්ණ</string>
   <string name="mdnie_scenario_title_head">සෙනාරිය</string>
