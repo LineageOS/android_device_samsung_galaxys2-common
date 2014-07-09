@@ -16,14 +16,25 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">ディスプレイの詳細設定</string>
-  <string name="defaults_button">デフォルトに戻す</string>
-  <string name="category_screen_title">画面</string>
-  <string name="screen_colors_title">色</string>
-  <string name="mdnie_scenario_title_head">シナリオ</string>
-  <string name="mdnie_scenario_summary_head">mDNIeシナリオを設定する</string>
-  <string name="mdnie_mode_title_head">モード</string>
-  <string name="mdnie_mode_summary_head">mDNIeモードを設定する</string>
-  <string name="mdnie_negative_title_head">ネガモード</string>
-  <string name="mdnie_negative_summary_head">色の反転を有効/無効にする</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod（デフォルト）</item>
+    <item>UI</item>
+    <item>ビデオ</item>
+    <item>ビデオ暖色</item>
+    <item>ビデオ寒色</item>
+    <item>カメラ</item>
+    <item>ナビゲーション</item>
+    <item>ギャラリー</item>
+    <item>VT</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>ダイナミック（デフォルト）</item>
+    <item>スタンダード</item>
+    <item>ナチュラル</item>
+    <item>ムービー</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>通常</item>
+    <item>反転</item>
+  </string-array>
 </resources>
