@@ -10,10 +10,11 @@
         <activity
             android:name="com.cyanogenmod.settings.device.DisplaySettings"
             android:launchMode="singleTop"
-            android:icon="@drawable/ic_launcher_cmdevicesettings"
+            android:icon="@mipmap/ic_launcher_settings"
             android:hardwareAccelerated="true"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
+            android:theme="@style/Theme.Main"
             android:excludeFromRecents="true" >
             <intent-filter>
                 <action android:name="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS" />
