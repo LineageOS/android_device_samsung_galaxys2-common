@@ -16,14 +16,14 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">ディスプレイの詳細設定</string>
-  <string name="defaults_button">デフォルトに戻す</string>
-  <string name="category_screen_title">画面</string>
-  <string name="screen_colors_title">色</string>
-  <string name="mdnie_scenario_title_head">シナリオ</string>
-  <string name="mdnie_scenario_summary_head">mDNIeシナリオを設定する</string>
-  <string name="mdnie_mode_title_head">モード</string>
-  <string name="mdnie_mode_summary_head">mDNIeモードを設定する</string>
-  <string name="mdnie_negative_title_head">ネガモード</string>
-  <string name="mdnie_negative_summary_head">色の反転を有効/無効にする</string>
+  <string name="app_name">Ezarpen aurreratuak</string>
+  <string name="defaults_button">Berrezarri</string>
+  <string name="category_screen_title">Pantaila</string>
+  <string name="screen_colors_title">Koloreak</string>
+  <string name="mdnie_scenario_title_head">Eszenatokia</string>
+  <string name="mdnie_scenario_summary_head">mDNIe eszenatokia ezarri</string>
+  <string name="mdnie_mode_title_head">Modua</string>
+  <string name="mdnie_mode_summary_head">mDNIe modua ezarri</string>
+  <string name="mdnie_negative_title_head">Modu negatiboa</string>
+  <string name="mdnie_negative_summary_head">Kolore alderantzikatuak gaitu/ezgaitu</string>
 </resources>
