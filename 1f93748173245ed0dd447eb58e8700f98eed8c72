@@ -16,6 +16,24 @@
       "revId": "1f93748173245ed0dd447eb58e8700f98eed8c72",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1b2928_27e8757c",
+        "filename": "overlay/frameworks/base/core/res/res/values/arrays.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 2881
+      },
+      "writtenOn": "2014-08-24T05:06:02Z",
+      "side": 1,
+      "message": "Ah that makes sense, it goes into Download mode",
+      "parentUuid": "7a1b2928_874b49b0",
+      "revId": "1f93748173245ed0dd447eb58e8700f98eed8c72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
