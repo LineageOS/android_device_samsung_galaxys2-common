@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a1b2928_874b49b0",
+        "filename": "overlay/frameworks/base/core/res/res/values/arrays.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2014-08-24T04:09:37Z",
+      "side": 1,
+      "message": "Only special thing about this overlay is that reboot_bootloader string is replaced with reboot_download",
+      "revId": "1f93748173245ed0dd447eb58e8700f98eed8c72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
