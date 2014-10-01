@@ -19,11 +19,11 @@
   <string-array name="mdnie_scenario_entries">
     <item>ساینۆجن مۆد (بنه‌ڕه‌ت)</item>
     <item>یو ئای</item>
-    <item>ڤیدۆ</item>
-    <item>ڤیدۆی گه‌رم</item>
-    <item>ڤیدۆی سارد</item>
+    <item>ڤیدیۆ</item>
+    <item>ڤیدیۆی گەرم</item>
+    <item>ڤیدیۆی سارد</item>
     <item>کامێرا</item>
-    <item>ناڤیگه‌یشن</item>
+    <item>ڕێنیشاندەری</item>
     <item>پیشەنگا</item>
     <item>ڤی تی</item>
   </string-array>
@@ -31,7 +31,7 @@
     <item>دینامیک (بنه‌ڕه‌ت)</item>
     <item>ستاندارد</item>
     <item>سروشتی</item>
-    <item>ئه‌لبووم</item>
+    <item>فیلم</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
     <item>ئاسایی</item>
