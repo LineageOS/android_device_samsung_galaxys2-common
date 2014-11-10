@@ -25,5 +25,5 @@
   <string name="mdnie_mode_title_head">模式</string>
   <string name="mdnie_mode_summary_head">設定 mDNIe 模式</string>
   <string name="mdnie_negative_title_head">負片模式</string>
-  <string name="mdnie_negative_summary_head">啟用 / 停用 倒置顏色</string>
+  <string name="mdnie_negative_summary_head">啟用/停用倒置顏色</string>
 </resources>
