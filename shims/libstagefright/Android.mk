@@ -28,7 +28,8 @@ LOCAL_C_INCLUDES := \
     $(TOP)/frameworks/native/libs/arect/include \
     $(TOP)/frameworks/native/libs/nativebase/include \
     $(TOP)/frameworks/native/libs/nativewindow/include \
-    $(TOP)/hardware/samsung/exynos4/hal/include
+    $(TOP)/hardware/samsung/exynos4/hal/include \
+    $(TOP)/device/samsung/galaxys2-common/include
 
 LOCAL_SHARED_LIBRARIES := \
     android.hardware.graphics.bufferqueue@1.0 \
