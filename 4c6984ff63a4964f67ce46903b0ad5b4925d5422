@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab17558_b4cf8eb2",
+        "filename": "overlay/frameworks/base/core/res/res/xml/storage_list.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2014-11-20T09:29:22Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem right to me if the device has a separate sdcard partition.",
+      "revId": "4c6984ff63a4964f67ce46903b0ad5b4925d5422",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
