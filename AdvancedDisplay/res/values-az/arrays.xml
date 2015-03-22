@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (standart)</item>
+    <item>CyanogenMod (ilkin)</item>
     <item>İstifadәçi İnterfeysi</item>
     <item>Video</item>
     <item>Video isti</item>
@@ -28,7 +28,7 @@
     <item>VT</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
-    <item>Dinamik (standart)</item>
+    <item>Dinamik (ilkin)</item>
     <item>Standart</item>
     <item>Tәbii</item>
     <item>Film</item>

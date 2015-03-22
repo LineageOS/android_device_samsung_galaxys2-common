@@ -17,13 +17,13 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Qabaqcıl ekran</string>
-  <string name="defaults_button">Standarta sıfırla</string>
+  <string name="defaults_button">İlkin vəziyyətə qaytar</string>
   <string name="category_screen_title">Ekran</string>
   <string name="screen_colors_title">Rәnglәr</string>
   <string name="mdnie_scenario_title_head">Ssenari</string>
-  <string name="mdnie_scenario_summary_head">mDNle ssenarisini nizamla</string>
+  <string name="mdnie_scenario_summary_head">mDNle ssenarisini tənzimlə</string>
   <string name="mdnie_mode_title_head">Rejim</string>
-  <string name="mdnie_mode_summary_head">mDNle modunu nizamla</string>
-  <string name="mdnie_negative_title_head">Neqativ modu</string>
+  <string name="mdnie_mode_summary_head">mDNle rejimini tənzimlə</string>
+  <string name="mdnie_negative_title_head">Neqativ rejim</string>
   <string name="mdnie_negative_summary_head">Tərs rәnglәri aç/bağla</string>
 </resources>
