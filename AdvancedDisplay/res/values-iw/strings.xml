@@ -24,6 +24,6 @@
   <string name="mdnie_scenario_summary_head">הגדר את תרחיש mDNIe</string>
   <string name="mdnie_mode_title_head">מצב</string>
   <string name="mdnie_mode_summary_head">הגדר את מצב mDNIe</string>
-  <string name="mdnie_negative_title_head">מצב שלילי</string>
+  <string name="mdnie_negative_title_head">מצב שלילי (נגטיב)</string>
   <string name="mdnie_negative_summary_head">הפעל/השבת צבעים הפוכים</string>
 </resources>
