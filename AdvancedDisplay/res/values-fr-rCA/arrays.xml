@@ -16,13 +16,25 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="defaults_button">Berrezarri</string>
-  <string name="category_screen_title">Pantaila</string>
-  <string name="screen_colors_title">Koloreak</string>
-  <string name="mdnie_scenario_title_head">Eszenatokia</string>
-  <string name="mdnie_scenario_summary_head">mDNIe eszenatokia ezarri</string>
-  <string name="mdnie_mode_title_head">Modua</string>
-  <string name="mdnie_mode_summary_head">mDNIe modua ezarri</string>
-  <string name="mdnie_negative_title_head">Modu negatiboa</string>
-  <string name="mdnie_negative_summary_head">Kolore alderantzikatuak gaitu/ezgaitu</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod (défaut)</item>
+    <item>Interface utilisateur</item>
+    <item>Vidéo</item>
+    <item>Vidéo chaude</item>
+    <item>Vidéo froide</item>
+    <item>Appareil photo</item>
+    <item>Navigation</item>
+    <item>Galerie</item>
+    <item>VT</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>Dynamique (défaut)</item>
+    <item>Standard</item>
+    <item>Naturel</item>
+    <item>Vidéos</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>Normal</item>
+    <item>Inversé</item>
+  </string-array>
 </resources>
