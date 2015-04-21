@@ -79,6 +79,16 @@
 				<ctrl name="Headphone Playback Switch" value="off" />
 			</path>
 		</device>
+		<device type="analog-dock-headset">
+			<path type="enable">
+				<ctrl name="Line 1 Playback Volume" value="31" />
+				<ctrl name="Line 1 Playback Switch" value="on" />
+			</path>
+			<path type="disable">
+				<ctrl name="Line 1 Playback Volume" value="0" />
+				<ctrl name="Line 1 Playback Switch" value="off" />
+			</path>
+		</device>
 	</output>
 
 	<input card="0" device="0"
