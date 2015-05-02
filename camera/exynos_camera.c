@@ -80,8 +80,8 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.video_snapshot_supported = 0,
 			.full_video_snap_supported = 0,
 
-			.recording_size = "720x480",
-			.recording_size_values = "1920x1080,1280x720,720x480,640x480",
+			.recording_size = "1280x720",
+			.recording_size_values = "1920x1080,1280x720,640x480",
 			.recording_format = "yuv420sp",
 
 			.focus_mode = "auto",
