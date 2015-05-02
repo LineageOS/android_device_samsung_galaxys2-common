@@ -26,6 +26,7 @@ LOCAL_SRC_FILES := \
 	exynos_v4l2.c
 
 LOCAL_C_INCLUDES := \
+	system/media/camera/include \
 	hardware/samsung/exynos4/hal/include
 
 LOCAL_SHARED_LIBRARIES := libutils libcutils liblog libcamera_client libhardware libs5pjpeg

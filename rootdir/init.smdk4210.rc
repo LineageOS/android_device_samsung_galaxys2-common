@@ -41,9 +41,19 @@ on fs
 
     mkdir /data/misc/vpn/profiles 0770 system system
     mkdir /data/misc/radio 0775 radio system
+    mkdir /data/radio 0770 radio radio
     chmod 0770 /data/misc/wifi 
 
+on charger
+
+# CPU Frequency Governor
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+
+# EHCI runtime enable for LPA
+    write /sys/devices/platform/s5p-ehci/power/control auto
+
 # Restorecon
+    restorecon /efs
     restorecon /efs/nv_data.bin
     restorecon /efs/nv_data.bin.md5
     restorecon /efs/.nv_core.bak
@@ -57,6 +67,7 @@ on fs
     restorecon /efs/FactoryApp/keystr
     restorecon /efs/FactoryApp/serial_no
     restorecon /efs/imei/mps_code.dat
+    restorecon /efs/wifi/.mac.info
 
 on post-fs-data
 # insmod kernel modules
@@ -172,6 +183,7 @@ on post-fs-data
     chown system radio /sys/devices/platform/sec-battery/power_supply/battery/video
     chown system radio /sys/devices/platform/sec-battery/power_supply/battery/batt_lp_charging
     chown system radio /sys/devices/platform/sec-battery/power_supply/battery/charging_source
+    chown system radio /sys/devices/platform/sec-battery/power_supply/battery/charging_enabled
     chown system radio /sys/devices/platform/sec-battery/power_supply/battery/batt_temp_adc_avg
     chown system radio /sys/devices/platform/sec-battery/power_supply/battery/batt_temp_adc
     chown system radio /sys/devices/platform/sec-battery/power_supply/battery/batt_temp
@@ -234,6 +246,8 @@ on post-fs-data
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    restorecon /sys/class/rfkill/rfkill0/state
+    restorecon /sys/class/rfkill/rfkill0/type
 
 # Vibetonz
     chmod 0660 /dev/tspdrv
@@ -247,6 +261,7 @@ on post-fs-data
     chown system media_rw /sys/class/lcd/panel/gamma_mode
     chown system media_rw /sys/class/lcd/panel/power_reduce
     chown system system /sys/class/backlight/panel/auto_brightness
+    restorecon /sys/class/lcd/panel/power_reduce
 
 # Permissions for mDNIe
     chown system media_rw /sys/class/mdnie/mdnie/mode
@@ -255,6 +270,9 @@ on post-fs-data
     chown system media_rw /sys/class/mdnie/mdnie/negative
     write /sys/class/mdnie/mdnie/scenario 0
     write /sys/class/mdnie/mdnie/mode 1
+    restorecon /sys/class/mdnie/mdnie/scenario
+    restorecon /sys/class/mdnie/mdnie/mode
+    restorecon /sys/class/mdnie/mdnie/negative
 
 # Permissions for uart_sel and usb_sel
     chown system radio /sys/class/sec/switch/uart_sel/value
@@ -318,6 +336,7 @@ on post-fs-data
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
+    setprop wifi.interface wlan0
 
 # permissions for NFC
     setprop ro.nfc.port "I2C"
@@ -340,18 +359,25 @@ service cpboot-daemon /sbin/cbd -d -p 8
     group radio cache inet misc audio sdcard_rw log sdcard_r
 
 service mdnsd /system/bin/mdnsd
-	class main
+    class main
     user mdnsr
     group inet net_raw
     socket mdnsd stream 0660 mdnsr inet
     disabled
     oneshot
 
+service charger /sbin/healthd -c
+    class charger
+    critical
+    seclabel u:r:healthd:s0
+
 service p2p_supplicant /system/bin/wpa_supplicant \
-        -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -N \
-        -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -e/data/misc/wifi/entropy.bin \
-        -puse_p2p_group_interface=1 \
-        -O/data/misc/wifi/sockets -g@android:wpa_wlan0
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -I/system/etc/wifi/wpa_supplicant.conf \
+    -O/data/misc/wifi/sockets -N \
+    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -e/data/misc/wifi/entropy.bin \
+    -puse_p2p_group_interface=1 \
+    -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
     #   user wifi
@@ -362,9 +388,11 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     oneshot
 
 service wpa_supplicant /system/bin/wpa_supplicant \
-        -Dnl80211 -iwlan0 -e/data/misc/wifi/entropy.bin \
-        -c/data/misc/wifi/wpa_supplicant.conf \
-        -O/data/misc/wifi/sockets -g@android:wpa_wlan0
+    -Dnl80211 -iwlan0 -e/data/misc/wifi/entropy.bin \
+    -c/data/misc/wifi/wpa_supplicant.conf \
+    -I/system/etc/wifi/wpa_supplicant.conf \
+    -O/data/misc/wifi/sockets \
+    -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
     #   user wifi
@@ -404,11 +432,8 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
     disabled
     oneshot
 
-# bluetooth mac address
-service bdaddr /system/bin/bdaddr_read
+service macloader /system/bin/macloader
     class main
-    user root
-    disabled
     oneshot
      
 # bugreport is triggered by holding down volume down, volume up and power
