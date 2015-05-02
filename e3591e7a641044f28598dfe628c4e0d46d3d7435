@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da7fb54a_b8791a32",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2015-05-02T15:06:19Z",
+      "side": 0,
+      "message": "This shouldn\u0027t be removed",
+      "range": {
+        "startLine": 17,
+        "startChar": 32,
+        "endLine": 17,
+        "endChar": 38
+      },
+      "revId": "e3591e7a641044f28598dfe628c4e0d46d3d7435",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7fb54a_d876de3d",
+        "filename": "extract-files.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2015-05-02T15:06:19Z",
+      "side": 0,
+      "message": "This shouldn\u0027t be removed",
+      "range": {
+        "startLine": 92,
+        "startChar": 28,
+        "endLine": 92,
+        "endChar": 34
+      },
+      "revId": "e3591e7a641044f28598dfe628c4e0d46d3d7435",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
