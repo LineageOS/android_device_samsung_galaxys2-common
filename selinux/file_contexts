@@ -1,7 +1,7 @@
 # GFX
-/dev/mali                               u:object_r:graphics_device:s0
-/dev/ump                                u:object_r:graphics_device:s0
-/dev/fimg2d                             u:object_r:graphics_device:s0
+/dev/mali                               u:object_r:mali_device:s0
+/dev/ump                                u:object_r:mali_device:s0
+/dev/fimg2d                             u:object_r:mali_device:s0
 
 # RIL
 /dev/umts_boot0                         u:object_r:radio_device:s0
@@ -10,11 +10,17 @@
 /dev/umts_ramdump0                      u:object_r:radio_device:s0
 /dev/umts_rfs0                          u:object_r:radio_device:s0
 
-/dev/block/mmcblk0p7                    u:object_r:efs_block_device:s0
+/dev/block/mmcblk0p8                    u:object_r:efs_block_device:s0
+/efs                                    u:object_r:efs_device_file:s0
+
+# Camera
+/dev/s3c-mfc                            u:object_r:mfc_device:s0
+/dev/s5p-jpeg                           u:object_r:video_device:s0
 
 # Bluetooth
 /dev/ttySAC0                            u:object_r:hci_attach_dev:s0
-/efs/bluetooth(/.*)?                    u:object_r:bluetooth_data_file:s0
+/efs/bluetooth/bt_addr                  u:object_r:bluetooth_data_file:s0
+/sys/class/rfkill/rfkill0/state         u:object_r:sysfs_bluetooth_writable:s0
 
 # GPS
 /dev/ttySAC1                            u:object_r:gps_device:s0
@@ -27,3 +33,9 @@
 
 # Firmwares
 /system/vendor/firmware/mfc_fw.bin      u:object_r:firmware_mfc:s0
+
+# Display
+/sys/class/lcd/panel/power_reduce       u:object_r:sysfs_display:s0
+/sys/class/mdnie/mdnie/scenario         u:object_r:sysfs_display:s0
+/sys/class/mdnie/mdnie/mode             u:object_r:sysfs_display:s0
+/sys/class/mdnie/mdnie/negative         u:object_r:sysfs_display:s0
