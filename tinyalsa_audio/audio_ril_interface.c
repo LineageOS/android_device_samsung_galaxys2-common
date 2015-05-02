@@ -44,6 +44,7 @@ int (*_ril_set_call_volume)(void *, enum ril_sound_type, int);
 int (*_ril_set_call_audio_path)(void *, enum ril_audio_path);
 int (*_ril_set_call_clock_sync)(void *, enum ril_clock_state);
 int (*_ril_set_call_twomic)(void *, enum ril_twomic_device, enum ril_twomic_enable);
+int (*_ril_set_mic_mute)(void *, enum ril_mic_mute);
 int (*_ril_register_unsolicited_handler)(void *, int, void *);
 int (*_ril_get_wb_amr)(void *, void *);
 
@@ -71,16 +72,6 @@ static int audio_ril_interface_connect_if_required(struct tinyalsa_audio_ril_int
     return 0;
 }
 
-int audio_ril_interface_set_mic_mute(struct tinyalsa_audio_ril_interface *ril_interface, bool state)
-{
-  /*
-   * If you look at the Replicant libaudio-ril-interface
-   * this function is just stubbed out there.  So let's not
-   * bother with it
-   */
-	return 0;
-
-}
 
 int audio_ril_interface_set_voice_volume(struct tinyalsa_audio_ril_interface *ril_interface,
 	audio_devices_t device, float volume)
@@ -212,6 +203,15 @@ error:
 	return -1;
 }
 
+int audio_ril_interface_set_mic_mute(struct tinyalsa_audio_ril_interface *ril_interface, enum ril_mic_mute state)
+{
+	if (audio_ril_interface_connect_if_required(ril_interface))
+        return 0;
+
+    return _ril_set_mic_mute(ril_interface->interface, state);
+}
+
+
 int audio_ril_interface_set_twomic(struct tinyalsa_audio_ril_interface *ril_interface, enum ril_twomic_enable twomic)
 {
 	int rc;
@@ -322,7 +322,7 @@ int audio_ril_interface_open(struct audio_hw_device *dev, audio_devices_t device
 	_ril_set_call_audio_path = dlsym(dl_handle, "SetCallAudioPath");
 	_ril_set_call_clock_sync = dlsym(dl_handle, "SetCallClockSync");
         _ril_set_call_twomic = dlsym(dl_handle, "SetTwoMicControl");
-
+	_ril_set_mic_mute = dlsym(dl_handle, "SetMute");
 	_ril_register_unsolicited_handler = dlsym(dl_handle,
 						  "RegisterUnsolicitedHandler");
 	/* since this function is not supported in all RILs, don't require it */
@@ -330,7 +330,8 @@ int audio_ril_interface_open(struct audio_hw_device *dev, audio_devices_t device
 
 	if (!_ril_open_client || !_ril_close_client || !_ril_connect ||
 	    !_ril_is_connected || !_ril_disconnect || !_ril_set_call_volume ||
-	    !_ril_set_call_audio_path || !_ril_set_call_clock_sync ||
+	    !_ril_set_call_audio_path || !_ril_set_mic_mute ||
+		!_ril_set_call_clock_sync ||
 	    !_ril_register_unsolicited_handler || !_ril_set_call_twomic) {
 	  ALOGE("Cannot get symbols from '%s'", RIL_CLIENT_LIBPATH);
 	  dlclose(dl_handle);
