@@ -20,7 +20,6 @@ DEVICE_PACKAGE_OVERLAYS := $(COMMON_PATH)/overlay
 # Rootdir
 PRODUCT_COPY_FILES := \
     $(COMMON_PATH)/rootdir/fstab.smdk4210:root/fstab.smdk4210 \
-    $(COMMON_PATH)/rootdir/lpm.rc:root/lpm.rc \
     $(COMMON_PATH)/rootdir/init.smdk4210.usb.rc:root/init.smdk4210.usb.rc \
     $(COMMON_PATH)/rootdir/init.smdk4210.rc:root/init.smdk4210.rc \
     $(COMMON_PATH)/rootdir/ueventd.smdk4210.rc:root/ueventd.smdk4210.rc
@@ -45,7 +44,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15
+    wifi.supplicant_scan_interval=15 \
+    net.tethering.noprovisioning=true
 
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
 
@@ -71,7 +71,7 @@ PRODUCT_PACKAGES += \
 
 # HAL
 PRODUCT_PACKAGES += \
-	camera.smdk4210 \
+    camera.smdk4210 \
     gralloc.exynos4 \
     hwcomposer.exynos4 \
     libnetcmdiface \
@@ -102,16 +102,18 @@ PRODUCT_PACKAGES += \
     libOMX.SEC.AVC.Decoder \
     libOMX.SEC.M4V.Decoder \
     libOMX.SEC.WMV.Decoder \
-    libOMX.SEC.VP8.Decoder \
-    libSEC_OMX_Venc \
     libOMX.SEC.AVC.Encoder \
-    libOMX.SEC.M4V.Encoder \
-    libSEC_OMX_Adec \
-    libOMX.SEC.MP3.Decoder
+    libSEC_OMX_Venc \
+    libOMX.SEC.M4V.Encoder
+#   libOMX.SEC.VP8.Decoder
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+    $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -123,7 +125,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SamsungExynos4RIL \
-    mobiledata.interfaces=pdp0,wlan0,gprs,ppp0 \
+    mobiledata.interfaces=pdp0,gprs,ppp0,rmnet0,rmnet1 \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.call_ring.delay=3000
 
@@ -144,6 +146,15 @@ PRODUCT_PACKAGES += \
     PhaseBeam \
     VisualizationWallpapers \
     librs_jni
+
+# Wifi
+PRODUCT_PACKAGES += \
+    dhcpcd.conf \
+    hostapd \
+    libwpa_client \
+    macloader \
+    wpa_supplicant \
+    wpa_supplicant.conf
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -181,6 +192,9 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.isUsbOtgEnabled=true
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
