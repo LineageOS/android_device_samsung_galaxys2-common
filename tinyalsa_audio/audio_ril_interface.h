@@ -82,7 +82,14 @@ enum ril_twomic_enable {
     TWO_MIC_SOLUTION_ON
 };
 
-int audio_ril_interface_set_mic_mute(struct tinyalsa_audio_ril_interface *ril_interface, bool state);
+
+enum ril_mic_mute {
+    MIC_UNMUTE,
+    MIC_MUTE
+};
+
+
+int audio_ril_interface_set_mic_mute(struct tinyalsa_audio_ril_interface *ril_interface, enum ril_mic_mute);
 int audio_ril_interface_set_voice_volume(struct tinyalsa_audio_ril_interface *ril_interface, audio_devices_t device, float volume);
 int audio_ril_interface_set_route(struct tinyalsa_audio_ril_interface *ril_interface, audio_devices_t device);
 int audio_ril_interface_set_twomic(struct tinyalsa_audio_ril_interface *ril_interface, enum ril_twomic_enable);

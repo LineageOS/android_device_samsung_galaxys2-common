@@ -372,7 +372,7 @@ bv_ioctl:
 }
 
 int exynos_exif_write_data(void *exif_data, unsigned short tag,
-	unsigned short type, unsigned int count, int *offset, void *start,
+	unsigned short type, unsigned int count, unsigned int *offset, void *start,
 	void *data, int length)
 {
 	unsigned char *pointer;
@@ -421,12 +421,12 @@ int exynos_exif_create(struct exynos_camera *exynos_camera,
 	unsigned char user_comment_code[] = { 0x41, 0x53, 0x43, 0x49, 0x49, 0x0, 0x0, 0x0 };
 	unsigned char exif_ascii_prefix[] = { 0x41, 0x53, 0x43, 0x49, 0x49, 0x0, 0x0, 0x0 };
 
-	camera_memory_t *exif_data_memory;
+	camera_memory_t *exif_data_memory = NULL;
 	void *exif_data;
 	int exif_data_size;
 	int exif_size;
 
-	void *exif_ifd_data_start, *exif_ifd_start, *exif_ifd_gps, *exif_ifd_thumb;
+	void *exif_ifd_data_start, *exif_ifd_start, *exif_ifd_thumb, *exif_ifd_gps = NULL;
 
 	void *exif_thumb_data;
 	unsigned int exif_thumb_size;
@@ -644,7 +644,7 @@ int exynos_exif_create(struct exynos_camera *exynos_camera,
 		count = exynos_exif_write_data(pointer, EXIF_TAG_GPS_IFD_POINTER,
 			EXIF_TYPE_LONG, 1, NULL, NULL, &offset, sizeof(offset));
 
-		pointer = exif_ifd_start + offset;
+		pointer = (unsigned char *) exif_ifd_start + offset;
 
 		if (exif_attributes->gps_processing_method[0] == 0)
 			value = NUM_0TH_IFD_GPS - 1;
