@@ -7,13 +7,13 @@
 /dev/block/mmcblk0p9                        /system                 ext4      ro,noatime                                                wait
 /dev/block/mmcblk0p7                        /cache                  ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check_spo
 /dev/block/mmcblk0p1                        /efs                    ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check_spo
-/dev/block/mmcblk0p10                       /data                   ext4      noatime,nosuid,nodev,noauto_da_alloc,journal_async_commit,errors=panic    wait,check_spo,encryptable=/efs/metadata
+/dev/block/mmcblk0p10                       /data                   ext4      noatime,nosuid,nodev,discard,noauto_da_alloc,journal_async_commit,errors=panic    wait,check_spo,encryptable=/efs/metadata
 /dev/block/mmcblk0p12                       /preload                ext4      noatime,nosuid,nodev,journal_async_commit                 wait
 
 # vold-managed volumes ("block device" is actually a sysfs devpath)
-/devices/platform/dw_mmc/mmc_host/mmc0/mmc0     auto    auto    defaults        voldmanaged=sdcard0:11,nonremovable,noemulatedsd
-/devices/platform/s3c-sdhci.2/mmc_host/mmc1     auto    auto    defaults        voldmanaged=sdcard1:auto
-/devices/platform/s3c_otghcd/usb                auto    auto    defaults        voldmanaged=usbdisk0:auto
+/devices/platform/dw_mmc/mmc_host/mmc0/mmc0*     auto    auto    defaults        wait,voldmanaged=sdcard0:11,nonremovable,noemulatedsd
+/devices/platform/s3c-sdhci.2/mmc_host/mmc1*     auto    auto    defaults        wait,voldmanaged=sdcard1:auto,noemulatedsd	
+/devices/platform/s3c_otghcd/usb*                auto    auto    defaults        voldmanaged=usbdisk0:auto
 
 # recovery
 /dev/block/mmcblk0p5                        /boot                   emmc      defaults      recoveryonly

@@ -18,7 +18,8 @@
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
 BOARD_USES_GENERIC_AUDIO := false
-
+BOARD_USE_SAMSUNG_COLORFORMAT := true
+USE_SAMSUNG_COLORFORMAT := true
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
@@ -31,11 +32,13 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 EXYNOS4210_ENHANCEMENTS := true
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
+EXYNOS4_ENHANCEMENTS := true
 
 ifdef EXYNOS4210_ENHANCEMENTS
 COMMON_GLOBAL_CFLAGS += -DEXYNOS4_ENHANCEMENTS
 COMMON_GLOBAL_CFLAGS += -DEXYNOS4210_ENHANCEMENTS
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
+COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
 endif
 
 BOARD_VENDOR := samsung
@@ -56,6 +59,9 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0
 
+# Include an expanded selection of fonts
+EXTENDED_FONT_FOOTPRINT := true
+
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
@@ -74,6 +80,10 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
 BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DWORKAROUND_BUG_10194508
+BOARD_EGL_NEEDS_FNW := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
+BOARD_EGL_SKIP_FIRST_DEQUEUE := true
 
 # FIMG Acceleration
 BOARD_USES_FIMGAPI := true
@@ -92,6 +102,8 @@ BOARD_NONBLOCK_MODE_PROCESS := true
 BOARD_USE_STOREMETADATA := true
 BOARD_USE_METADATABUFFERTYPE := true
 BOARD_USES_MFC_FPS := true
+BOARD_USE_S3D_SUPPORT := true
+BOARD_USE_CSC_FIMC := false
 
 # Audio
 BOARD_USE_TINYALSA_AUDIO := true
@@ -100,6 +112,7 @@ BOARD_USE_YAMAHA_MC1N2_AUDIO := true
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6260
+BOARD_RIL_CLASS := ../../../device/samsung/galaxys2-common/ril
 
 # Camera
 BOARD_USES_PROPRIETARY_LIBFIMC := true
@@ -125,10 +138,12 @@ WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/etc/wifi/bcmdhd_sta.b
 WIFI_DRIVER_MODULE_AP_ARG        := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                        := 802_11_ABG
 BOARD_HAVE_SAMSUNG_WIFI          := true
+BOARD_NO_WIFI_HAL		 := false
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_HAVE_SAMSUNG_BLUETOOTH := true
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/galaxys2-common/bluetooth/vnd_smdk4210.txt
 
 # Vold
@@ -142,13 +157,21 @@ BOARD_SEPOLICY_DIRS += \
     device/samsung/galaxys2-common/selinux
 
 BOARD_SEPOLICY_UNION += \
+    bluetooth.te \
     device.te \
-    drmserver.te \
-    ueventd.te \
     domain.te \
+    drmserver.te \
+    dumpstate.te \
     file.te \
     file_contexts \
+    init.te \
+    mediaserver.te \
+    netd.te \
     rild.te \
+    shell.te \
+    system_app.te \
+    system_server.te \
+    ueventd.te \
     vold.te
 
 # Recovery
@@ -169,9 +192,10 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/include
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := "battery"
-BOARD_CHARGER_RES := device/samsung/galaxys2-common/res/charger
-
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys2-common/shbootimg.mk
+BOARD_USES_LEGACY_MMAP := true
 
 # Override healthd HAL
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.exynos4

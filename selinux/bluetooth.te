@@ -1,0 +1,2 @@
+allow bluetooth sysfs:file write;
+allow bluetooth unlabeled:dir search;

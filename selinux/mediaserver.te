@@ -1,0 +1,1 @@
+allow mediaserver mfc_device:chr_file { open read write ioctl};
