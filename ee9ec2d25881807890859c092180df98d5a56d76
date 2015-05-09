@@ -1,0 +1,463 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_68cb5273",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "use spaces",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_88c89676",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "Is this only useful for the charger? If not, it can probably be moved to it\u0027s own section.",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_c8a0dea8",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "This should be grouped with wifi.",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_a8c55a5c",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "Duplicate entry",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_e8a5a2b5",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "profiles comes alphabetically after codecs",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_08aba68a",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "l and h come after d",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_28b06af4",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "You can probably group this with USB above.",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_4895ae3e",
+        "filename": "configs/media_codecs.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "Do you need to move these below the hardware encoders/decoders?",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_68927259",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "You probably don\u0027t want to enable these without actually have a wake sensor of some sort.",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_889fb65e",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "If this device has an emulated primary storage (it does, right? my memory is fuzzy) this is OK, otherwise this is very bad.",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_a89c7a6a",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "Just remove commented out entries.",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_c887fe10",
+        "filename": "rootdir/init.smdk4210.rc",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "Use spaces",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_e88cc237",
+        "filename": "rootdir/init.smdk4210.rc",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "Here too.",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_0882c600",
+        "filename": "rootdir/init.smdk4210.rc",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "What is this for?",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_487cce20",
+        "filename": "selinux/bluetooth.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "You should label the bluetooth-specific sysfs nodes",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_28878a10",
+        "filename": "selinux/bluetooth.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "unlabeled is definitely wrong here",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_6879922f",
+        "filename": "selinux/dumpstate.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "You should be able to use something like unix_socket_connect here",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_8876d63c",
+        "filename": "selinux/mediaserver.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "rw_file_perms",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_a8739a4c",
+        "filename": "selinux/netd.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "What does netd need this for?",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_e893e24d",
+        "filename": "selinux/rild.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "You probably want to label the block device",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_c88e1e27",
+        "filename": "selinux/rild.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "unlabeled is definitely wrong here",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_289eaa56",
+        "filename": "selinux/rild.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "You should label these files too",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_0899e66e",
+        "filename": "selinux/rild.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "unix_socket_connect",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_48a3ee9e",
+        "filename": "selinux/shell.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "Why does shell need this?",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_68a0b291",
+        "filename": "selinux/system_server.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "unlabeled is probably wrong here",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_88adf68a",
+        "filename": "selinux/system_server.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "This is nasty, label your properties too",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_a8aaba6e",
+        "filename": "selinux/ueventd.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-09T12:32:06Z",
+      "side": 1,
+      "message": "Unnecessary newline",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
