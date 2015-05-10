@@ -16,6 +16,7 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Pantaila aurreratua</string>
   <string name="defaults_button">Berrezarri</string>
   <string name="category_screen_title">Pantaila</string>
   <string name="screen_colors_title">Koloreak</string>
