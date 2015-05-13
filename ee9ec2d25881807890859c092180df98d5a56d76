@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_eb03dc0b",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_68cb5273",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_88c89676",
         "filename": "BoardCommonConfig.mk",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2015-05-09T12:32:06Z",
       "side": 1,
       "message": "Is this only useful for the charger? If not, it can probably be moved to it\u0027s own section.",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_0b09e02c",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_88c89676",
       "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_2b0ea434",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_c8a0dea8",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_a8c55a5c",
         "filename": "common.mk",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2015-05-09T12:32:06Z",
       "side": 1,
       "message": "Duplicate entry",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_4b13e85c",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_a8c55a5c",
       "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_6b10ac4f",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_e8a5a2b5",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_08aba68a",
         "filename": "common.mk",
         "patchSetId": 5
@@ -98,6 +188,24 @@
       "writtenOn": "2015-05-09T12:32:06Z",
       "side": 1,
       "message": "l and h come after d",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_8b1df068",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_08aba68a",
       "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_ab1ab46c",
+        "filename": "common.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_28b06af4",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_4895ae3e",
         "filename": "configs/media_codecs.xml",
         "patchSetId": 5
@@ -132,6 +258,24 @@
       "writtenOn": "2015-05-09T12:32:06Z",
       "side": 1,
       "message": "Do you need to move these below the hardware encoders/decoders?",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_cb2538af",
+        "filename": "configs/media_codecs.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Needs to be below encoders for Netflix to work",
+      "parentUuid": "9a89bdaa_4895ae3e",
       "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_eb2afc7d",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_68927259",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_889fb65e",
         "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
         "patchSetId": 5
@@ -166,6 +328,24 @@
       "writtenOn": "2015-05-09T12:32:06Z",
       "side": 1,
       "message": "If this device has an emulated primary storage (it does, right? my memory is fuzzy) this is OK, otherwise this is very bad.",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_cbfe1805",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "It does not, only the s3 and newer are emulated. Should I enable guest mode only? The performance impact of this is pretty noticeable after all.",
+      "parentUuid": "9a89bdaa_889fb65e",
       "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_0b20009b",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_a89c7a6a",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_c887fe10",
         "filename": "rootdir/init.smdk4210.rc",
         "patchSetId": 5
@@ -200,6 +398,24 @@
       "writtenOn": "2015-05-09T12:32:06Z",
       "side": 1,
       "message": "Use spaces",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_4b3a08cf",
+        "filename": "rootdir/init.smdk4210.rc",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_c887fe10",
       "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_6b37cce3",
+        "filename": "rootdir/init.smdk4210.rc",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_e88cc237",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_0882c600",
         "filename": "rootdir/init.smdk4210.rc",
         "patchSetId": 5
@@ -234,6 +468,24 @@
       "writtenOn": "2015-05-09T12:32:06Z",
       "side": 1,
       "message": "What is this for?",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_8b3410df",
+        "filename": "rootdir/init.smdk4210.rc",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-13T14:36:09Z",
+      "side": 1,
+      "message": "old testing leftover, removed",
+      "parentUuid": "9a89bdaa_0882c600",
       "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
