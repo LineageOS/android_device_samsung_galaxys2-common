@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a89bdaa_119aea14",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2608
+      },
+      "writtenOn": "2015-05-14T00:14:21Z",
+      "side": 1,
+      "message": "This is already set on line 38",
+      "revId": "ee9ec2d25881807890859c092180df98d5a56d76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_b1fcde3f",
         "filename": "BoardCommonConfig.mk",
         "patchSetId": 5
