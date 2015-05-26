@@ -22,8 +22,6 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.SwitchPreference;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -41,18 +39,6 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.gesture_panel);
-        boolean dozeEnabled = isDozeEnabled();
-        mAmbientDisplayPreference =
-            (SwitchPreference) findPreference(KEY_AMBIENT_DISPLAY_ENABLE);
-        // Read from DOZE_ENABLED secure setting
-        mAmbientDisplayPreference.setChecked(dozeEnabled);
-        mAmbientDisplayPreference.setOnPreferenceChangeListener(mAmbientDisplayPrefListener);
-        mHandwavePreference =
-            (SwitchPreference) findPreference(KEY_HAND_WAVE);
-        mHandwavePreference.setEnabled(dozeEnabled);
-        mPocketPreference =
-            (SwitchPreference) findPreference(KEY_GESTURE_POCKET);
-        mPocketPreference.setEnabled(dozeEnabled);
 
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -76,28 +62,4 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         }
         return false;
     }
-
-    private boolean enableDoze(boolean enable) {
-        return Settings.Secure.putInt(getContentResolver(),
-                Settings.Secure.DOZE_ENABLED, enable ? 1 : 0);
-    }
-
-    private boolean isDozeEnabled() {
-        return Settings.Secure.getInt(getContentResolver(),
-                Settings.Secure.DOZE_ENABLED, 1) != 0;
-    }
-
-    private Preference.OnPreferenceChangeListener mAmbientDisplayPrefListener =
-        new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            boolean enable = (boolean) newValue;
-            boolean ret = enableDoze(enable);
-            if (ret) {
-                mHandwavePreference.setEnabled(enable);
-                mPocketPreference.setEnabled(enable);
-            }
-            return ret;
-        }
-    };
 }
