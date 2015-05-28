@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_a4174653",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 10
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-28T10:27:42Z",
+      "side": 1,
+      "message": "I would prefer these flags got alphabetized, but I guess this is fine for now.",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_e4114e5f",
+        "filename": "common.mk",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-28T10:27:42Z",
+      "side": 1,
+      "message": "Just remove this if it\u0027s not wanted.",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_04171a52",
+        "filename": "configs/wpa_supplicant.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-28T10:27:42Z",
+      "side": 1,
+      "message": "Are you sure you want to stick a serial number here?",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_84032a0f",
+        "filename": "overlay/frameworks/base/packages/SystemUI/res/values/config.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-28T10:27:42Z",
+      "side": 1,
+      "message": "I am fairly certain you don\u0027t want to set this. Your panel and kernel most likely do not support this.",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_44092231",
+        "filename": "overlay/frameworks/base/packages/SystemUI/res/values/config.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-28T10:27:42Z",
+      "side": 1,
+      "message": "You can delete this line instead of setting false, it\u0027s defaulting to false.",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_a7fe6803",
+        "filename": "releasetools/galaxys2_ota_from_target_files",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-28T10:27:42Z",
+      "side": 1,
+      "message": "leading spaces",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_e708702b",
+        "filename": "releasetools/galaxys2_ota_from_target_files",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-28T10:27:42Z",
+      "side": 1,
+      "message": "leading spaces",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_673460de",
+        "filename": "rootdir/fstab.smdk4210",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-28T10:27:42Z",
+      "side": 1,
+      "message": "weird tab",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_a74ca877",
+        "filename": "selinux/netd.te",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-28T10:27:42Z",
+      "side": 1,
+      "message": "What module is netd asking for?",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
