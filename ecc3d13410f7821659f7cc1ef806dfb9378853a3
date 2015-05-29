@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_2d13195e",
+        "filename": "selinux/rild.te",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-05-29T15:34:09Z",
+      "side": 1,
+      "message": "Do you need read here as well?",
+      "revId": "ecc3d13410f7821659f7cc1ef806dfb9378853a3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
