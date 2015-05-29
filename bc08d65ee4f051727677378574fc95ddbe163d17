@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_f240300a",
+        "filename": "configs/wpa_supplicant.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-29T08:23:46Z",
+      "side": 1,
+      "message": "That\u0027s what Samsung used in kitkat, I can remove if it\u0027s a problem",
+      "parentUuid": "7a8ec9b2_04171a52",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_84032a0f",
         "filename": "overlay/frameworks/base/packages/SystemUI/res/values/config.xml",
         "patchSetId": 10
@@ -149,6 +167,24 @@
       "writtenOn": "2015-05-28T10:27:42Z",
       "side": 1,
       "message": "What module is netd asking for?",
+      "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_129e7c56",
+        "filename": "selinux/netd.te",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-05-29T08:23:46Z",
+      "side": 1,
+      "message": "I couldn\u0027t get the denial again, so I\u0027ll remove this for now.",
+      "parentUuid": "7a8ec9b2_a74ca877",
       "revId": "bc08d65ee4f051727677378574fc95ddbe163d17",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
