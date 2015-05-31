@@ -18,7 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">پیشاندانی پێشکه‌وتوو</string>
   <string name="defaults_button">ڕێکخستنه‌وه‌ بۆ بنه‌ڕه‌ت</string>
-  <string name="category_screen_title">شاشە</string>
+  <string name="category_screen_title">ڕونما</string>
   <string name="screen_colors_title">ڕه‌نگه‌کان</string>
   <string name="mdnie_scenario_title_head">سیناریۆ</string>
   <string name="mdnie_scenario_summary_head">دانانی دۆخی mDNIe سیناریۆ</string>
