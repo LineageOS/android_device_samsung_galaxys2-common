@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Pantaila aurreratua</string>
-  <string name="defaults_button">Berrezarri</string>
+  <string name="defaults_button">Leheneratu balio lehenetsietara</string>
   <string name="category_screen_title">Pantaila</string>
   <string name="screen_colors_title">Koloreak</string>
   <string name="mdnie_scenario_title_head">Eszenatokia</string>
@@ -25,5 +25,5 @@
   <string name="mdnie_mode_title_head">Modua</string>
   <string name="mdnie_mode_summary_head">mDNIe modua ezarri</string>
   <string name="mdnie_negative_title_head">Modu negatiboa</string>
-  <string name="mdnie_negative_summary_head">Kolore alderantzikatuak gaitu/ezgaitu</string>
+  <string name="mdnie_negative_summary_head">Gaitu/ezgaitu kolore alderantzikatuak</string>
 </resources>
