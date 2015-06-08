@@ -102,17 +102,16 @@ PRODUCT_PACKAGES += \
     libOMX.SEC.AVC.Decoder \
     libOMX.SEC.M4V.Decoder \
     libOMX.SEC.WMV.Decoder \
-    libOMX.SEC.AVC.Encoder \
+    libOMX.SEC.VP8.Decoder \
     libSEC_OMX_Venc \
-    libOMX.SEC.M4V.Encoder
+    libOMX.SEC.AVC.Encoder \
+    libOMX.SEC.M4V.Encoder \
+    libSEC_OMX_Adec \
+    libOMX.SEC.MP3.Decoder
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
+    $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
