@@ -14,9 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
-import os
-import galaxys2_common as common
+import os, sys, imp
 
 LOCAL_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 RELEASETOOLS_DIR = os.path.abspath(os.path.join(LOCAL_DIR, '../../../build/tools/releasetools'))
@@ -27,98 +25,27 @@ sys.path.append(RELEASETOOLS_DIR)
 
 # Import the existing file so we just have to rewrite the modules we need.
 # This is a nasty hack as the filename doesn't end in .py, but it works
-filename = os.path.join(RELEASETOOLS_DIR, "ota_from_target_files")
-ota_from_target_files = common.load_module_from_file('ota_from_target_files', filename)
+filename = os.path.join(RELEASETOOLS_DIR, 'ota_from_target_files')
+f = open(filename, 'rU')
+ota_from_target_files = imp.load_module('ota_from_target_files', f, filename, ('', 'U', 1))
+f.close()
 
 from ota_from_target_files import *
-import galaxys2_edify_generator as edify_generator
 
 __doc__ = ota_from_target_files.__doc__
 
-def CopyBootFiles(input_zip, output_zip):
-    output_zip.write(os.path.join(TARGET_DIR, "boot.img"),"boot.img")
+def GetBootableImage(name, prebuilt_name, unpack_dir, tree_subdir):
+    from common import File
+    return File.FromLocalFile(name, os.path.join(TARGET_DIR, prebuilt_name))
 
-def WriteFullOTAPackage(input_zip, output_zip):
-  # TODO: how to determine this?  We don't know what version it will
-  # be installed on top of.  For now, we expect the API just won't
-  # change very often.
-  script = edify_generator.EdifyGenerator(3, OPTIONS.info_dict)
-
-  metadata = {"post-build": GetBuildProp("ro.build.fingerprint",
-                                         OPTIONS.info_dict),
-              "pre-device": GetBuildProp("ro.product.device",
-                                         OPTIONS.info_dict),
-              "post-timestamp": GetBuildProp("ro.build.date.utc",
-                                             OPTIONS.info_dict),
-              }
-
-  device_specific = common.DeviceSpecificParams(
-      input_zip=input_zip,
-      input_version=OPTIONS.info_dict["recovery_api_version"],
-      output_zip=output_zip,
-      script=script,
-      input_tmp=OPTIONS.input_tmp,
-      metadata=metadata,
-      info_dict=OPTIONS.info_dict)
-
-  system_items = ItemSet("system", "META/filesystem_config.txt")
-  AppendAssertions(script, device_specific.info_dict)
-  device_specific.FullOTA_Assertions()
-  if OPTIONS.backuptool:
-    script.Mount("/system")
-    script.RunBackup("backup")
-    script.Unmount("/system")
-
-  script.ShowProgress(0.5, 0)
-
-  if OPTIONS.wipe_user_data:
-    script.FormatPartition("/data")
-    script.Unmount("/system")
-
-  script.FormatPartition("/system")
-  script.Mount("/system")
-  script.UnpackPackageDir("recovery", "/system")
-  script.UnpackPackageDir("system", "/system")
-
-  symlinks = CopyPartitionFiles(system_items, input_zip, output_zip)
-  script.MakeSymlinks(symlinks)
-
-  CopyBootFiles(input_zip, output_zip)
-
-  system_items.GetMetadata(input_zip)
-  system_items.Get("system").SetPermissions(script)
-
-  script.ShowProgress(0.2, 0)
-
-  if OPTIONS.backuptool:
-    script.ShowProgress(0.2, 10)
-    script.RunBackup("restore")
-
-  script.ShowProgress(0.2, 10)
-  script.WriteRawImage("/boot", "boot.img")
-
-  script.ShowProgress(0.1, 0)
-  device_specific.FullOTA_InstallEnd()
-
-  if OPTIONS.extra_script is not None:
-    script.AppendExtra(OPTIONS.extra_script)
-
-  script.UnmountAll()
-  script.AddToZip(input_zip, output_zip, input_path=OPTIONS.updater_binary)
-  WriteMetadata(metadata, output_zip)
-ota_from_target_files.WriteFullOTAPackage = WriteFullOTAPackage
-
-
-def WriteIncrementalOTAPackage(target_zip, source_zip, output_zip):
-    print "Incremental OTA Packages are not support on the galaxys2 at this time"
-    sys.exit(1)
-ota_from_target_files.WriteIncrementalOTAPackage = WriteIncrementalOTAPackage
+common.GetBootableImage = GetBootableImage
 
 if __name__ == '__main__':
-  try:
-    main(sys.argv[1:])
-  except common.ExternalError, e:
-    print
-    print "   ERROR: %s" % (e,)
-    print
-    sys.exit(1)
+    try:
+        common.CloseInheritedPipes()
+        main(sys.argv[1:])
+    except common.ExternalError, e:
+        print
+        print "   ERROR: %s" % (e,)
+        print
+        sys.exit(1)
