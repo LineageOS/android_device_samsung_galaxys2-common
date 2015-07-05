@@ -132,7 +132,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     static_busybox \
     make_ext4fs \
-    setup_fs
+    setup_fs \
+    resize2fs_static
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
