@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7ffa3b31_4d3ac5e7",
+        "filename": "common.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-07-06T03:06:42Z",
+      "side": 1,
+      "message": "The whole PRODUCT_PACKAGES is not alphabetically ordered, but ok, I should straighten all the repo in one commit sometime",
+      "parentUuid": "7ffa3b31_2d4ad97f",
+      "revId": "988766478211ae3fb3eb80a33eb514af4ce38816",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ffa3b31_0d5f1d42",
         "filename": "releasetools/extensions/releasetools.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-06T02:48:57Z",
       "side": 1,
       "message": "This performs a resize, is the filesystem actually being resized elsewhere?",
+      "revId": "988766478211ae3fb3eb80a33eb514af4ce38816",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ffa3b31_2d3f79d7",
+        "filename": "releasetools/extensions/releasetools.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-07-06T03:06:42Z",
+      "side": 1,
+      "message": "No, I checked all the partitions with $ df and only /system is rezised by the OTA.",
+      "parentUuid": "7ffa3b31_0d5f1d42",
       "revId": "988766478211ae3fb3eb80a33eb514af4ce38816",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
