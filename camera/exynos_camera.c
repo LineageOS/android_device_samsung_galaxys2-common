@@ -2235,6 +2235,12 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
 		}
 	}
 
+	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, FOCUS_MODE_CONTINOUS);
+	if (rc < 0) {
+		ALOGE("%s: s ctrl failed!", __func__);
+		goto error;
+	}
+
 	rc = exynos_v4l2_s_ctrl(exynos_camera, 2, V4L2_CID_ROTATION,
 		exynos_camera->camera_rotation);
 	if (rc < 0) {
@@ -2290,6 +2296,11 @@ void exynos_camera_recording_stop(struct exynos_camera *exynos_camera)
 	exynos_camera->recording_enabled = 0;
 
 	pthread_mutex_lock(&exynos_camera->preview_mutex);
+
+	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, FOCUS_MODE_AUTO);
+	if (rc < 0) {
+		ALOGE("%s: s ctrl failed!", __func__);
+	}
 
 	rc = exynos_v4l2_streamoff_cap(exynos_camera, 2);
 	if (rc < 0) {
