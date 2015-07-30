@@ -164,4 +164,8 @@
     <!-- Performance profiles -->
     <string name="config_perf_profile_prop">sys.perf.profile</string>
     <string name="config_perf_profile_default_entry">1</string>
+
+    <!-- Control whether a car dock event should override the default bluetooth
+         audio routing, FORCE_BT_CAR_DOCK, with an analog dock, FORCE_ANALOG_DOCK. -->
+    <bool name="config_forceAnalogCarDock">true</bool>
 </resources>
