@@ -18,10 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (padrão)</item>
-    <item>Modo UI</item>
-    <item>Modo Vídeo</item>
-    <item>Modo Vídeo Quente</item>
-    <item>Modo Vídeo Frio</item>
+    <item>IU</item>
+    <item>Vídeo</item>
+    <item>Vídeo quente</item>
+    <item>Vídeo frio</item>
     <item>Câmera</item>
     <item>Navegação</item>
     <item>Galeria</item>
@@ -29,7 +29,7 @@
   </string-array>
   <string-array name="mdnie_mode_entries">
     <item>Dinâmico (padrão)</item>
-    <item>Normal</item>
+    <item>Padrão</item>
     <item>Natural</item>
     <item>Filme</item>
   </string-array>

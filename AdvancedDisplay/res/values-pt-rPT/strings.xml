@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Visualização avançada</string>
-  <string name="defaults_button">Repor para a predefinição</string>
+  <string name="defaults_button">Repor os valores de origem</string>
   <string name="category_screen_title">Ecrã</string>
   <string name="screen_colors_title">Cores</string>
   <string name="mdnie_scenario_title_head">Cenário</string>

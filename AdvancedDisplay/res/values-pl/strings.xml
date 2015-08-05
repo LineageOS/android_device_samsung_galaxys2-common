@@ -20,10 +20,10 @@
   <string name="defaults_button">Przywróć domyślne</string>
   <string name="category_screen_title">Ekran</string>
   <string name="screen_colors_title">Kolory</string>
-  <string name="mdnie_scenario_title_head">Scenariusz</string>
+  <string name="mdnie_scenario_title_head">Scenerie</string>
   <string name="mdnie_scenario_summary_head">Ustaw scenariusz mDNIe</string>
   <string name="mdnie_mode_title_head">Tryb</string>
   <string name="mdnie_mode_summary_head">Ustaw tryb mDNIe</string>
   <string name="mdnie_negative_title_head">Tryb negatywu</string>
-  <string name="mdnie_negative_summary_head">Włącz/wyłącz odwrócenie kolorów</string>
+  <string name="mdnie_negative_summary_head">Włącz/wyłącz odwrócone kolory</string>
 </resources>

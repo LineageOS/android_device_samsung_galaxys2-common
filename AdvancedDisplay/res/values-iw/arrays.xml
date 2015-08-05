@@ -19,9 +19,9 @@
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (ברירת מחדל)</item>
     <item>ממשק משתמש</item>
-    <item>מצב וידאו</item>
-    <item>מצב וידאו חם</item>
-    <item>מצב וידאו קר</item>
+    <item>וידאו</item>
+    <item>וידאו חם</item>
+    <item>וידאו קר</item>
     <item>מצלמה</item>
     <item>ניווט</item>
     <item>גלריה</item>

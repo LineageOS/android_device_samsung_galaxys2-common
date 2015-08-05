@@ -21,9 +21,9 @@
   <string name="category_screen_title">מסך</string>
   <string name="screen_colors_title">צבעים</string>
   <string name="mdnie_scenario_title_head">תרחיש</string>
-  <string name="mdnie_scenario_summary_head">הגדר את תרחיש mDNIe</string>
+  <string name="mdnie_scenario_summary_head">הגדר תרחיש mDNIe</string>
   <string name="mdnie_mode_title_head">מצב</string>
-  <string name="mdnie_mode_summary_head">הגדר את מצב mDNIe</string>
+  <string name="mdnie_mode_summary_head">הגדר מצב mDNIe</string>
   <string name="mdnie_negative_title_head">מצב שלילי (נגטיב)</string>
   <string name="mdnie_negative_summary_head">הפעל/השבת צבעים הפוכים</string>
 </resources>

@@ -25,5 +25,5 @@
   <string name="mdnie_mode_title_head">Tilstand</string>
   <string name="mdnie_mode_summary_head">Angiv mDNIe-tilstanden</string>
   <string name="mdnie_negative_title_head">Negativ tilstand</string>
-  <string name="mdnie_negative_summary_head">Aktivér/deaktivér omvendte farver</string>
+  <string name="mdnie_negative_summary_head">Aktivér/deaktivér inverteret farver</string>
 </resources>

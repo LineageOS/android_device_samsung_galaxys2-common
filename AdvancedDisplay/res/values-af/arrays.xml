@@ -18,10 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (standaard)</item>
-    <item>Gebruikerskoppelvlak</item>
-    <item>Video</item>
-    <item>Video (warm)</item>
-    <item>Video koud</item>
+    <item>Gebruikerskoppelvlak Modus</item>
+    <item>Video Modus</item>
+    <item>Video Warm Modus</item>
+    <item>Video Koud Modus</item>
     <item>Kamera</item>
     <item>Navigasie</item>
     <item>Galery</item>
@@ -31,7 +31,7 @@
     <item>Dinamies (standaard)</item>
     <item>Standaard</item>
     <item>Natuurlik</item>
-    <item>Fliek</item>
+    <item>Flieks</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
     <item>Normaal</item>

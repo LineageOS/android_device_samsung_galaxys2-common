@@ -20,8 +20,8 @@
     <item>CyanogenMod (predefinito)</item>
     <item>UI</item>
     <item>Video</item>
-    <item>Video caldo</item>
-    <item>Video freddo</item>
+    <item>Toni caldi</item>
+    <item>Toni freddi</item>
     <item>Fotocamera</item>
     <item>Navigazione</item>
     <item>Galleria</item>
@@ -29,7 +29,7 @@
   </string-array>
   <string-array name="mdnie_mode_entries">
     <item>Dinamico (predefinito)</item>
-    <item>Predefinito</item>
+    <item>Standard</item>
     <item>Naturale</item>
     <item>Video</item>
   </string-array>

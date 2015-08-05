@@ -29,12 +29,12 @@
   </string-array>
   <string-array name="mdnie_mode_entries">
     <item>Δυναμική (προεπιλογή)</item>
-    <item>Τυπική</item>
+    <item>Κανονική</item>
     <item>Φυσική</item>
     <item>Ταινία</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
     <item>Κανονική</item>
-    <item>Αντεστραμμένη</item>
+    <item>Ανεστραμμένη</item>
   </string-array>
 </resources>

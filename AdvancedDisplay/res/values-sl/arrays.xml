@@ -16,14 +16,25 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">進階顯示</string>
-  <string name="defaults_button">重設為預設植</string>
-  <string name="category_screen_title">螢幕</string>
-  <string name="screen_colors_title">色彩</string>
-  <string name="mdnie_scenario_title_head">場景</string>
-  <string name="mdnie_scenario_summary_head">設定 mDNIe 場景</string>
-  <string name="mdnie_mode_title_head">模式</string>
-  <string name="mdnie_mode_summary_head">設定 mDNIe 模式</string>
-  <string name="mdnie_negative_title_head">負片模式</string>
-  <string name="mdnie_negative_summary_head">啟用/停用反轉顏色</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod (privzeti)</item>
+    <item>UI</item>
+    <item>Video posnetek</item>
+    <item>Topel video posnetek</item>
+    <item>Hladen video posnetek</item>
+    <item>Fotoaparat</item>
+    <item>Navigacija</item>
+    <item>Galerija</item>
+    <item>VT</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>Dinamično (privzeto)</item>
+    <item>Običajni</item>
+    <item>Naravni</item>
+    <item>Film</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>Običajno</item>
+    <item>Obrnjeno</item>
+  </string-array>
 </resources>

@@ -21,9 +21,9 @@
   <string name="category_screen_title">Экран</string>
   <string name="screen_colors_title">Цвета</string>
   <string name="mdnie_scenario_title_head">Сценарий</string>
-  <string name="mdnie_scenario_summary_head">Укажите сценарий mDNIe</string>
+  <string name="mdnie_scenario_summary_head">Установка сценария mDNIe</string>
   <string name="mdnie_mode_title_head">Режим</string>
-  <string name="mdnie_mode_summary_head">Укажите режим mDNIe</string>
-  <string name="mdnie_negative_title_head">Режим негатива</string>
-  <string name="mdnie_negative_summary_head">Включить инверсию цвета</string>
+  <string name="mdnie_mode_summary_head">Установка режима mDNIe</string>
+  <string name="mdnie_negative_title_head">Негатив</string>
+  <string name="mdnie_negative_summary_head">Вкл./выкл. инверсии цветов</string>
 </resources>
