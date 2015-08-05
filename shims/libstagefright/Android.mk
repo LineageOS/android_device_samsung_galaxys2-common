@@ -40,7 +40,10 @@ LOCAL_SHARED_LIBRARIES := \
     libstagefright_foundation \
     libbase \
     libcamera_client \
-    liblog
+    liblog \
+    libnativewindow \
+    libui \
+    libutils
 
 LOCAL_MODULE := libstagefright_shim
 LOCAL_MODULE_TAGS := optional
