@@ -57,8 +57,7 @@ PRODUCT_COPY_FILES += \
 # Packages
 PRODUCT_PACKAGES := \
     com.android.future.usb.accessory \
-    SamsungServiceMode \
-    Torch
+    SamsungServiceMode
 
 # Audio Packages
 PRODUCT_PACKAGES += \
