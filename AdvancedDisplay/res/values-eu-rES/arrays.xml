@@ -16,14 +16,25 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Setări avansate de afișare</string>
-  <string name="defaults_button">Resetare la valori implicite</string>
-  <string name="category_screen_title">Ecran</string>
-  <string name="screen_colors_title">Culori</string>
-  <string name="mdnie_scenario_title_head">Scenariu</string>
-  <string name="mdnie_scenario_summary_head">Setează scenariul mDNIe</string>
-  <string name="mdnie_mode_title_head">Mod</string>
-  <string name="mdnie_mode_summary_head">Setează modul mDNIe</string>
-  <string name="mdnie_negative_title_head">Mod culori negative</string>
-  <string name="mdnie_negative_summary_head">Activează/dezactivează culori inversate</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod (lehenetsia)</item>
+    <item>UI</item>
+    <item>Bideoa</item>
+    <item>Bideo epela</item>
+    <item>Bideo hotza</item>
+    <item>Kamera</item>
+    <item>Nabigazioa</item>
+    <item>Galeria</item>
+    <item>Bideodeia</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>Dinamikoa (lehenetsia)</item>
+    <item>Estandarra</item>
+    <item>Naturala</item>
+    <item>Filmea</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>Arrunta</item>
+    <item>Alderantzikatua</item>
+  </string-array>
 </resources>

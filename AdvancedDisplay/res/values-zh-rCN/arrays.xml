@@ -16,14 +16,25 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Setări avansate de afișare</string>
-  <string name="defaults_button">Resetare la valori implicite</string>
-  <string name="category_screen_title">Ecran</string>
-  <string name="screen_colors_title">Culori</string>
-  <string name="mdnie_scenario_title_head">Scenariu</string>
-  <string name="mdnie_scenario_summary_head">Setează scenariul mDNIe</string>
-  <string name="mdnie_mode_title_head">Mod</string>
-  <string name="mdnie_mode_summary_head">Setează modul mDNIe</string>
-  <string name="mdnie_negative_title_head">Mod culori negative</string>
-  <string name="mdnie_negative_summary_head">Activează/dezactivează culori inversate</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod (默认)</item>
+    <item>UI</item>
+    <item>影像模式</item>
+    <item>影像模式 (温)</item>
+    <item>影像模式 (冷)</item>
+    <item>相机</item>
+    <item>导航</item>
+    <item>图库</item>
+    <item>VT</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>动态 (默认)</item>
+    <item>标准</item>
+    <item>自然</item>
+    <item>影片</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>正常</item>
+    <item>反色</item>
+  </string-array>
 </resources>
