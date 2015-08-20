@@ -18,13 +18,23 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="mdnie_scenario_entries">
     <item>سایانوژن‌مود (پیش‌فرض)</item>
-    <item>UI</item>
-    <item>Video</item>
-    <item>Video warm</item>
-    <item>Video cold</item>
-    <item>Camera</item>
-    <item>Navigation</item>
-    <item>Gallery</item>
+    <item>رابط کاربر</item>
+    <item>ویدیو</item>
+    <item>تصویری گرم</item>
+    <item>تصویری سرد</item>
+    <item>دوربین</item>
+    <item>پیمایش</item>
+    <item>گالری</item>
     <item>VT</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>پویا (پیش‌فرض)</item>
+    <item>استاندارد</item>
+    <item>طبیعی</item>
+    <item>فیلم</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>عادی</item>
+    <item>معکوس</item>
   </string-array>
 </resources>
