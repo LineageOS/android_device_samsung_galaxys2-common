@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Erweiderte Schierm</string>
-  <string name="defaults_button">Op Standard zrécksetzen</string>
+  <string name="defaults_button">Op de Standard zrécksetzen</string>
   <string name="category_screen_title">Schierm</string>
   <string name="screen_colors_title">Faarwen</string>
   <string name="mdnie_scenario_title_head">Zeenario</string>

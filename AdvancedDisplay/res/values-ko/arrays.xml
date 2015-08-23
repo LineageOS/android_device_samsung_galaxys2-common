@@ -30,7 +30,7 @@
   <string-array name="mdnie_mode_entries">
     <item>다이나믹(기본값)</item>
     <item>표준</item>
-    <item>자연</item>
+    <item>자연스러움</item>
     <item>영화</item>
   </string-array>
   <string-array name="mdnie_negative_entries">

@@ -19,10 +19,10 @@
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (zadano)</item>
     <item>Korisničko sučelje</item>
-    <item>Video</item>
+    <item>Videozapis</item>
     <item>Video toplo</item>
     <item>Video hladno</item>
-    <item>Kamera</item>
+    <item>Fotoaparat</item>
     <item>Navigacija</item>
     <item>Galerija</item>
     <item>VT</item>
@@ -35,6 +35,6 @@
   </string-array>
   <string-array name="mdnie_negative_entries">
     <item>Normalno</item>
-    <item>Inverzno</item>
+    <item>Preokrenuto</item>
   </string-array>
 </resources>
