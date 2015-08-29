@@ -162,6 +162,7 @@ BOARD_SEPOLICY_UNION += \
     dumpstate.te \
     file.te \
     file_contexts \
+    healthd.te \
     init.te \
     kernel.te \
     mediaserver.te \
