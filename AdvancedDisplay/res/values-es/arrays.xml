@@ -16,14 +16,25 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Pantaila aurreratua</string>
-  <string name="defaults_button">Leheneratu balio lehenetsietara</string>
-  <string name="category_screen_title">Pantaila</string>
-  <string name="screen_colors_title">Koloreak</string>
-  <string name="mdnie_scenario_title_head">Eszenatokia</string>
-  <string name="mdnie_scenario_summary_head">mDNIe eszenatokia ezarri</string>
-  <string name="mdnie_mode_title_head">Modua</string>
-  <string name="mdnie_mode_summary_head">Ezarri mDNIe modua</string>
-  <string name="mdnie_negative_title_head">Modu negatiboa</string>
-  <string name="mdnie_negative_summary_head">Gaitu/ezgaitu kolore alderantzikatuak</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod (por defecto)</item>
+    <item>Interfaz de usuarii</item>
+    <item>Video</item>
+    <item>Video calido</item>
+    <item>Vídeo frío</item>
+    <item>Cámara</item>
+    <item>Navegación</item>
+    <item>Galería</item>
+    <item>Videollamada</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>Dinámico (por defecto)</item>
+    <item>Estandar</item>
+    <item>Natural</item>
+    <item>Película</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>Normal</item>
+    <item>Invertido</item>
+  </string-array>
 </resources>

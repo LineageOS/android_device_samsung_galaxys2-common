@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">نمایش پیشرفته</string>
-  <string name="defaults_button">بازنشانی به پیش‌فرض</string>
+  <string name="defaults_button">تنظیم مجدد به پیش‌فرض</string>
   <string name="category_screen_title">صفحه نمایش</string>
   <string name="screen_colors_title">رنگ‌ها</string>
   <string name="mdnie_scenario_title_head">خط مشی</string>

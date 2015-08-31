@@ -16,14 +16,25 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Pantaila aurreratua</string>
-  <string name="defaults_button">Leheneratu balio lehenetsietara</string>
-  <string name="category_screen_title">Pantaila</string>
-  <string name="screen_colors_title">Koloreak</string>
-  <string name="mdnie_scenario_title_head">Eszenatokia</string>
-  <string name="mdnie_scenario_summary_head">mDNIe eszenatokia ezarri</string>
-  <string name="mdnie_mode_title_head">Modua</string>
-  <string name="mdnie_mode_summary_head">Ezarri mDNIe modua</string>
-  <string name="mdnie_negative_title_head">Modu negatiboa</string>
-  <string name="mdnie_negative_summary_head">Gaitu/ezgaitu kolore alderantzikatuak</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod (alapbeállítás)</item>
+    <item>Felhasználói felület</item>
+    <item>Videó</item>
+    <item>Videó (Meleg árnyalat)</item>
+    <item>Videó (Hideg árnyalat)</item>
+    <item>Kamera</item>
+    <item>Navigáció</item>
+    <item>Galéria</item>
+    <item>VT</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>Dinamikus (alapbeállítás)</item>
+    <item>Hagyományos</item>
+    <item>Természetes</item>
+    <item>Film</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>Normál</item>
+    <item>Fordított</item>
+  </string-array>
 </resources>
