@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3f1d235d_5bd02551",
+        "filename": "selinux/healthd.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-09-03T01:30:20Z",
+      "side": 1,
+      "message": "The denial is: denied  { read } for  pid\u003d1805 comm\u003d\"healthd\" name\u003d\"/\" dev\u003dtmpfs ino\u003d1110 scontext\u003du:r:healthd:s0 tcontext\u003du:object_r:device:s0 tclass\u003ddir\nWhich goes to dev/log/events. This should be labeled as log_device but it\u0027s not. I saw the hammerhead using this same policy, so I guess it\u0027s not so bad",
+      "parentUuid": "3f1d235d_9b9fddb3",
+      "revId": "2bd0c3903d936edb68cf062ec05e1377aabb12a3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_7ba40109",
         "filename": "selinux/vold.te",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2015-09-03T00:36:16Z",
       "side": 1,
       "message": "Doesn\u0027t look like this needs to be changed.",
+      "revId": "2bd0c3903d936edb68cf062ec05e1377aabb12a3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_3bc5698f",
+        "filename": "selinux/vold.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-09-03T01:30:20Z",
+      "side": 1,
+      "message": "Indeed, but it keeps asking for search every boot, I don\u0027t like that",
+      "parentUuid": "3f1d235d_7ba40109",
       "revId": "2bd0c3903d936edb68cf062ec05e1377aabb12a3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
