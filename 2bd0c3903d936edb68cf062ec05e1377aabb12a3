@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3f1d235d_7b0e41e6",
+        "filename": "selinux/healthd.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-09-03T02:15:22Z",
+      "side": 1,
+      "message": "That\u0027s still super weird.",
+      "parentUuid": "3f1d235d_5bd02551",
+      "revId": "2bd0c3903d936edb68cf062ec05e1377aabb12a3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_7ba40109",
         "filename": "selinux/vold.te",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Indeed, but it keeps asking for search every boot, I don\u0027t like that",
       "parentUuid": "3f1d235d_7ba40109",
+      "revId": "2bd0c3903d936edb68cf062ec05e1377aabb12a3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_9b091ddf",
+        "filename": "selinux/vold.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-09-03T02:15:22Z",
+      "side": 1,
+      "message": "Oh, I see what\u0027s wrong here. This is a dir type but it was using rw_file_perms before. It should have been rw_dir_perms.",
+      "parentUuid": "3f1d235d_3bc5698f",
       "revId": "2bd0c3903d936edb68cf062ec05e1377aabb12a3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
