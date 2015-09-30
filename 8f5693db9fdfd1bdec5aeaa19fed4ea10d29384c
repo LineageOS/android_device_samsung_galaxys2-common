@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f436f4f_75fe8006",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-09-30T06:04:58Z",
+      "side": 0,
+      "message": "Don\u0027t change this line for no reason.",
+      "revId": "8f5693db9fdfd1bdec5aeaa19fed4ea10d29384c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
