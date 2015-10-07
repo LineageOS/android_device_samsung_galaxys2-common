@@ -329,9 +329,6 @@ on boot
     chmod 0600 /dev/pn544
     chown nfc nfc /dev/pn544
 
-# Device Encryption by B2B Security Lab. 
-    setprop ro.crypto.keyfile.userdata /efs/metadata
-
 # fake some battery state
     setprop status.battery.state Slow
     setprop status.battery.level 5
