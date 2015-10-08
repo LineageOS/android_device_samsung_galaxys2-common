@@ -59,6 +59,9 @@ BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
+# Memory management
+MALLOC_IMPL := dlmalloc
+
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
