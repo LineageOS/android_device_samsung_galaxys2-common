@@ -145,6 +145,9 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     librs_jni
 
+# Netmgr dependency on libstlport
+PRODUCT_PACKAGES +=  libstlport
+
 # Wifi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
