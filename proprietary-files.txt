@@ -16,7 +16,6 @@ system/lib/egl/libEGL_mali.so
 system/lib/egl/libGLESv1_CM_mali.so
 system/lib/egl/libGLESv2_mali.so
 system/lib/libMali.so
-system/lib/libUMP.so
 system/lib/libfactoryutil.so
 system/lib/libfimc.so
 system/lib/libomission_avoidance.so
@@ -24,6 +23,7 @@ system/lib/libsecnativefeature.so
 system/vendor/firmware/libpn544_fw.so
 system/vendor/firmware/mfc_fw.bin
 system/vendor/lib/drm/libdrmwvmplugin.so
-system/vendor/lib/libWVStreamControlAPI_L1.so
-system/vendor/lib/libwvdrm_L1.so
+system/vendor/lib/mediadrm/libwvdrmengine.so
+system/vendor/lib/libWVStreamControlAPI_L3.so
+system/vendor/lib/libwvdrm_L3.so
 system/vendor/lib/libwvm.so
