@@ -11,7 +11,6 @@ allow rild block_device:dir search;
 allow rild efs_device_file:dir { search write };
 allow rild efs_device_file:file { read write append getattr open setattr };
 allow rild system_data_file:dir { write add_name };
-allow rild system_data_file:file { write create setattr };
 
 allow rild dumpstate_exec:file { read open getattr execute };
 unix_socket_connect(rild, dumpstate, dumpstate)
