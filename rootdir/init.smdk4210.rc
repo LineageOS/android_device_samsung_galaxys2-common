@@ -341,6 +341,7 @@ service cpboot-daemon /sbin/cbd -d -p 8
     class main
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r
+    seclabel u:r:cbd:s0
 
 service mdnsd /system/bin/mdnsd
     class main
