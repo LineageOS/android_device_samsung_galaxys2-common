@@ -224,8 +224,6 @@ on post-fs-data
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
-    restorecon /sys/class/rfkill/rfkill0/state
-    restorecon /sys/class/rfkill/rfkill0/type
 
 # Vibetonz
     chmod 0660 /dev/tspdrv
@@ -239,7 +237,6 @@ on post-fs-data
     chown system media_rw /sys/class/lcd/panel/gamma_mode
     chown system media_rw /sys/class/lcd/panel/power_reduce
     chown system system /sys/class/backlight/panel/auto_brightness
-    restorecon /sys/class/lcd/panel/power_reduce
 
 # Permissions for mDNIe
     chown system media_rw /sys/class/mdnie/mdnie/mode
@@ -248,9 +245,6 @@ on post-fs-data
     chown system media_rw /sys/class/mdnie/mdnie/negative
     write /sys/class/mdnie/mdnie/scenario 0
     write /sys/class/mdnie/mdnie/mode 1
-    restorecon /sys/class/mdnie/mdnie/scenario
-    restorecon /sys/class/mdnie/mdnie/mode
-    restorecon /sys/class/mdnie/mdnie/negative
 
 # Permissions for uart_sel and usb_sel
     chown system radio /sys/class/sec/switch/uart_sel/value
@@ -332,6 +326,7 @@ service cpboot-daemon /sbin/cbd -d -p 8
     class main
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r
+    seclabel u:r:cpboot-daemon:s0
 
 service mdnsd /system/bin/mdnsd
     class main

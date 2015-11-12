@@ -1,6 +1,9 @@
-allow system_server uhid_device:chr_file { read write ioctl open };
-allow system_server sysfs_display:file { read write getattr open };
-allow system_server efs_file:dir { search };
-allow system_server efs_file:file { read open write };
+allow system_server efs_file:dir search;
+allow system_server efs_file:file { read open };
 allow system_server efs_device_file:dir search;
-allow system_server fuse:dir search;
+allow system_server self:capability sys_module;
+allow system_server system_file:file execmod;
+allow system_server uhid_device:chr_file { read write ioctl open };
+allow system_server recovery_cache_file:dir rmdir;
+allow system_server dex2oat_exec:file { read open execute};
+allow system_server radio_data:dir search;

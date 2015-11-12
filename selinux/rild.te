@@ -1,17 +1,5 @@
-allow rild self:netlink_socket { create bind read write };
-allow rild self:netlink_route_socket { write };
-allow rild self:netlink_kobject_uevent_socket { create bind read write };
-allow rild self:process execmem;
-
-allow rild radio_device:chr_file rw_file_perms;
-allow rild efs_block_device:blk_file rw_file_perms;
-allow rild efs_file:file { read open write setattr };
-allow rild radio_data_file:dir setattr;
-allow rild block_device:dir search;
-allow rild efs_device_file:dir { search write };
-allow rild efs_device_file:file { read write append getattr open setattr };
-allow rild system_data_file:dir { write add_name };
-allow rild system_data_file:file { write create setattr };
-
-allow rild dumpstate_exec:file { read open getattr execute };
-unix_socket_connect(rild, dumpstate, dumpstate)
+allow rild radio_data:dir { search write remove_name getattr add_name setattr };
+allow rild radio_data:file { write getattr setattr read create unlink open };
+allow rild system_file:file execmod;
+allow rild efs_block_device:blk_file read;
+allow rild efs_device_file:dir search;
