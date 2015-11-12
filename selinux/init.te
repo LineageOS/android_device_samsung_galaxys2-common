@@ -1,1 +1,4 @@
 allow init self:capability sys_module;
+allow init tmpfs:lnk_file create;
+allow init rild:process noatsecure;
+domain_trans(init, rootfs, cpboot-daemon)
