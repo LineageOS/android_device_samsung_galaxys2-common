@@ -10,7 +10,13 @@
 /dev/umts_ramdump0                      u:object_r:radio_device:s0
 /dev/umts_rfs0                          u:object_r:radio_device:s0
 
+# Block labeling
+/dev/block/mmcblk0p1                    u:object_r:efs_block_device:s0
+/dev/block/mmcblk0p7                    u:object_r:cache_block_device:s0
 /dev/block/mmcblk0p8                    u:object_r:efs_block_device:s0
+/dev/block/mmcblk0p9                    u:object_r:system_block_device:s0
+/dev/block/mmcblk0p10                   u:object_r:userdata_block_device:s0
+/dev/block/zram0                        u:object_r:swap_block_device:s0
 /efs                                    u:object_r:efs_device_file:s0
 
 # Camera
@@ -39,3 +45,6 @@
 /sys/class/mdnie/mdnie/scenario         u:object_r:sysfs_display:s0
 /sys/class/mdnie/mdnie/mode             u:object_r:sysfs_display:s0
 /sys/class/mdnie/mdnie/negative         u:object_r:sysfs_display:s0
+
+# Executables
+/system/bin/macloader                   u:object_r:macloader_exec:s0
