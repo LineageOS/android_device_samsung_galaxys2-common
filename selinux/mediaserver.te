@@ -1,2 +1,3 @@
 allow mediaserver mfc_device:chr_file rw_file_perms;
 allow mediaserver video_device:chr_file rw_file_perms;
+allow mediaserver system_file:file execmod;

@@ -1,0 +1,24 @@
+type cpboot-daemon, domain;
+type cpboot-daemon_exec, exec_type, file_type;
+init_daemon_domain(cpboot-daemon)
+
+allow cpboot-daemon cgroup:dir { add_name create };
+allow cpboot-daemon device:dir write;
+allow cpboot-daemon block_device:dir search;
+allow cpboot-daemon log_device:dir search;
+allow cpboot-daemon log_device:chr_file { open write };
+allow cpboot-daemon radio_device:chr_file { open read write ioctl };
+allow cpboot-daemon self:capability { setuid };
+allow cpboot-daemon efs_block_device:blk_file { open read };
+allow cpboot-daemon sysfs_radio:file { open read write };
+allow cpboot-daemon efs_device_file:dir search;
+allow cpboot-daemon efs_file:file { read write };
+
+
+## FIXME this is a neverallow rule
+## allow cpboot-daemon self:capability mknod;
+
+
+
+
+

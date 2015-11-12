@@ -4,13 +4,22 @@
 /dev/fimg2d                             u:object_r:mali_device:s0
 
 # RIL
+/dev/__cbd_msg_                         u:object_r:radio_device:s0
+/dev/link_pm                            u:object_r:radio_device:s0
 /dev/umts_boot0                         u:object_r:radio_device:s0
 /dev/umts_boot1                         u:object_r:radio_device:s0
 /dev/umts_ipc0                          u:object_r:radio_device:s0
 /dev/umts_ramdump0                      u:object_r:radio_device:s0
 /dev/umts_rfs0                          u:object_r:radio_device:s0
+/sys/devices/platform/s5p-ehci/ehci_power    u:object_r:sysfs_radio:s0
 
+# Block labeling
+/dev/block/mmcblk0p1                    u:object_r:efs_block_device:s0
+/dev/block/mmcblk0p7                    u:object_r:cache_block_device:s0
 /dev/block/mmcblk0p8                    u:object_r:efs_block_device:s0
+/dev/block/mmcblk0p9                    u:object_r:system_block_device:s0
+/dev/block/mmcblk0p10                   u:object_r:userdata_block_device:s0
+/dev/block/zram0                        u:object_r:swap_block_device:s0
 /efs                                    u:object_r:efs_device_file:s0
 
 # Camera
@@ -36,6 +45,9 @@
 
 # Display
 /sys/class/lcd/panel/power_reduce       u:object_r:sysfs_display:s0
-/sys/class/mdnie/mdnie/scenario         u:object_r:sysfs_display:s0
-/sys/class/mdnie/mdnie/mode             u:object_r:sysfs_display:s0
-/sys/class/mdnie/mdnie/negative         u:object_r:sysfs_display:s0
+/sys/devices/platform/samsung-pd.2/mdnie/mdnie/mdnie/scenario    u:object_r:sysfs_display:s0
+/sys/devices/platform/samsung-pd.2/mdnie/mdnie/mdnie/mode        u:object_r:sysfs_display:s0
+/sys/devices/platform/samsung-pd.2/mdnie/mdnie/mdnie/negative    u:object_r:sysfs_display:s0
+
+# Executables
+/system/bin/macloader                   u:object_r:macloader_exec:s0
