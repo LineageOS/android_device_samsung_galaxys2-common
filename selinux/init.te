@@ -1,1 +1,6 @@
+domain_trans(init, rootfs, cpboot-daemon)
 allow init self:capability sys_module;
+allow init tmpfs:lnk_file create;
+allow init property_socket:sock_file write;
+allow init log_device:chr_file write;
+allow init radio_device:chr_file { write ioctl };
