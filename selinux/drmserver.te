@@ -1,2 +1,0 @@
-allow drmserver sdcard_external:file open;
-allow drmserver self:process execmem;

@@ -1,1 +1,2 @@
 allow init self:capability sys_module;
+allow init tmpfs:lnk_file create;
