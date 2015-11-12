@@ -4,3 +4,7 @@ allow system_server efs_file:dir { search };
 allow system_server efs_file:file { read open write };
 allow system_server efs_device_file:dir search;
 allow system_server fuse:dir search;
+allow system_server self:capability sys_module;
+allow system_server system_file:file execmod;
+allow system_server dex2oat_exec:file { read execute open execute_no_trans };
+allow system_server recovery_cache_file:dir rmdir;
