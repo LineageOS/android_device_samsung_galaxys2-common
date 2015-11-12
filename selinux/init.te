@@ -1,1 +1,3 @@
 allow init self:capability sys_module;
+allow init tmpfs:lnk_file create;
+domain_trans(init, rootfs, cpboot-daemon)
