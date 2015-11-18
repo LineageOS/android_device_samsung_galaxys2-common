@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_f926e316",
+        "filename": "selinux/cpboot-daemon.te",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 12082
+      },
+      "writtenOn": "2015-11-18T04:09:45Z",
+      "side": 1,
+      "message": "No idea how can I workaround this, cbd doesn\u0027t run on init domain because of a rootfs { execute_no_trans } neverallow, and doesn\u0027t run on it\u0027s own domain too because of this",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "9e46cf77fcd2570ebeb9882956501b47c8708488",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
