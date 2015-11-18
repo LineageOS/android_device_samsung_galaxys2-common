@@ -22,6 +22,30 @@
       "revId": "9e46cf77fcd2570ebeb9882956501b47c8708488",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_a446fe4e",
+        "filename": "selinux/cpboot-daemon.te",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-11-18T05:26:42Z",
+      "side": 1,
+      "message": "There was a hack we used in 12.1 for rmt_storage to get around some neverallows, you may want to look for that. I don\u0027t remember what it was.",
+      "parentUuid": "ff5d4b2f_f926e316",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "9e46cf77fcd2570ebeb9882956501b47c8708488",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
