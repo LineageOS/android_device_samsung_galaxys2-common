@@ -412,16 +412,3 @@ service bugreport /system/bin/dumpstate -d -p -B \
     disabled
     oneshot
     keycodes 114 115 116
-
-## CyanogenMod Performance Profiles
-# Powersave
-on property:sys.perf.profile=0
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-
-# Balanced
-on property:sys.perf.profile=1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
-
-# Performance
-on property:sys.perf.profile=2
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
