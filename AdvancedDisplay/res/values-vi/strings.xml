@@ -20,6 +20,10 @@
   <string name="defaults_button">Thiết lập lại về mặc định</string>
   <string name="category_screen_title">Màn hình</string>
   <string name="screen_colors_title">Màu</string>
+  <string name="mdnie_scenario_title_head">Tình huống</string>
+  <string name="mdnie_scenario_summary_head">Đặt tình huống cho mDNIe</string>
   <string name="mdnie_mode_title_head">Chế độ</string>
+  <string name="mdnie_mode_summary_head">Đặt chế độ mDNle</string>
+  <string name="mdnie_negative_title_head">Chế độ đảo ngược</string>
   <string name="mdnie_negative_summary_head">Bật/tắt đảo ngược màu sắc</string>
 </resources>
