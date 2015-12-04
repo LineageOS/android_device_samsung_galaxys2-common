@@ -11,9 +11,9 @@
 /dev/block/mmcblk0p12                       /preload                ext4      noatime,nosuid,nodev,journal_async_commit                 wait
 
 # vold-managed volumes ("block device" is actually a sysfs devpath)
-/devices/platform/dw_mmc/mmc_host/mmc0/mmc0*     auto    auto    defaults        wait,voldmanaged=sdcard0:11,nonremovable,encryptable=userdata
-/devices/platform/s3c-sdhci.2/mmc_host/mmc1*     auto    auto    defaults        wait,voldmanaged=sdcard1:auto,encryptable=userdata
-/devices/platform/s3c_otghcd/usb*                auto    auto    defaults        voldmanaged=usb:auto
+/devices/platform/dw_mmc/mmc_host/mmc0/mmc0*                  auto    auto    defaults        wait,voldmanaged=sdcard0:11,noemulatedsd,nonremovable
+/devices/platform/s3c-sdhci.2/mmc_host/mmc1*                  auto    auto    defaults        wait,voldmanaged=sdcard1:auto,encryptable=userdata
+/devices/platform/s3c_otghcd/usb*                             auto    auto    defaults        voldmanaged=usb:auto
 
 # recovery
 /dev/block/mmcblk0p5                        /boot                   emmc      defaults      recoveryonly
