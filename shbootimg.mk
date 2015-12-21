@@ -31,5 +31,4 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(INSTALLED_KERNEL_TARGET)
 	$(ACP) -fp $< $@
 
 $(INSTALLED_RECOVERYIMAGE_TARGET): $(INSTALLED_KERNEL_TARGET)
-	$(call build-recoveryimage-target, $@)
 	$(ACP) -fp $< $@
