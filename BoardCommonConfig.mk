@@ -80,7 +80,7 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
 # Graphics
 BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
 BOARD_EGL_NEEDS_FNW := true
-BOARD_EGL_NEEDS_HANDLE_VALUE=true
+BOARD_EGL_NEEDS_HANDLE_VALUE := true
 BOARD_EGL_SKIP_FIRST_DEQUEUE := true
 BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
 USE_OPENGL_RENDERER := true
