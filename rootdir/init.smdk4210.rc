@@ -2,7 +2,7 @@ import init.smdk4210.usb.rc
 import init.gps.rc
 
 on init
-    export LD_SHIM_LIBS /system/lib/libril.so|libsamsung_symbols.so
+    export LD_SHIM_LIBS /system/lib/libsec-ril.so|libsamsung_symbols.so
 
     mkdir /efs 0771 radio system
     mkdir /preload 0771 system system

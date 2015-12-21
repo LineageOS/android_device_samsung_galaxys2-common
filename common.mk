@@ -59,9 +59,10 @@ PRODUCT_PACKAGES := \
     com.android.future.usb.accessory \
     SamsungServiceMode
 
-# Samsung symbols
+# Legacy RIL
 PRODUCT_PACKAGES += \
-    libsamsung_symbols
+    libsamsung_symbols \
+    ril-wrapper
 
 # Audio Packages
 PRODUCT_PACKAGES += \
