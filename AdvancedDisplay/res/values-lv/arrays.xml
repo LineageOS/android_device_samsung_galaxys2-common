@@ -17,24 +17,24 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (mặc định)</item>
-    <item>Giao diện</item>
+    <item>CyanogenMod (noklusētais)</item>
+    <item>Lietotāja saskarne</item>
     <item>Video</item>
-    <item>Video ấm</item>
-    <item>Video lạnh</item>
-    <item>Máy ảnh</item>
-    <item>Điều hướng</item>
-    <item>Thư viện</item>
-    <item>Cuộc gọi video</item>
+    <item>Silts video</item>
+    <item>Auksts video</item>
+    <item>Kamera</item>
+    <item>Navigācija</item>
+    <item>Galerija</item>
+    <item>VT</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
-    <item>Dynamic (default)</item>
-    <item>Tiêu chuẩn</item>
-    <item>Tự nhiên</item>
-    <item>Phim</item>
+    <item>Dinamisks (noklusētais)</item>
+    <item>Standarta</item>
+    <item>Dabīgs</item>
+    <item>Filma</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
-    <item>Thông thường</item>
-    <item>Đảo ngược</item>
+    <item>Parasts</item>
+    <item>Invertēts</item>
   </string-array>
 </resources>

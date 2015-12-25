@@ -16,14 +16,25 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">عرض متقدم</string>
-  <string name="defaults_button">إعادة التعيين إلى الافتراضي</string>
-  <string name="category_screen_title">الشاشة</string>
-  <string name="screen_colors_title">الألوان</string>
-  <string name="mdnie_scenario_title_head">السيناريو</string>
-  <string name="mdnie_scenario_summary_head">تعيين السيناريو mDNIe</string>
-  <string name="mdnie_mode_title_head">وضع</string>
-  <string name="mdnie_mode_summary_head">تعيين وضع mDNIe</string>
-  <string name="mdnie_negative_title_head">وضع سلبي</string>
-  <string name="mdnie_negative_summary_head">تمكين/تعطيل عكس ألوان</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod (standard)</item>
+    <item>UI</item>
+    <item>Video</item>
+    <item>Video varme</item>
+    <item>Video kulde</item>
+    <item>Kamera</item>
+    <item>Navigasjon</item>
+    <item>Galleri</item>
+    <item>VT</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>Dynamisk (standard)</item>
+    <item>Standard</item>
+    <item>Naturlig</item>
+    <item>Film</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>Normal</item>
+    <item>Invertert</item>
+  </string-array>
 </resources>

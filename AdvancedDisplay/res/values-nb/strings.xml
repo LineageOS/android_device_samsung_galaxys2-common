@@ -16,25 +16,14 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (por defecto)</item>
-    <item>Interfaz de usuario</item>
-    <item>Vídeo</item>
-    <item>Video warm</item>
-    <item>Video cold</item>
-    <item>Cámara</item>
-    <item>Navegación</item>
-    <item>Galería</item>
-    <item>VT</item>
-  </string-array>
-  <string-array name="mdnie_mode_entries">
-    <item>Dinámico (por defecto)</item>
-    <item>Estándar</item>
-    <item>Natural</item>
-    <item>Película</item>
-  </string-array>
-  <string-array name="mdnie_negative_entries">
-    <item>Normal</item>
-    <item>Invertido</item>
-  </string-array>
+  <string name="app_name">Avansert visning</string>
+  <string name="defaults_button">Tilbakestill til standard</string>
+  <string name="category_screen_title">Skjerm</string>
+  <string name="screen_colors_title">Farger</string>
+  <string name="mdnie_scenario_title_head">Scenario</string>
+  <string name="mdnie_scenario_summary_head">Angi mDNIe scenariet</string>
+  <string name="mdnie_mode_title_head">Modus</string>
+  <string name="mdnie_mode_summary_head">Angi mDNIe-modus</string>
+  <string name="mdnie_negative_title_head">Negativ modus</string>
+  <string name="mdnie_negative_summary_head">Aktiver/deaktiver inverterte farger</string>
 </resources>

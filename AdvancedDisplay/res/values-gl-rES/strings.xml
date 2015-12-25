@@ -16,10 +16,14 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Hiển thị nâng cao</string>
-  <string name="defaults_button">Thiết lập lại về mặc định</string>
-  <string name="category_screen_title">Màn hình</string>
-  <string name="screen_colors_title">Màu</string>
-  <string name="mdnie_mode_title_head">Chế độ</string>
-  <string name="mdnie_negative_summary_head">Bật/tắt đảo ngược màu sắc</string>
+  <string name="app_name">Visualización avanzada</string>
+  <string name="defaults_button">Restabelecer</string>
+  <string name="category_screen_title">Pantalla</string>
+  <string name="screen_colors_title">Cores</string>
+  <string name="mdnie_scenario_title_head">Escenario</string>
+  <string name="mdnie_scenario_summary_head">Estabelecer o escenario mDNIe</string>
+  <string name="mdnie_mode_title_head">Modo</string>
+  <string name="mdnie_mode_summary_head">Estabelecer o modo mDNIe</string>
+  <string name="mdnie_negative_title_head">Modo negativo</string>
+  <string name="mdnie_negative_summary_head">Activar/desactivar cores invertidas</string>
 </resources>

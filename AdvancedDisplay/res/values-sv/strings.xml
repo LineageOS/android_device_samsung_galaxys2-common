@@ -16,25 +16,9 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (por defecto)</item>
-    <item>Interfaz de usuario</item>
-    <item>Vídeo</item>
-    <item>Video warm</item>
-    <item>Video cold</item>
-    <item>Cámara</item>
-    <item>Navegación</item>
-    <item>Galería</item>
-    <item>VT</item>
-  </string-array>
-  <string-array name="mdnie_mode_entries">
-    <item>Dinámico (por defecto)</item>
-    <item>Estándar</item>
-    <item>Natural</item>
-    <item>Película</item>
-  </string-array>
-  <string-array name="mdnie_negative_entries">
-    <item>Normal</item>
-    <item>Invertido</item>
-  </string-array>
+  <string name="defaults_button">Återställ till standard</string>
+  <string name="category_screen_title">Skärm</string>
+  <string name="screen_colors_title">Färger</string>
+  <string name="mdnie_scenario_title_head">Scenario</string>
+  <string name="mdnie_mode_title_head">Läge</string>
 </resources>
