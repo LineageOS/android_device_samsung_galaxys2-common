@@ -17,24 +17,24 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (por defecto)</item>
-    <item>Interfaz de usuario</item>
-    <item>Vídeo</item>
-    <item>Video warm</item>
-    <item>Video cold</item>
-    <item>Cámara</item>
-    <item>Navegación</item>
-    <item>Galería</item>
+    <item>CyanogenMod (standard)</item>
+    <item>UI</item>
+    <item>Video</item>
+    <item>Video varme</item>
+    <item>Video kulde</item>
+    <item>Kamera</item>
+    <item>Navigasjon</item>
+    <item>Galleri</item>
     <item>VT</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
-    <item>Dinámico (por defecto)</item>
-    <item>Estándar</item>
-    <item>Natural</item>
-    <item>Película</item>
+    <item>Dynamisk (standard)</item>
+    <item>Standard</item>
+    <item>Naturlig</item>
+    <item>Film</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
     <item>Normal</item>
-    <item>Invertido</item>
+    <item>Invertert</item>
   </string-array>
 </resources>
