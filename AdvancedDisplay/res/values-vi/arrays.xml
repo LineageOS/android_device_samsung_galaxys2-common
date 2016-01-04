@@ -17,24 +17,24 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (เริ่มต้น)</item>
-    <item>UI</item>
-    <item>วิดีโอ</item>
-    <item>วิดีโออบอุ่น</item>
-    <item>วิดีโอเย็น</item>
-    <item>กล้องถ่ายรูป</item>
-    <item>การนำทาง</item>
-    <item>แกลเลอรี</item>
-    <item>VT</item>
+    <item>CyanogenMod (mặc định)</item>
+    <item>Giao diện người dùng</item>
+    <item>Video</item>
+    <item>Video ấm</item>
+    <item>Video lạnh</item>
+    <item>Máy ảnh</item>
+    <item>Điều hướng</item>
+    <item>Thư viện</item>
+    <item>Công nghệ ảo hóa</item>
   </string-array>
   <string-array name="mdnie_mode_entries">
-    <item>ไดนามิก (เริ่มต้น)</item>
-    <item>มาตรฐาน</item>
-    <item>ธรรมชาติ</item>
-    <item>ภาพยนตร์</item>
+    <item>Động (mặc định)</item>
+    <item>Tiêu chuẩn</item>
+    <item>Tự nhiên</item>
+    <item>Phim</item>
   </string-array>
   <string-array name="mdnie_negative_entries">
-    <item>ปกติ</item>
-    <item>กลับแล้ว</item>
+    <item>Thông thường</item>
+    <item>Đảo ngược</item>
   </string-array>
 </resources>

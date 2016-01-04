@@ -16,25 +16,14 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string-array name="mdnie_scenario_entries">
-    <item>CyanogenMod (por defecto)</item>
-    <item>Interfaz de usuario</item>
-    <item>Vídeo</item>
-    <item>Video calido</item>
-    <item>Vídeo frío</item>
-    <item>Cámara</item>
-    <item>Navegación</item>
-    <item>Galería</item>
-    <item>VT</item>
-  </string-array>
-  <string-array name="mdnie_mode_entries">
-    <item>Dinámico (por defecto)</item>
-    <item>Estándar</item>
-    <item>Natural</item>
-    <item>Película</item>
-  </string-array>
-  <string-array name="mdnie_negative_entries">
-    <item>Normal</item>
-    <item>Invertido</item>
-  </string-array>
+  <string name="app_name">عرض متقدم</string>
+  <string name="defaults_button">إعادة التعيين إلى الافتراضي</string>
+  <string name="category_screen_title">الشاشة</string>
+  <string name="screen_colors_title">الألوان</string>
+  <string name="mdnie_scenario_title_head">السيناريو</string>
+  <string name="mdnie_scenario_summary_head">تعيين السيناريو mDNIe</string>
+  <string name="mdnie_mode_title_head">نمط</string>
+  <string name="mdnie_mode_summary_head">تعيين وضع mDNIe</string>
+  <string name="mdnie_negative_title_head">وضع سلبي</string>
+  <string name="mdnie_negative_summary_head">تمكين/تعطيل ألوان معكوسة</string>
 </resources>
