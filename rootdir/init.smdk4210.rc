@@ -318,6 +318,9 @@ on boot
     setprop status.battery.level_raw  50
     setprop status.battery.level_scale 9
 
+    # increase read-ahead value to 256 kb
+    write /sys/block/mmcblk0/queue/read_ahead_kb 256
+
 # For RIL
 service cpboot-daemon /sbin/cbd -d -p 8
     class main
