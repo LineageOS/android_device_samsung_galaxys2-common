@@ -13,9 +13,6 @@ on init
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard
 
-    # By default, primary storage is physical
-    setprop ro.vold.primary_physical 1
-
 # Disable CFQ slice idle delay
     write /sys/block/mmcblk0/queue/iosched/slice_idle 0
 
