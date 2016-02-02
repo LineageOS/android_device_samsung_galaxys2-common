@@ -102,10 +102,10 @@ on post-fs-data
 
 # SELinux restore context for efs files
     restorecon_recursive /efs
-    
+
 # MTP Device permission.
-    chmod 0660 /dev/usb_mtp_gadget
-    chown system system /dev/usb_mtp_gadget
+    chmod 0660 /dev/mtp_usb
+    chown system system /dev/mtp_usb
 
 # terminal mode
     chmod 0660 /sys/class/android_usb/android0/terminal_version
