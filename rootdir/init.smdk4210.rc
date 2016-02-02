@@ -325,14 +325,6 @@ service cpboot-daemon /sbin/cbd -d -p 8
     group radio cache inet misc audio sdcard_rw log sdcard_r
     seclabel u:r:cpboot-daemon:s0
 
-service mdnsd /system/bin/mdnsd
-    class main
-    user mdnsr
-    group inet net_raw
-    socket mdnsd stream 0660 mdnsr inet
-    disabled
-    oneshot
-
 service charger /sbin/healthd -c
     class charger
     critical
@@ -400,11 +392,3 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
 service macloader /system/bin/macloader
     class main
     oneshot
-
-# bugreport is triggered by holding down volume down, volume up and power
-service bugreport /system/bin/dumpstate -d -p -B \
- -o /data/data/com.android.shell/files/bugreports/bugreport
-    class main
-    disabled
-    oneshot
-    keycodes 114 115 116
