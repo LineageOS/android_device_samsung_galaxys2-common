@@ -105,7 +105,7 @@ on post-fs-data
 
 # MTP Device permission.
     chmod 0660 /dev/mtp_usb
-    chown system system /dev/mtp_usb
+    chown system mtp /dev/mtp_usb
 
 # terminal mode
     chmod 0660 /sys/class/android_usb/android0/terminal_version
