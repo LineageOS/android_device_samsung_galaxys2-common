@@ -4,4 +4,4 @@ init_daemon_domain(macloader);
 
 allow macloader efs_file:dir search;
 allow macloader efs_device_file:dir search;
-allow macloader wifi_data_file:file { read getattr open };
+allow macloader wifi_data_file:file { read getattr open write setattr };

@@ -40,6 +40,7 @@
 # WiFi
 /dev/rfkill                                                      u:object_r:rfkill_device:s0
 /efs/wifi/.mac.info                                              u:object_r:wifi_data_file:s0
+/data/.cid.info                                                  u:object_r:wifi_data_file:s0
 
 # Firmwares
 /system/vendor/firmware/mfc_fw.bin                               u:object_r:firmware_mfc:s0
