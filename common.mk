@@ -138,6 +138,13 @@ PRODUCT_PACKAGES += \
     resize2fs_static \
     setup_fs
 
+# F2FS Filesystem
+PRODUCT_PACKAGES += \
+    mkfs.f2fs \
+    fsck.f2fs \
+    fibmap.f2fs \
+    f2fstat
+
 # Live Wallpapers
 PRODUCT_PACKAGES += \
     Galaxy4 \
