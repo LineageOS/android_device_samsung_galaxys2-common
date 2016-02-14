@@ -5,9 +5,9 @@
 # data partition must be located at the bottom for supporting device encryption
 
 /dev/block/mmcblk0p9                        /system                 ext4      ro,noatime                                                wait
-/dev/block/mmcblk0p7                        /cache                  ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check_spo
+/dev/block/mmcblk0p7                        /cache                  f2fs      noatime,nodiratime,nosuid,nodev,background_gc=off,inline_xattr,active_logs=2,errors=panic    wait
 /dev/block/mmcblk0p1                        /efs                    ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check_spo
-/dev/block/mmcblk0p10                       /data                   ext4      noatime,nosuid,nodev,noauto_da_alloc,journal_async_commit,errors=panic    wait,check_spo,encryptable=footer,length=-16384
+/dev/block/mmcblk0p10                       /data                   f2fs      noatime,nosuid,nodev,background_gc=off,inline_xattr,active_logs=2,errors=panic    wait,encryptable=footer,length=-16384
 /dev/block/mmcblk0p12                       /preload                ext4      noatime,nosuid,nodev,journal_async_commit                 wait
 
 # vold-managed volumes ("block device" is actually a sysfs devpath)
