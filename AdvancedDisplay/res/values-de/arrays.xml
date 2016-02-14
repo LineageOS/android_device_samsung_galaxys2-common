@@ -19,9 +19,9 @@
   <string-array name="mdnie_scenario_entries">
     <item>CyanogenMod (Standard)</item>
     <item>UI-Modus</item>
-    <item>Video-Modus</item>
-    <item>Video-Modus (warm)</item>
-    <item>Video (kalt)</item>
+    <item>Videomodus</item>
+    <item>Videomodus (warm)</item>
+    <item>Videomodus (kalt)</item>
     <item>Kamera</item>
     <item>Navigation</item>
     <item>Galerie</item>
