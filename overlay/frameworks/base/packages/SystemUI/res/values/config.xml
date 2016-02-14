@@ -29,5 +29,8 @@
 
     <!-- Whether to use cheap, less good looking shadows for recents -->
     <bool name="config_recents_fake_shadows">true</bool>
+
+    <!-- Allow Flashlight service to use wakelock -->
+    <bool name="flashlight_use_wakelock">true</bool>
 </resources>
 
