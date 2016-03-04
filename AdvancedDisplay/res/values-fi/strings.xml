@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Näytön lisäasetukset</string>
   <string name="defaults_button">Palauta oletukset</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">Näyttö</string>
   <string name="screen_colors_title">Värit</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">Skenaario</string>
   <string name="mdnie_scenario_summary_head">Aseta mDNIe-skenaario</string>
   <string name="mdnie_mode_title_head">Tila</string>

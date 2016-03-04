@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">תצוגה מתקדמת</string>
   <string name="defaults_button">אפס לברירת מחדל</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">מסך</string>
   <string name="screen_colors_title">צבעים</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">תרחיש</string>
   <string name="mdnie_scenario_summary_head">הגדר תרחיש mDNIe</string>
   <string name="mdnie_mode_title_head">מצב</string>

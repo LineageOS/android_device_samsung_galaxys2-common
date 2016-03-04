@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Erweiderte Schierm</string>
   <string name="defaults_button">Op de Standard zrécksetzen</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">Schierm</string>
   <string name="screen_colors_title">Faarwen</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">Zeenario</string>
   <string name="mdnie_scenario_summary_head">mDNIe-Zeenario auswielen</string>
   <string name="mdnie_mode_title_head">Modus</string>

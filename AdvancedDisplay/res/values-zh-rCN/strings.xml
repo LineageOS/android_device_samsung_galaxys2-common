@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">高级显示</string>
   <string name="defaults_button">重置为默认设置</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">屏幕</string>
   <string name="screen_colors_title">颜色</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">场景</string>
   <string name="mdnie_scenario_summary_head">设置 mDNIe 场景</string>
   <string name="mdnie_mode_title_head">模式</string>
