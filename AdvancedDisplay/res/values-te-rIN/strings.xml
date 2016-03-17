@@ -16,6 +16,16 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">అధునాతన ప్రదర్శన</string>
+  <string name="defaults_button">డిఫాల్ట్‌కు రీసెట్ చేయి</string>
   <!-- Screen Preference -->
+  <string name="category_screen_title">స్క్రీన్</string>
+  <string name="screen_colors_title">రంగులు</string>
   <!-- mDNIe -->
+  <string name="mdnie_scenario_title_head">దృశ్యవివరణ</string>
+  <string name="mdnie_scenario_summary_head">mDNIe దృశ్యవివరణను సెట్ చేయుము</string>
+  <string name="mdnie_mode_title_head">మోడ్</string>
+  <string name="mdnie_mode_summary_head">mDNIe రీతిని సెట్ చేయుము</string>
+  <string name="mdnie_negative_title_head">వ్యతిరేక రీతి</string>
+  <string name="mdnie_negative_summary_head">విలోమ రంగులను అమలు చెయ్యి/నిలిపివెయ్యి</string>
 </resources>

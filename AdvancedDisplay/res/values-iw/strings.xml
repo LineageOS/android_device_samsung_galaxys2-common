@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">תצוגה מתקדמת</string>
-  <string name="defaults_button">אפס לברירת מחדל</string>
+  <string name="defaults_button">איפוס לברירת מחדל</string>
   <!-- Screen Preference -->
   <string name="category_screen_title">מסך</string>
   <string name="screen_colors_title">צבעים</string>
@@ -27,5 +27,5 @@
   <string name="mdnie_mode_title_head">מצב</string>
   <string name="mdnie_mode_summary_head">הגדר מצב mDNIe</string>
   <string name="mdnie_negative_title_head">מצב שלילי (נגטיב)</string>
-  <string name="mdnie_negative_summary_head">הפעל/השבת צבעים הפוכים</string>
+  <string name="mdnie_negative_summary_head">הפעל/בטל צבעים הפוכים</string>
 </resources>
