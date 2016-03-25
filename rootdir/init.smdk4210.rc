@@ -185,6 +185,8 @@ on post-fs-data
     chown system radio /sys/devices/virtual/sec/sec_touchkey/touchkey_firm_update
     chown system radio /sys/devices/virtual/sec/sec_touchkey/updated_version
     chown system radio /sys/devices/virtual/sec/sec_touchkey/timeout
+    chown system radio /sys/devices/virtual/sec/sec_touchkey/keypad_enable
+    chmod 0664 /sys/devices/virtual/sec/sec_touchkey/keypad_enable
 
     chown system radio /sys/devices/virtual/sec/tsp_noise_test/set_firm_version
     chown system radio /sys/devices/virtual/sec/tsp_noise_test/set_threshould
