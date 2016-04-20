@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">عرض متقدم</string>
   <string name="defaults_button">إعادة التعيين إلى الافتراضي</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">الشاشة</string>
   <string name="screen_colors_title">الألوان</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">السيناريو</string>
   <string name="mdnie_scenario_summary_head">تعيين السيناريو mDNIe</string>
   <string name="mdnie_mode_title_head">نمط</string>

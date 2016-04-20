@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">고급 디스플레이</string>
   <string name="defaults_button">기본값으로 재설정</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">화면</string>
   <string name="screen_colors_title">색상</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">시나리오</string>
   <string name="mdnie_scenario_summary_head">mDNIe 시나리오 설정</string>
   <string name="mdnie_mode_title_head">모드</string>

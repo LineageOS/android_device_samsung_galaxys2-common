@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Gelişmiş ekran</string>
   <string name="defaults_button">Varsayılana sıfırla</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">Ekran</string>
   <string name="screen_colors_title">Renkler</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">Ekran Modu</string>
   <string name="mdnie_scenario_summary_head">mDNIe senaryosunu ayarla</string>
   <string name="mdnie_mode_title_head">Mod</string>

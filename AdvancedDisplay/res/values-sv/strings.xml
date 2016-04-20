@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Avancerad visning</string>
   <string name="defaults_button">Återställ till standard</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">Skärm</string>
   <string name="screen_colors_title">Färger</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">Scenario</string>
   <string name="mdnie_scenario_summary_head">Ställ in mDNIe-scenario</string>
   <string name="mdnie_mode_title_head">Läge</string>

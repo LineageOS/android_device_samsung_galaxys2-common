@@ -17,4 +17,6 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="defaults_button">পূর্ব-নির্ধারিত অবস্থায় পুন:স্থাপন</string>
+  <!-- Screen Preference -->
+  <!-- mDNIe -->
 </resources>

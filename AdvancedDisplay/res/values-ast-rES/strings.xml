@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Axustes avanzaos</string>
   <string name="defaults_button">Restablecer valores</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">Pantalla</string>
   <string name="screen_colors_title">Colores</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">Escenariu</string>
   <string name="mdnie_scenario_summary_head">Definir l\'escenariu mDNIe</string>
   <string name="mdnie_mode_title_head">Mou</string>

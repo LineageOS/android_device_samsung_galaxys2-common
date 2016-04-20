@@ -18,8 +18,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">نمایش پیشرفته</string>
   <string name="defaults_button">تنظیم مجدد به پیش‌فرض</string>
+  <!-- Screen Preference -->
   <string name="category_screen_title">صفحه نمایش</string>
   <string name="screen_colors_title">رنگ‌ها</string>
+  <!-- mDNIe -->
   <string name="mdnie_scenario_title_head">خط مشی</string>
   <string name="mdnie_scenario_summary_head">تنظیم خط مشی mDNIe</string>
   <string name="mdnie_mode_title_head">حالت</string>
