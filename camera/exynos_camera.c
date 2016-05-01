@@ -175,8 +175,8 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.whitebalance = NULL,
 			.whitebalance_values = NULL,
 
-			.scene_mode = NULL,
-			.scene_mode_values = NULL,
+			.scene_mode = "none",
+			.scene_mode_values = "none",
 
 			.effect = NULL,
 			.effect_values = NULL,
