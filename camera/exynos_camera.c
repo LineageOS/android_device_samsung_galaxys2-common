@@ -1966,6 +1966,23 @@ void *exynos_camera_preview_thread(void *data)
 	}
 
 	while (exynos_camera->preview_enabled == 1) {
+		//Check if recording-start is triggered.
+		if (exynos_camera->recording_msg_start) {
+			exynos_camera->recording_msg_start = 0;
+			rc = exynos_camera_recording_start(exynos_camera);
+			exynos_camera->recording_msg_start_result = rc;			
+			if (rc < 0) {
+				ALOGE("%s: Start recording failed!", __func__);
+				exynos_camera_recording_stop(exynos_camera);
+			}
+		}
+		//Check if recording-stop is triggered.
+		if (exynos_camera->recording_msg_stop) {
+			exynos_camera->recording_msg_stop = 0;
+			exynos_camera_recording_stop(exynos_camera);
+		}
+
+		//Preview (and recording routine)
 		pthread_mutex_lock(&exynos_camera->preview_mutex);
 
 		rc = exynos_camera_preview(exynos_camera);
@@ -2242,8 +2259,6 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
 		return 0;
 	}
 
-	pthread_mutex_lock(&exynos_camera->preview_mutex);
-
 	// V4L2
 
 	format = exynos_camera->recording_format;
@@ -2346,12 +2361,8 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
 
 	exynos_camera->recording_enabled = 1;
 
-	pthread_mutex_unlock(&exynos_camera->preview_mutex);
-
 	return 0;
 error:
-	pthread_mutex_unlock(&exynos_camera->preview_mutex);
-
 	return -1;
 }
 
@@ -2367,26 +2378,20 @@ void exynos_camera_recording_stop(struct exynos_camera *exynos_camera)
 		return;
 	}
 
-	exynos_camera->recording_enabled = 0;
+	//Disables the capture routine in exynos_camera_preview running in seperate thread.
+	exynos_camera->recording_enabled = 0; 
 
-	pthread_mutex_lock(&exynos_camera->preview_mutex);
-
-	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, FOCUS_MODE_AUTO);
-	if (rc < 0) {
-		ALOGE("%s: s ctrl failed!", __func__);
-	}
-
+	//Stop recording the stream.
 	rc = exynos_v4l2_streamoff_cap(exynos_camera, 2);
 	if (rc < 0) {
 		ALOGE("%s: streamoff failed!", __func__);
 	}
 
+	//Release allocated recording-memory
 	if (exynos_camera->recording_memory != NULL && exynos_camera->recording_memory->release != NULL) {
 		exynos_camera->recording_memory->release(exynos_camera->recording_memory);
 		exynos_camera->recording_memory = NULL;
 	}
-
-	pthread_mutex_unlock(&exynos_camera->preview_mutex);
 
 	pthread_mutex_destroy(&exynos_camera->recording_mutex);
 }
@@ -2603,7 +2608,20 @@ int exynos_camera_start_recording(struct camera_device *dev)
 
 	exynos_camera = (struct exynos_camera *) dev->priv;
 
-	return exynos_camera_recording_start(exynos_camera);
+	//This triggers the exynos_camera_recording_start-method in the exynos_preview-method (running in separate thread)
+	exynos_camera->recording_msg_start = 1;
+	exynos_camera->recording_msg_start_result = 1;
+	
+	//Wait 300 * 10ms = 3 seconds until recording is actually started.
+	int i;
+	for (i = 0; i < 300; i++) {
+		if (exynos_camera->recording_msg_start_result != 1)
+			return exynos_camera->recording_msg_start_result;
+		usleep(10000);
+	}
+
+	//If it takes more than 3 seconds, something is wrong.
+	return -1;
 }
 
 void exynos_camera_stop_recording(struct camera_device *dev)
@@ -2614,7 +2632,8 @@ void exynos_camera_stop_recording(struct camera_device *dev)
 
 	exynos_camera = (struct exynos_camera *) dev->priv;
 
-	exynos_camera_recording_stop(exynos_camera);
+	//This triggers the exynos_camera_recording_stop-method in the exynos_preview-method (running in separate thread)
+	exynos_camera->recording_msg_stop = 1;
 }
 
 int exynos_camera_recording_enabled(struct camera_device *dev)
@@ -2730,8 +2749,6 @@ int exynos_camera_set_parameters(struct camera_device *dev,
 	if (recording_hint_string != NULL && strcmp(recording_hint_string, "true") == 0) {
 		cam_mode = 1; // video
 	}
-
-	exynos_param_int_set(exynos_camera, "cam_mode", cam_mode);
 
 	rc = exynos_camera_params_apply(exynos_camera);
 	if (rc < 0) {
