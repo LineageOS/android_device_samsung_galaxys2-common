@@ -45,7 +45,6 @@
 # Firmwares
 /system/vendor/firmware/mfc_fw.bin                               u:object_r:firmware_mfc:s0
 
-
 # Display
 /sys/devices/platform/samsung-pd.2/mdnie/mdnie/mdnie/scenario    u:object_r:sysfs_display:s0
 /sys/devices/platform/samsung-pd.2/mdnie/mdnie/mdnie/mode        u:object_r:sysfs_display:s0
