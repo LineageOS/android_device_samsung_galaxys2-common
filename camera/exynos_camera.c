@@ -723,51 +723,62 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 		}
 	}
 
+	// Force recording-hint if focus-mode is in continuous-video
+	focus_mode_string = exynos_param_string_get(exynos_camera, "focus-mode");
 	recording_hint_string = exynos_param_string_get(exynos_camera, "recording-hint");
-	if (recording_hint_string != NULL && strcmp(recording_hint_string, "true") == 0) {
-		camera_sensor_mode = SENSOR_MOVIE;
+	if (focus_mode_string != NULL && (strcmp(focus_mode_string, "continuous-video") == 0)) {
+		if (recording_hint_string == NULL || strcmp(recording_hint_string, "false") == 0) {
+			ALOGD("%s: Force recording-hint => true", __func__);
+			exynos_param_string_set(exynos_camera, "recording-hint", "true");
+		}
+	}
 
-		k = exynos_param_string_get(exynos_camera, "preview-size-values");
-		while (recording_width != 0 && recording_height != 0) {
-			if (k == NULL)
-				break;
+	camera_sensor_mode = SENSOR_CAMERA;
+	if (recording_hint_string != NULL) {
+		ALOGD("%s: recording-hint = %s", __func__, recording_hint_string);
+		if (strcmp(recording_hint_string, "true") == 0) {
+			camera_sensor_mode = SENSOR_MOVIE;
 
-			sscanf(k, "%dx%d", &w, &h);
+			k = exynos_param_string_get(exynos_camera, "preview-size-values");
+			while (recording_width != 0 && recording_height != 0) {
+				if (k == NULL)
+					break;
 
-			// Look for same aspect ratio
-			if ((recording_width * h) / recording_height == w) {
-				preview_width = w;
-				preview_height = h;
-				break;
+				sscanf(k, "%dx%d", &w, &h);
+
+				// Look for same aspect ratio
+				if ((recording_width * h) / recording_height == w) {
+					preview_width = w;
+					preview_height = h;
+					break;
+				}
+
+				k = strchr(k, ',');
+				if (k == NULL)
+					break;
+
+				k++;
 			}
 
-			k = strchr(k, ',');
-			if (k == NULL)
-				break;
+			if (preview_width != 0 && preview_width != exynos_camera->preview_width) {
+				exynos_camera->preview_width = preview_width;
+				isChanged = true;
+			}
+			if (preview_height != 0 && preview_height != exynos_camera->preview_height) {
+				exynos_camera->preview_height = preview_height;
+				isChanged = true;
+			}
+			if (isChanged) {
+				ALOGD("%s: SET preview-size from preview-size-values => %d x %d", __func__, exynos_camera->preview_width, exynos_camera->preview_height);
+				isChanged = false;
+			}
 
-			k++;
+			camera_sensor_output_size = ((recording_width & 0xffff) << 16) | (recording_height & 0xffff);
+			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SENSOR_OUTPUT_SIZE,
+				camera_sensor_output_size);
+			if (rc < 0)
+				ALOGE("%s: s ctrl failed!", __func__);
 		}
-
-		if (preview_width != 0 && preview_width != exynos_camera->preview_width) {
-			exynos_camera->preview_width = preview_width;
-			isChanged = true;
-		}
-		if (preview_height != 0 && preview_height != exynos_camera->preview_height) {
-			exynos_camera->preview_height = preview_height;
-			isChanged = true;
-		}
-		if (isChanged) {
-			ALOGD("%s: SET preview-size from preview-size-values => %d x %d", __func__, exynos_camera->preview_width, exynos_camera->preview_height);
-			isChanged = false;
-		}
-
-		camera_sensor_output_size = ((recording_width & 0xffff) << 16) | (recording_height & 0xffff);
-		rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SENSOR_OUTPUT_SIZE,
-			camera_sensor_output_size);
-		if (rc < 0)
-			ALOGE("%s: s ctrl failed!", __func__);
-	} else {
-		camera_sensor_mode = SENSOR_CAMERA;
 	}
 
 	// Switching modes
