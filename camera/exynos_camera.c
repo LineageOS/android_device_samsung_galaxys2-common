@@ -813,15 +813,27 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 		}
 
 		if (focus_mode != exynos_camera->focus_mode || force) {
-			if (focus_mode == FOCUS_MODE_CONTINOUS && exynos_camera->recording_enabled) {
-				ALOGE("%s: Cannot change focus-mode from continuous-focus to %s while recording", __func__, focus_mode_string);
-			} else {
-				ALOGD("%s: focus-mode (s_ctrl) => %d %s ", __func__, focus_mode, focus_mode_string);
-				rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, focus_mode);
+			if (exynos_camera->recording_enabled) {
+				ALOGE("%s: Pausing recording", __func__);
+
+				//Stop recording the stream.
+				rc = exynos_v4l2_streamoff_cap(exynos_camera, 2);
 				if (rc < 0) {
-					ALOGE("%s: s ctrl failed!", __func__);
-				} else {
-					exynos_camera->focus_mode = focus_mode;
+					ALOGE("%s: streamoff failed!", __func__);
+				}
+			}
+			ALOGD("%s: focus-mode (s_ctrl) => %d %s ", __func__, focus_mode, focus_mode_string);
+			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, focus_mode);
+			if (rc < 0) {
+				ALOGE("%s: s ctrl failed!", __func__);
+			} else {
+				exynos_camera->focus_mode = focus_mode;
+			}
+			if (exynos_camera->recording_enabled) {
+				ALOGE("%s: Resuming recording", __func__);
+				rc = exynos_v4l2_streamon_cap(exynos_camera, 2);
+				if (rc < 0) {
+					ALOGE("%s: streamon failed!", __func__);
 				}
 			}
 		}
@@ -857,13 +869,16 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 			}
 			if (isChanged) {
 				ALOGD("%s: focus => %d x %d", __func__, exynos_camera->focus_x, exynos_camera->focus_y);
-				if (exynos_camera->focus_mode == FOCUS_MODE_AUTO) {
-					rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_TOUCH_AF_START_STOP, 1);
-					if (rc < 0)
-						ALOGE("%s: s ctrl failed!", __func__);
-				} else {
-					ALOGE("%s: Cannot focus if focus mode is not set to auto. Current focus-mode: %d %s", __func__, exynos_camera->focus_mode, focus_mode_string);
+
+				if (exynos_camera->focus_mode != FOCUS_MODE_AUTO) {
+					ALOGD("%s: Forcing focus-mode (s_ctrl) => %d %s ", __func__, FOCUS_MODE_AUTO, "auto");
+					exynos_param_string_set(exynos_camera, "focus-mode", "auto");
+					rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, FOCUS_MODE_AUTO);
 				}
+
+				rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_TOUCH_AF_START_STOP, 1);
+				if (rc < 0)
+					ALOGE("%s: s ctrl failed!", __func__);
 	
 				isChanged = false;
 			}
@@ -1713,7 +1728,7 @@ void *exynos_camera_auto_focus_thread(void *data)
 		}
 
 		if (auto_focus_status & M5MO_AF_STATUS_IN_PROGRESS) { // Progress
-			usleep(10000); // Sleep 10 ms
+			ALOGD("%s: Focus in progress", __func__);
 		} else if (auto_focus_status == M5MO_AF_STATUS_SUCCESS || auto_focus_status == M5MO_AF_STATUS_1ST_SUCCESS) { // Success
 			auto_focus_result = 1;
 			pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
@@ -1726,6 +1741,7 @@ void *exynos_camera_auto_focus_thread(void *data)
 		}
 
 		pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
+		usleep(100000); // Sleep 100 ms
 	}
 
 thread_exit:
@@ -2672,6 +2688,7 @@ void exynos_camera_release_recording_frame(struct camera_device *dev,
 int exynos_camera_auto_focus(struct camera_device *dev)
 {
 	struct exynos_camera *exynos_camera;
+	int rc;
 
 	ALOGD("%s(%p)", __func__, dev);
 
@@ -2679,11 +2696,16 @@ int exynos_camera_auto_focus(struct camera_device *dev)
 		return -EINVAL;
 
 	exynos_camera = (struct exynos_camera *) dev->priv;
-	if (exynos_camera->focus_mode == FOCUS_MODE_AUTO) {
-		return exynos_camera_auto_focus_start(exynos_camera);
+	if (exynos_camera->focus_mode != FOCUS_MODE_AUTO) {
+		exynos_param_string_set(exynos_camera, "focus-mode", "auto");
+		rc = exynos_camera_params_apply(exynos_camera);
+		if (rc < 0) {
+			ALOGE("%s: Unable to apply params", __func__);
+			return -1;
+		}
+
 	}
-	ALOGE("%s: Cannot autofocus if focus-mode is not set to FOCUS_MODE_AUTO. Current focus-mode %d", __func__, exynos_camera->focus_mode);
-	return -1;
+	return exynos_camera_auto_focus_start(exynos_camera);
 }
 
 int exynos_camera_cancel_auto_focus(struct camera_device *dev)
