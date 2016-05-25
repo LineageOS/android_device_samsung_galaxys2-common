@@ -60,6 +60,10 @@ PRODUCT_PACKAGES := \
     com.android.future.usb.accessory \
     SamsungServiceMode
 
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
 # Legacy RIL
 PRODUCT_PACKAGES += \
     libsamsung_symbols \
