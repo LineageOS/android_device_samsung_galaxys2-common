@@ -58,8 +58,8 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 		.vertical_view_angle = 47.1f,
 		.metering = METERING_CENTER,
 		.params = {
-			.preview_size_values = "1280x720,640x480,720x480,800x480,800x450,352x288,320x240,176x144",
-			.preview_size = "800x450",
+			.preview_size_values = "1280x720,800x480,720x480,640x480,352x288,320x240,176x144",
+			.preview_size = "1280x720",
 			.preview_format_values = "yuv420sp,yuv420p,rgb565",
 			.preview_format = "yuv420sp",
 			.preview_frame_rate_values = "30,25,20,15,10,7",
@@ -81,7 +81,7 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.full_video_snap_supported = 0,
 
 			.recording_size = "1280x720",
-			.recording_size_values = "1920x1080,1280x720,640x480",
+			.recording_size_values = "1920x1080,1280x720,800x480,720x480,640x480,352x288,320x240,176x144",
 			.recording_format = "yuv420sp",
 
 			.focus_mode = "auto",
@@ -477,6 +477,36 @@ int exynos_camera_params_init(struct exynos_camera *exynos_camera, int id)
 	return 0;
 }
 
+void exynos_camera_get_supported_preview_size(struct exynos_camera *exynos_camera, int preview_width, int preview_height, int *supported_preview_width, int *supported_preview_height) {
+	char *k;
+	int w;
+	int h;
+
+	ALOGD("%s: Find supported preview-size for %d x %d", __func__, preview_width, preview_height);
+
+	k = exynos_param_string_get(exynos_camera, "preview-size-values");
+	while (preview_width != 0 && preview_height != 0) {
+		if (k == NULL)
+			break;
+
+		sscanf(k, "%dx%d", &w, &h);
+		ALOGD("%s: Find preview => %d x %d", __func__, w, h);
+		// Look for same aspect ratio, but with same width or lower
+		if (((preview_width * h) / preview_height == w) && (preview_width >= w)) {
+			ALOGD("%s: Found preview => %d x %d", __func__, w, h);
+			(*supported_preview_width) = w;
+			(*supported_preview_height) = h;
+			break;
+		}
+
+		k = strchr(k, ',');
+		if (k == NULL)
+			break;
+
+		k++;
+	}
+}
+
 int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 {
 	char *recording_hint_string;
@@ -540,9 +570,15 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 
 	int force = 0;
 
-	int w, h;
+	int w, h, preview_supported_width, preview_supported_height;
 	char *k;
 	int rc;
+
+	bool isChanged = false;
+	bool recordingSizeChanged = false;
+
+	ALOGD("%s: Start", __func__);
+
 
 	if (exynos_camera == NULL)
 		return -EINVAL;
@@ -558,10 +594,27 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 	if (preview_size_string != NULL) {
 		sscanf(preview_size_string, "%dx%d", &preview_width, &preview_height);
 
-		if (preview_width != 0 && preview_width != exynos_camera->preview_width)
-			exynos_camera->preview_width = preview_width;
-		if (preview_height != 0 && preview_height != exynos_camera->preview_height)
-			exynos_camera->preview_height = preview_height;
+		exynos_camera_get_supported_preview_size(exynos_camera, preview_width, preview_height, &preview_supported_width, &preview_supported_height);
+
+		if (preview_supported_width != exynos_camera->preview_width) {
+			exynos_camera->preview_width = preview_supported_width;
+			isChanged = true;
+		}
+		if (preview_supported_height != exynos_camera->preview_height) {
+			exynos_camera->preview_height = preview_supported_height;
+			isChanged = true;
+		}
+	}
+	if (isChanged)
+	{
+		ALOGD("%s: Preview-size => %d x %d", __func__, exynos_camera->preview_width, exynos_camera->preview_height);
+		ALOGD("%s: camera_sensor_output_size => %dx%d", __func__, exynos_camera->preview_width, exynos_camera->preview_height);
+		camera_sensor_output_size = ((exynos_camera->preview_width & 0xffff) << 16) | (exynos_camera->preview_height & 0xffff);
+		rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SENSOR_OUTPUT_SIZE, camera_sensor_output_size);
+		if (rc < 0)
+			ALOGE("%s: s ctrl failed!", __func__);
+
+		isChanged = false;
 	}
 
 	preview_format_string = exynos_param_string_get(exynos_camera, "preview-format");
@@ -587,26 +640,20 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 		if (preview_format != exynos_camera->preview_format) {
 			exynos_camera->preview_format = preview_format;
 			exynos_camera->preview_format_bpp = preview_format_bpp;
+			ALOGD("%s: preview-format => %s", __func__, preview_format_string);
 		}
 	}
 
 	preview_fps = exynos_param_int_get(exynos_camera, "preview-frame-rate");
-	if (preview_fps > 0)
-		exynos_camera->preview_fps = preview_fps;
-	else
-		exynos_camera->preview_fps = 0;
-
-	// Picture
-	picture_size_string = exynos_param_string_get(exynos_camera, "picture-size");
-	if (picture_size_string != NULL) {
-		sscanf(picture_size_string, "%dx%d", &picture_width, &picture_height);
-
-		if (picture_width != 0 && picture_width != exynos_camera->picture_width)
-			exynos_camera->picture_width = picture_width;
-		if (picture_height != 0 && picture_height != exynos_camera->picture_height)
-			exynos_camera->picture_height = picture_height;
+	if (preview_fps != exynos_camera->preview_fps) {
+		if (preview_fps > 0)
+			exynos_camera->preview_fps = preview_fps;
+		else
+			exynos_camera->preview_fps = 0;
+		ALOGD("%s: preview-fps => %d ", __func__, preview_fps);
 	}
 
+	// Picture
 	picture_format_string = exynos_param_string_get(exynos_camera, "picture-format");
 	if (picture_format_string != NULL) {
 		if (strcmp(picture_format_string, "jpeg") == 0) {
@@ -616,25 +663,58 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 			picture_format = V4L2_PIX_FMT_JPEG;
 		}
 
-		if (picture_format != exynos_camera->picture_format)
+		if (picture_format != exynos_camera->picture_format) {
+			ALOGD("%s: picture-format => %s", __func__, picture_format_string);
 			exynos_camera->picture_format = picture_format;
+		}
 	}
 
+	picture_size_string = exynos_param_string_get(exynos_camera, "picture-size");
+	if (picture_size_string != NULL) {
+		sscanf(picture_size_string, "%dx%d", &picture_width, &picture_height);
+
+		if (picture_width != 0 && picture_width != exynos_camera->picture_width)
+		{
+			exynos_camera->picture_width = picture_width;
+			isChanged = true;
+		}
+		if (picture_height != 0 && picture_height != exynos_camera->picture_height) {
+			exynos_camera->picture_height = picture_height;
+			isChanged = true;
+		}
+	}
+	if (isChanged) {
+		ALOGD("%s: picture-size => %d x %d", __func__, exynos_camera->picture_width, exynos_camera->picture_height);
+		isChanged = false;
+	}
+
+
 	jpeg_thumbnail_width = exynos_param_int_get(exynos_camera, "jpeg-thumbnail-width");
-	if (jpeg_thumbnail_width > 0)
+	if (jpeg_thumbnail_width > 0 && jpeg_thumbnail_width != exynos_camera->jpeg_thumbnail_width) {
 		exynos_camera->jpeg_thumbnail_width = jpeg_thumbnail_width;
+		isChanged = true;
+	}
 
 	jpeg_thumbnail_height = exynos_param_int_get(exynos_camera, "jpeg-thumbnail-height");
-	if (jpeg_thumbnail_height > 0)
+	if (jpeg_thumbnail_height > 0 && jpeg_thumbnail_height != exynos_camera->jpeg_thumbnail_height) {
 		exynos_camera->jpeg_thumbnail_height = jpeg_thumbnail_height;
+		isChanged = true;
+	}
+	if (isChanged) {
+		ALOGD("%s: jpeg-thumbnail => %d x %d", __func__, exynos_camera->jpeg_thumbnail_width, exynos_camera->jpeg_thumbnail_height);
+		isChanged = false;
+	}
 
 	jpeg_thumbnail_quality = exynos_param_int_get(exynos_camera, "jpeg-thumbnail-quality");
-	if (jpeg_thumbnail_quality > 0)
+	if ((exynos_camera->jpeg_thumbnail_quality != jpeg_thumbnail_quality) && (jpeg_thumbnail_quality > 0)) {
 		exynos_camera->jpeg_thumbnail_quality = jpeg_thumbnail_quality;
-
+		ALOGD("%s: jpeg-thumbnail-quality => %d", __func__, jpeg_thumbnail_quality);
+	}
 	jpeg_quality = exynos_param_int_get(exynos_camera, "jpeg-quality");
 	if (jpeg_quality <= 100 && jpeg_quality >= 0 && (jpeg_quality != exynos_camera->jpeg_quality || force)) {
 		exynos_camera->jpeg_quality = jpeg_quality;
+		ALOGD("%s: jpeg-quality => %d", __func__, jpeg_quality);
+
 		rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAM_JPEG_QUALITY, jpeg_quality);
 		if (rc < 0)
 			ALOGE("%s: s ctrl failed!", __func__);
@@ -642,16 +722,28 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 
 	// Recording
 	video_size_string = exynos_param_string_get(exynos_camera, "video-size");
-	if (video_size_string == NULL)
-		video_size_string = exynos_param_string_get(exynos_camera, "preview-size");
-
 	if (video_size_string != NULL) {
 		sscanf(video_size_string, "%dx%d", &recording_width, &recording_height);
 
-		if (recording_width != 0 && recording_width != exynos_camera->recording_width)
+		if (recording_width != 0 && recording_width != exynos_camera->recording_width) {
 			exynos_camera->recording_width = recording_width;
-		if (recording_height != 0 && recording_height != exynos_camera->recording_height)
+			isChanged = true;
+		}
+		if (recording_height != 0 && recording_height != exynos_camera->recording_height) {
 			exynos_camera->recording_height = recording_height;
+			isChanged = true;
+		}
+	}
+	if (isChanged) {
+		recordingSizeChanged = true;
+		ALOGD("%s: video-size => %d x %d", __func__, exynos_camera->recording_width, exynos_camera->recording_height);
+		ALOGD("%s: camera_sensor_output_size => %dx%d", __func__, exynos_camera->recording_width, exynos_camera->recording_height);
+		camera_sensor_output_size = ((exynos_camera->preview_width & 0xffff) << 16) | (exynos_camera->preview_height & 0xffff);
+		rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SENSOR_OUTPUT_SIZE, camera_sensor_output_size);
+		if (rc < 0)
+			ALOGE("%s: s ctrl failed!", __func__);
+
+		isChanged = false;
 	}
 
 	video_frame_format_string = exynos_param_string_get(exynos_camera, "video-frame-format");
@@ -669,90 +761,41 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 			recording_format = V4L2_PIX_FMT_NV12;
 		}
 
-		if (recording_format != exynos_camera->recording_format)
+		if (recording_format != exynos_camera->recording_format) {
 			exynos_camera->recording_format = recording_format;
+			ALOGD("%s: video-frame-format => %s", __func__, video_frame_format_string);
+
+		}
 	}
 
+	// Force recording-hint if focus-mode is in continuous-video
+	focus_mode_string = exynos_param_string_get(exynos_camera, "focus-mode");
 	recording_hint_string = exynos_param_string_get(exynos_camera, "recording-hint");
-	if (recording_hint_string != NULL && strcmp(recording_hint_string, "true") == 0) {
-		camera_sensor_mode = SENSOR_MOVIE;
-
-		k = exynos_param_string_get(exynos_camera, "preview-size-values");
-		while (recording_width != 0 && recording_height != 0) {
-			if (k == NULL)
-				break;
-
-			sscanf(k, "%dx%d", &w, &h);
-
-			// Look for same aspect ratio
-			if ((recording_width * h) / recording_height == w) {
-				preview_width = w;
-				preview_height = h;
-				break;
-			}
-
-			k = strchr(k, ',');
-			if (k == NULL)
-				break;
-
-			k++;
+	if (focus_mode_string != NULL && (strcmp(focus_mode_string, "continuous-video") == 0)) {
+		if (recording_hint_string == NULL || strcmp(recording_hint_string, "false") == 0) {
+			ALOGD("%s: Force recording-hint => true", __func__);
+			exynos_param_string_set(exynos_camera, "recording-hint", "true");
 		}
+	}
 
-		if (preview_width != 0 && preview_width != exynos_camera->preview_width)
-			exynos_camera->preview_width = preview_width;
-		if (preview_height != 0 && preview_height != exynos_camera->preview_height)
-			exynos_camera->preview_height = preview_height;
-
-		camera_sensor_output_size = ((recording_width & 0xffff) << 16) | (recording_height & 0xffff);
-		rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SENSOR_OUTPUT_SIZE,
-			camera_sensor_output_size);
-		if (rc < 0)
-			ALOGE("%s: s ctrl failed!", __func__);
-	} else {
-		camera_sensor_mode = SENSOR_CAMERA;
+	camera_sensor_mode = SENSOR_CAMERA;
+	if (recording_hint_string != NULL) {
+		ALOGD("%s: recording-hint = %s", __func__, recording_hint_string);
+		if (strcmp(recording_hint_string, "true") == 0) {
+			camera_sensor_mode = SENSOR_MOVIE;
+		}
 	}
 
 	// Switching modes
 	if (camera_sensor_mode != exynos_camera->camera_sensor_mode) {
 		exynos_camera->camera_sensor_mode = camera_sensor_mode;
+		ALOGD("%s: camera_sensor_mode => %d", __func__, exynos_camera->camera_sensor_mode);
 		rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SENSOR_MODE, camera_sensor_mode);
 		if (rc < 0)
 			ALOGE("%s: s ctrl failed!", __func__);
 	}
 
 	// Focus
-	focus_areas_string = exynos_param_string_get(exynos_camera, "focus-areas");
-	if (focus_areas_string != NULL) {
-		focus_left = focus_top = focus_right = focus_bottom = focus_weigth = 0;
-
-		rc = sscanf(focus_areas_string, "(%d,%d,%d,%d,%d)",
-			&focus_left, &focus_top, &focus_right, &focus_bottom, &focus_weigth);
-		if (rc != 5) {
-			ALOGE("%s: sscanf failed!", __func__);
-		} else if (focus_left != 0 && focus_top != 0 && focus_right != 0 && focus_bottom != 0) {
-			focus_x = (((focus_left + focus_right) / 2) + 1000) * preview_width / 2000;
-			focus_y =  (((focus_top + focus_bottom) / 2) + 1000) * preview_height / 2000;
-
-			if (focus_x != exynos_camera->focus_x || force) {
-				exynos_camera->focus_x = focus_x;
-
-				rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_OBJECT_POSITION_X, focus_x);
-				if (rc < 0)
-					ALOGE("%s: s ctrl failed!", __func__);
-			}
-
-			if (focus_y != exynos_camera->focus_y || force) {
-				exynos_camera->focus_y = focus_y;
-
-				rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_OBJECT_POSITION_Y, focus_y);
-				if (rc < 0)
-					ALOGE("%s: s ctrl failed!", __func__);
-			}
-
-			focus_mode = FOCUS_MODE_TOUCH;
-		}
-	}
-
 	focus_mode_string = exynos_param_string_get(exynos_camera, "focus-mode");
 	if (focus_mode_string != NULL) {
 		if (focus_mode == 0) {
@@ -775,23 +818,78 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 		}
 
 		if (focus_mode != exynos_camera->focus_mode || force) {
+			if (exynos_camera->recording_enabled) {
+				ALOGE("%s: Pausing recording", __func__);
+
+				//Stop recording the stream.
+				rc = exynos_v4l2_streamoff_cap(exynos_camera, 2);
+				if (rc < 0) {
+					ALOGE("%s: streamoff failed!", __func__);
+				}
+			}
+			ALOGD("%s: focus-mode (s_ctrl) => %d %s ", __func__, focus_mode, focus_mode_string);
 			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, focus_mode);
-			if (rc < 0)
+			if (rc < 0) {
 				ALOGE("%s: s ctrl failed!", __func__);
+			} else {
+				exynos_camera->focus_mode = focus_mode;
+			}
+			if (exynos_camera->recording_enabled) {
+				ALOGE("%s: Resuming recording", __func__);
+				rc = exynos_v4l2_streamon_cap(exynos_camera, 2);
+				if (rc < 0) {
+					ALOGE("%s: streamon failed!", __func__);
+				}
+			}
 		}
-
-		if (focus_mode == FOCUS_MODE_TOUCH) {
-			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_TOUCH_AF_START_STOP, 1);
-			if (rc < 0)
-				ALOGE("%s: s ctrl failed!", __func__);
-		} else if (exynos_camera->focus_mode == FOCUS_MODE_TOUCH) {
-			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_TOUCH_AF_START_STOP, 0);
-			if (rc < 0)
-				ALOGE("%s: s ctrl failed!", __func__);
-		}
-
-		exynos_camera->focus_mode = focus_mode;
 	}
+
+	focus_areas_string = exynos_param_string_get(exynos_camera, "focus-areas");
+	if (focus_areas_string != NULL) {
+		focus_left = focus_top = focus_right = focus_bottom = focus_weigth = 0;
+
+		rc = sscanf(focus_areas_string, "(%d,%d,%d,%d,%d)",
+			&focus_left, &focus_top, &focus_right, &focus_bottom, &focus_weigth);
+		if (rc != 5) {
+			ALOGE("%s: sscanf failed!", __func__);
+		} else if (focus_left != 0 && focus_top != 0 && focus_right != 0 && focus_bottom != 0) {
+			focus_x = (((focus_left + focus_right) / 2) + 1000) * preview_width / 2000;
+			focus_y =  (((focus_top + focus_bottom) / 2) + 1000) * preview_height / 2000;
+
+			if (focus_x != exynos_camera->focus_x || force) {
+				exynos_camera->focus_x = focus_x;
+				isChanged = true;
+				rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_OBJECT_POSITION_X, focus_x);
+				if (rc < 0)
+					ALOGE("%s: s ctrl failed!", __func__);
+			}
+
+			if (focus_y != exynos_camera->focus_y || force) {
+				exynos_camera->focus_y = focus_y;
+				isChanged = true;
+
+				rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_OBJECT_POSITION_Y, focus_y);
+				if (rc < 0)
+					ALOGE("%s: s ctrl failed!", __func__);
+			}
+			if (isChanged) {
+				ALOGD("%s: focus => %d x %d", __func__, exynos_camera->focus_x, exynos_camera->focus_y);
+
+				if (exynos_camera->focus_mode != FOCUS_MODE_AUTO) {
+					ALOGD("%s: Forcing focus-mode (s_ctrl) => %d %s ", __func__, FOCUS_MODE_AUTO, "auto");
+					exynos_param_string_set(exynos_camera, "focus-mode", "auto");
+					rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, FOCUS_MODE_AUTO);
+				}
+
+				rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_TOUCH_AF_START_STOP, 1);
+				if (rc < 0)
+					ALOGE("%s: s ctrl failed!", __func__);
+
+				isChanged = false;
+			}
+		}
+	}
+
 
 	// Zoom
 	zoom_supported_string = exynos_param_string_get(exynos_camera, "zoom-supported");
@@ -800,6 +898,7 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 		max_zoom = exynos_param_int_get(exynos_camera, "max-zoom");
 		if (zoom <= max_zoom && zoom >= 0 && (zoom != exynos_camera->zoom || force)) {
 			exynos_camera->zoom = zoom;
+			ALOGD("%s: zoom => %d", __func__, exynos_camera->zoom);
 			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_ZOOM, zoom);
 			if (rc < 0)
 				ALOGE("%s: s ctrl failed!", __func__);
@@ -823,6 +922,8 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 
 		if (flash_mode != exynos_camera->flash_mode || force) {
 			exynos_camera->flash_mode = flash_mode;
+			ALOGD("%s: flash-mode => %d %s", __func__, exynos_camera->flash_mode, flash_mode_string);
+
 			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FLASH_MODE, flash_mode);
 			if (rc < 0)
 				ALOGE("%s: s ctrl failed!", __func__);
@@ -837,6 +938,7 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 	if (exposure_compensation <= max_exposure_compensation && exposure_compensation >= min_exposure_compensation &&
 		(exposure_compensation != exynos_camera->exposure_compensation || force)) {
 		exynos_camera->exposure_compensation = exposure_compensation;
+		ALOGD("%s: exposure-compensation => %d" , __func__, exynos_camera->exposure_compensation);
 		rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_BRIGHTNESS, exposure_compensation);
 		if (rc < 0)
 			ALOGE("%s: s ctrl failed!", __func__);
@@ -860,6 +962,7 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 
 		if (whitebalance != exynos_camera->whitebalance || force) {
 			exynos_camera->whitebalance = whitebalance;
+			ALOGD("%s: exposure-whitebalance => %d %s" , __func__, exynos_camera->whitebalance, whitebalance_string);
 			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_WHITE_BALANCE, whitebalance);
 			if (rc < 0)
 				ALOGE("%s: s ctrl failed!", __func__);
@@ -904,6 +1007,7 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 
 		if (scene_mode != exynos_camera->scene_mode || force) {
 			exynos_camera->scene_mode = scene_mode;
+			ALOGD("%s: scene-mode => %d %s", __func__, exynos_camera->scene_mode, scene_mode_string);
 			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SCENE_MODE, scene_mode);
 			if (rc < 0)
 				ALOGE("%s: s ctrl failed!", __func__);
@@ -928,6 +1032,7 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 
 		if (effect != exynos_camera->effect || force) {
 			exynos_camera->effect = effect;
+			ALOGD("%s: effect => %d %s", __func__, exynos_camera->effect, effect_string);
 			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_EFFECT, effect);
 			if (rc < 0)
 				ALOGE("%s: s ctrl failed!", __func__);
@@ -954,15 +1059,14 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 
 		if (iso != exynos_camera->iso || force) {
 			exynos_camera->iso = iso;
+			ALOGD("%s: iso => %d %s", __func__, exynos_camera->iso, iso_string);
 			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_ISO, iso);
 			if (rc < 0)
 				ALOGE("%s: s ctrl failed!", __func__);
 		}
 	}
 
-	ALOGD("%s: Preview size: %dx%d, picture size: %dx%d, recording size: %dx%d",
-		__func__, preview_width, preview_height, picture_width, picture_height,
-		recording_width, recording_height);
+	ALOGD("%s: End", __func__);
 
 	return 0;
 }
@@ -1417,7 +1521,7 @@ void *exynos_camera_picture_thread(void *data)
 
 	exynos_camera = (struct exynos_camera *) data;
 
-	ALOGE("%s: Starting thread", __func__);
+	ALOGD("%s: Starting thread", __func__);
 	exynos_camera->picture_thread_running = 1;
 
 	if (exynos_camera->picture_enabled == 1) {
@@ -1440,7 +1544,7 @@ void *exynos_camera_picture_thread(void *data)
 	exynos_camera->picture_thread_running = 0;
 	exynos_camera->picture_enabled = 0;
 
-	ALOGE("%s: Exiting thread", __func__);
+	ALOGD("%s: Exiting thread", __func__);
 
 	return NULL;
 }
@@ -1607,8 +1711,18 @@ void *exynos_camera_auto_focus_thread(void *data)
 
 	exynos_camera = (struct exynos_camera *) data;
 
-	ALOGE("%s: Starting thread", __func__);
+	ALOGD("%s: Starting thread", __func__);
 	exynos_camera->auto_focus_thread_running = 1;
+
+	if (exynos_camera->focus_mode != FOCUS_MODE_AUTO) {
+		exynos_param_string_set(exynos_camera, "focus-mode", "auto");
+		rc = exynos_camera_params_apply(exynos_camera);
+		if (rc < 0) {
+			ALOGE("%s: Unable to apply params", __func__);
+			return -1;
+		}
+
+	}
 
 	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SET_AUTO_FOCUS, AUTO_FOCUS_ON);
 	if (rc < 0) {
@@ -1629,7 +1743,7 @@ void *exynos_camera_auto_focus_thread(void *data)
 		}
 
 		if (auto_focus_status & M5MO_AF_STATUS_IN_PROGRESS) { // Progress
-			usleep(10000); // Sleep 10 ms
+			ALOGD("%s: Focus in progress", __func__);
 		} else if (auto_focus_status == M5MO_AF_STATUS_SUCCESS || auto_focus_status == M5MO_AF_STATUS_1ST_SUCCESS) { // Success
 			auto_focus_result = 1;
 			pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
@@ -1642,6 +1756,7 @@ void *exynos_camera_auto_focus_thread(void *data)
 		}
 
 		pthread_mutex_unlock(&exynos_camera->auto_focus_mutex);
+		usleep(100000); // Sleep 100 ms
 	}
 
 thread_exit:
@@ -1656,7 +1771,7 @@ thread_exit:
 	exynos_camera->auto_focus_thread_running = 0;
 	exynos_camera->auto_focus_enabled = 0;
 
-	ALOGE("%s: Exiting thread", __func__);
+	ALOGD("%s: Exiting thread", __func__);
 
 	return NULL;
 }
@@ -1673,7 +1788,12 @@ int exynos_camera_auto_focus_start(struct exynos_camera *exynos_camera)
 
 	if (exynos_camera->auto_focus_thread_running) {
 		ALOGE("Auto-focus thread is already running!");
-		return -1;
+		return 0;
+	}
+
+	if (!exynos_camera->preview_thread_running) {
+		ALOGE("Cannot auto-focus when preview-thread isn't running!");
+		return 0;
 	}
 
 	pthread_mutex_init(&exynos_camera->auto_focus_mutex, NULL);
@@ -1749,33 +1869,43 @@ int exynos_camera_preview(struct exynos_camera *exynos_camera)
 	int rc;
 	int i;
 
-	if (exynos_camera == NULL || exynos_camera->preview_memory == NULL ||
-		exynos_camera->preview_window == NULL)
-		return -EINVAL;
+	if (exynos_camera == NULL) {
+		ALOGE("%s: exynos_camera == NULL", __func__);
+		goto error;
+	}
+	if (exynos_camera->preview_memory == NULL) {
+		ALOGE("%s: exynos_camera->preview_memory == NULL", __func__);
+		goto error;
+	}
+	if (exynos_camera->preview_window == NULL) {
+		ALOGE("%s: exynos_camera->preview_window == NULL", __func__);
+		goto error;
+	}
 
 	timestamp = systemTime(1);
 
 	// V4L2
+	pthread_mutex_lock(&exynos_camera->preview_mutex);
 
 	rc = exynos_v4l2_poll(exynos_camera, 0);
 	if (rc < 0) {
 		ALOGE("%s: poll failed!", __func__);
-		return -1;
+		goto error;
 	} else if (rc == 0) {
 		ALOGE("%s: poll timeout!", __func__);
-		return -1;
+		goto error;
 	}
 
 	index = exynos_v4l2_dqbuf_cap(exynos_camera, 0);
 	if (index < 0 || index >= exynos_camera->preview_buffers_count) {
 		ALOGE("%s: dqbuf failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	rc = exynos_v4l2_qbuf_cap(exynos_camera, 0, index);
 	if (rc < 0) {
 		ALOGE("%s: qbuf failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	// Preview window
@@ -1791,7 +1921,7 @@ int exynos_camera_preview(struct exynos_camera *exynos_camera)
 
 	if (window_data == NULL) {
 		ALOGE("%s: gralloc lock failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	frame_size = exynos_camera->preview_frame_size;
@@ -1803,6 +1933,8 @@ int exynos_camera_preview(struct exynos_camera *exynos_camera)
 	exynos_camera->gralloc->unlock(exynos_camera->gralloc, *buffer);
 	exynos_camera->preview_window->enqueue_buffer(exynos_camera->preview_window,
 		buffer);
+
+	pthread_mutex_unlock(&exynos_camera->preview_mutex);
 
 	if (EXYNOS_CAMERA_MSG_ENABLED(CAMERA_MSG_PREVIEW_FRAME) && EXYNOS_CAMERA_CALLBACK_DEFINED(data)) {
 		exynos_camera->callbacks.data(CAMERA_MSG_PREVIEW_FRAME,
@@ -1860,7 +1992,7 @@ int exynos_camera_preview(struct exynos_camera *exynos_camera)
 			rc = exynos_v4l2_qbuf_cap(exynos_camera, 2, index);
 			if (rc < 0) {
 				ALOGE("%s: qbuf failed!", __func__);
-				return -1;
+				goto error;
 			}
 		}
 	}
@@ -1868,9 +2000,14 @@ int exynos_camera_preview(struct exynos_camera *exynos_camera)
 	return 0;
 
 error_recording:
-	pthread_mutex_lock(&exynos_camera->recording_mutex);
-
+	pthread_mutex_unlock(&exynos_camera->recording_mutex);
+	ALOGE("%s: Exiting with error", __func__);
 	return -1;
+error:
+	pthread_mutex_unlock(&exynos_camera->preview_mutex);
+	ALOGE("%s: Exiting with error", __func__);
+	return -1;
+
 }
 
 void *exynos_camera_preview_thread(void *data)
@@ -1883,28 +2020,42 @@ void *exynos_camera_preview_thread(void *data)
 
 	exynos_camera = (struct exynos_camera *) data;
 
-	ALOGE("%s: Starting thread", __func__);
-	exynos_camera->preview_thread_running = 1;
-
+	ALOGD("%s: Starting thread", __func__);
 	if (exynos_camera->preview_window == NULL) {
 		// Lock preview lock mutex
 		pthread_mutex_lock(&exynos_camera->preview_lock_mutex);
 	}
 
 	while (exynos_camera->preview_enabled == 1) {
-		pthread_mutex_lock(&exynos_camera->preview_mutex);
+		//Check if recording-start is triggered.
+		if (exynos_camera->recording_msg_start) {
+			exynos_camera->recording_msg_start = 0;
+			rc = exynos_camera_recording_start(exynos_camera);
+			exynos_camera->recording_msg_start_result = rc;
+			if (rc < 0) {
+				ALOGE("%s: Start recording failed!", __func__);
+				exynos_camera_recording_stop(exynos_camera);
+			}
+		}
+		//Check if recording-stop is triggered.
+		if (exynos_camera->recording_msg_stop) {
+			exynos_camera->recording_msg_stop = 0;
+			exynos_camera_recording_stop(exynos_camera);
+		}
 
+		//Preview (and recording routine)
 		rc = exynos_camera_preview(exynos_camera);
 		if (rc < 0) {
 			ALOGE("%s: preview failed!", __func__);
 			exynos_camera->preview_enabled = 0;
 		}
 
-		pthread_mutex_unlock(&exynos_camera->preview_mutex);
+		exynos_camera->preview_thread_running = 1;
 	}
 
 	exynos_camera->preview_thread_running = 0;
-	ALOGE("%s: Exiting thread", __func__);
+	exynos_camera->preview_thread_started = 0;
+	ALOGD("%s: Exiting thread", __func__);
 
 	return NULL;
 }
@@ -1916,12 +2067,12 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 	float format_bpp;
 	int fps, frame_size;
 	int fd;
-
 	pthread_attr_t thread_attr;
 
 	int rc;
 	int i;
 
+	ALOGD("%s: Starting ", __func__);
 	if (exynos_camera == NULL)
 		return -EINVAL;
 
@@ -1930,30 +2081,37 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 		return 0;
 	}
 
+	exynos_camera->preview_enabled = 1;
+	exynos_camera->preview_thread_started = 1;
 	// V4L2
 
 	format = exynos_camera->preview_format;
+	width = exynos_camera->preview_width;
+	height = exynos_camera->preview_height;
+	format_bpp = exynos_camera->preview_format_bpp;
 
 	rc = exynos_v4l2_enum_fmt_cap(exynos_camera, 0, format);
 	if (rc < 0) {
 		ALOGE("%s: enum fmt failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	width = exynos_camera->preview_width;
 	height = exynos_camera->preview_height;
 	format_bpp = exynos_camera->preview_format_bpp;
 
+	ALOGD("%s: Starting preview %dx%d %d", __func__, width, height, format_bpp);
+
 	rc = exynos_v4l2_s_fmt_pix_cap(exynos_camera, 0, width, height, format, V4L2_PIX_FMT_MODE_PREVIEW);
 	if (rc < 0) {
 		ALOGE("%s: s fmt failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CACHEABLE, 1);
 	if (rc < 0) {
 		ALOGE("%s: s ctrl failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	for (i = EXYNOS_CAMERA_MAX_BUFFERS_COUNT; i >= EXYNOS_CAMERA_MIN_BUFFERS_COUNT; i--) {
@@ -1964,7 +2122,7 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 
 	if (rc < 0) {
 		ALOGE("%s: reqbufs failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	exynos_camera->preview_buffers_count = rc;
@@ -1978,7 +2136,7 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 	rc = exynos_v4l2_s_parm_cap(exynos_camera, 0, &streamparm);
 	if (rc < 0) {
 		ALOGE("%s: s parm failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	frame_size = (int) ((float) width * (float) height * format_bpp);
@@ -1986,12 +2144,12 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 		rc = exynos_v4l2_querybuf_cap(exynos_camera, 0, i);
 		if (rc < 0) {
 			ALOGE("%s: querybuf failed!", __func__);
-			return -1;
+			goto error;
 		}
 
 		if (rc < frame_size) {
 			ALOGE("%s: problematic frame size: %d/%d", __func__, rc, frame_size);
-			return -1;
+			goto error;
 		}
 	}
 
@@ -2002,7 +2160,7 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 		fd = exynos_v4l2_find_fd(exynos_camera, 0);
 		if (fd < 0) {
 			ALOGE("%s: Unable to find v4l2 fd", __func__);
-			return -1;
+			goto error;
 		}
 
 		if (exynos_camera->preview_memory != NULL && exynos_camera->preview_memory->release != NULL)
@@ -2013,18 +2171,18 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 				frame_size, exynos_camera->preview_buffers_count, 0);
 		if (exynos_camera->preview_memory == NULL) {
 			ALOGE("%s: memory request failed!", __func__);
-			return -1;
+			goto error;
 		}
 	} else {
 		ALOGE("%s: No memory request function!", __func__);
-		return -1;
+		goto error;
 	}
 
 	for (i = 0; i < exynos_camera->preview_buffers_count; i++) {
 		rc = exynos_v4l2_qbuf_cap(exynos_camera, 0, i);
 		if (rc < 0) {
 			ALOGE("%s: qbuf failed!", __func__);
-			return -1;
+			goto error;
 		}
 	}
 
@@ -2032,27 +2190,27 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 		exynos_camera->camera_rotation);
 	if (rc < 0) {
 		ALOGE("%s: s ctrl failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_HFLIP,
 		exynos_camera->camera_hflip);
 	if (rc < 0) {
 		ALOGE("%s: s ctrl failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_VFLIP,
 		exynos_camera->camera_vflip);
 	if (rc < 0) {
 		ALOGE("%s: s ctrl failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	rc = exynos_v4l2_streamon_cap(exynos_camera, 0);
 	if (rc < 0) {
 		ALOGE("%s: streamon failed!", __func__);
-		return -1;
+		goto error;
 	}
 
 	// Thread
@@ -2066,16 +2224,18 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 	pthread_attr_init(&thread_attr);
 	pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED);
 
-	exynos_camera->preview_enabled = 1;
-
 	rc = pthread_create(&exynos_camera->preview_thread, &thread_attr,
 		exynos_camera_preview_thread, (void *) exynos_camera);
 	if (rc < 0) {
 		ALOGE("%s: Unable to create thread", __func__);
-		return -1;
+		goto error;
 	}
 
+	ALOGD("%s: Exiting ", __func__);
 	return 0;
+error:
+	ALOGD("%s: Exiting with error", __func__);
+	return -1;
 }
 
 void exynos_camera_preview_stop(struct exynos_camera *exynos_camera)
@@ -2083,12 +2243,14 @@ void exynos_camera_preview_stop(struct exynos_camera *exynos_camera)
 	int rc;
 	int i;
 
+	ALOGD("%s: Starting ", __func__);
+
 	if (exynos_camera == NULL)
-		return;
+		goto exit;
 
 	if (!exynos_camera->preview_enabled) {
 		ALOGE("Preview was already stopped!");
-		return;
+		goto exit;
 	}
 
 	exynos_camera->preview_enabled = 0;
@@ -2099,11 +2261,13 @@ void exynos_camera_preview_stop(struct exynos_camera *exynos_camera)
 	pthread_mutex_lock(&exynos_camera->preview_mutex);
 
 	// Wait for the thread to end
-	for (i = 0; i < 10; i++) {
-		if (!exynos_camera->preview_thread_running)
+	for (i = 0; i < 30; i++) {
+		if (!exynos_camera->preview_thread_running && !exynos_camera->preview_thread_started)
 			break;
+		ALOGE("%s: Waiting preview to stop", __func__);
 
-		usleep(1000);
+		usleep(100000); // Sleep 100 ms
+
 	}
 
 	rc = exynos_v4l2_streamoff_cap(exynos_camera, 0);
@@ -2124,6 +2288,10 @@ void exynos_camera_preview_stop(struct exynos_camera *exynos_camera)
 
 	pthread_mutex_destroy(&exynos_camera->preview_lock_mutex);
 	pthread_mutex_destroy(&exynos_camera->preview_mutex);
+
+exit:
+	ALOGD("%s: Exiting ", __func__);
+	return;
 }
 
 // Recording
@@ -2167,8 +2335,6 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
 		ALOGE("Recording was already started!");
 		return 0;
 	}
-
-	pthread_mutex_lock(&exynos_camera->preview_mutex);
 
 	// V4L2
 
@@ -2235,12 +2401,6 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
 		}
 	}
 
-	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, FOCUS_MODE_CONTINOUS);
-	if (rc < 0) {
-		ALOGE("%s: s ctrl failed!", __func__);
-		goto error;
-	}
-
 	rc = exynos_v4l2_s_ctrl(exynos_camera, 2, V4L2_CID_ROTATION,
 		exynos_camera->camera_rotation);
 	if (rc < 0) {
@@ -2272,12 +2432,8 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
 
 	exynos_camera->recording_enabled = 1;
 
-	pthread_mutex_unlock(&exynos_camera->preview_mutex);
-
 	return 0;
 error:
-	pthread_mutex_unlock(&exynos_camera->preview_mutex);
-
 	return -1;
 }
 
@@ -2293,26 +2449,20 @@ void exynos_camera_recording_stop(struct exynos_camera *exynos_camera)
 		return;
 	}
 
+	//Disables the capture routine in exynos_camera_preview running in seperate thread.
 	exynos_camera->recording_enabled = 0;
 
-	pthread_mutex_lock(&exynos_camera->preview_mutex);
-
-	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, FOCUS_MODE_AUTO);
-	if (rc < 0) {
-		ALOGE("%s: s ctrl failed!", __func__);
-	}
-
+	//Stop recording the stream.
 	rc = exynos_v4l2_streamoff_cap(exynos_camera, 2);
 	if (rc < 0) {
 		ALOGE("%s: streamoff failed!", __func__);
 	}
 
+	//Release allocated recording-memory
 	if (exynos_camera->recording_memory != NULL && exynos_camera->recording_memory->release != NULL) {
 		exynos_camera->recording_memory->release(exynos_camera->recording_memory);
 		exynos_camera->recording_memory = NULL;
 	}
-
-	pthread_mutex_unlock(&exynos_camera->preview_mutex);
 
 	pthread_mutex_destroy(&exynos_camera->recording_mutex);
 }
@@ -2333,8 +2483,6 @@ int exynos_camera_set_preview_window(struct camera_device *dev,
 	void *addr = NULL;
 
 	int rc;
-
-	ALOGD("%s(%p, %p)", __func__, dev, w);
 
 	if (dev == NULL || dev->priv == NULL)
 		return -EINVAL;
@@ -2389,6 +2537,7 @@ int exynos_camera_set_preview_window(struct camera_device *dev,
 			break;
 	}
 
+	ALOGD("%s: Preview-window %dx%d %d", __func__, width, height, hal_format);
 	rc = w->set_buffers_geometry(w, width, height, hal_format);
 	if (rc) {
 		ALOGE("%s: Unable to set buffers geometry", __func__);
@@ -2529,7 +2678,20 @@ int exynos_camera_start_recording(struct camera_device *dev)
 
 	exynos_camera = (struct exynos_camera *) dev->priv;
 
-	return exynos_camera_recording_start(exynos_camera);
+	//This triggers the exynos_camera_recording_start-method in the exynos_preview-method (running in separate thread)
+	exynos_camera->recording_msg_start = 1;
+	exynos_camera->recording_msg_start_result = 1;
+
+	//Wait 300 * 10ms = 3 seconds until recording is actually started.
+	int i;
+	for (i = 0; i < 300; i++) {
+		if (exynos_camera->recording_msg_start_result != 1)
+			return exynos_camera->recording_msg_start_result;
+		usleep(10000);
+	}
+
+	//If it takes more than 3 seconds, something is wrong.
+	return -1;
 }
 
 void exynos_camera_stop_recording(struct camera_device *dev)
@@ -2540,7 +2702,8 @@ void exynos_camera_stop_recording(struct camera_device *dev)
 
 	exynos_camera = (struct exynos_camera *) dev->priv;
 
-	exynos_camera_recording_stop(exynos_camera);
+	//This triggers the exynos_camera_recording_stop-method in the exynos_preview-method (running in separate thread)
+	exynos_camera->recording_msg_stop = 1;
 }
 
 int exynos_camera_recording_enabled(struct camera_device *dev)
@@ -2575,6 +2738,7 @@ void exynos_camera_release_recording_frame(struct camera_device *dev,
 int exynos_camera_auto_focus(struct camera_device *dev)
 {
 	struct exynos_camera *exynos_camera;
+	int rc;
 
 	ALOGD("%s(%p)", __func__, dev);
 
@@ -2582,7 +2746,6 @@ int exynos_camera_auto_focus(struct camera_device *dev)
 		return -EINVAL;
 
 	exynos_camera = (struct exynos_camera *) dev->priv;
-
 	return exynos_camera_auto_focus_start(exynos_camera);
 }
 
@@ -2657,8 +2820,6 @@ int exynos_camera_set_parameters(struct camera_device *dev,
 		cam_mode = 1; // video
 	}
 
-	exynos_param_int_set(exynos_camera, "cam_mode", cam_mode);
-
 	rc = exynos_camera_params_apply(exynos_camera);
 	if (rc < 0) {
 		ALOGE("%s: Unable to apply params", __func__);
@@ -2673,7 +2834,7 @@ char *exynos_camera_get_parameters(struct camera_device *dev)
 	struct exynos_camera *exynos_camera;
 	char *params;
 
-	ALOGD("%s(%p)", __func__, dev);
+	ALOGV("%s", __func__);
 
 	if (dev == NULL || dev->priv == NULL)
 		return NULL;
@@ -2691,7 +2852,7 @@ char *exynos_camera_get_parameters(struct camera_device *dev)
 
 void exynos_camera_put_parameters(struct camera_device *dev, char *params)
 {
-	ALOGD("%s(%p)", __func__, dev);
+	ALOGV("%s)", __func__);
 
 	if (params != NULL)
 		free(params);
@@ -2700,7 +2861,7 @@ void exynos_camera_put_parameters(struct camera_device *dev, char *params)
 int exynos_camera_send_command(struct camera_device *dev,
 	int32_t cmd, int32_t arg1, int32_t arg2)
 {
-	ALOGD("%s(%p, %d, %d, %d)", __func__, dev, cmd, arg1, arg2);
+	ALOGV("%s(%p, %d, %d, %d)", __func__, dev, cmd, arg1, arg2);
 
 	return 0;
 }
