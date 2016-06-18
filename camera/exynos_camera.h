@@ -223,6 +223,9 @@ struct exynos_camera {
 	pthread_mutex_t recording_mutex;
 
 	int recording_enabled;
+	int recording_msg_start;
+	int recording_msg_start_result;
+	int recording_msg_stop;
 	camera_memory_t *recording_memory;
 	int recording_buffers_count;
 
@@ -301,6 +304,9 @@ int exynos_camera_picture_start(struct exynos_camera *exynos_camera);
 int exynos_camera_preview(struct exynos_camera *exynos_camera);
 int exynos_camera_preview_start(struct exynos_camera *exynos_camera);
 void exynos_camera_preview_stop(struct exynos_camera *exynos_camera);
+
+int exynos_camera_recording_start(struct exynos_camera *exynos_camera);
+void exynos_camera_recording_stop(struct exynos_camera *exynos_camera);
 
 /*
  * EXIF
