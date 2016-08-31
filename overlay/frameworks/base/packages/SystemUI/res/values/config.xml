@@ -27,9 +27,6 @@
          for devices where the java drawing of round rects may be slow -->
     <bool name="config_recents_use_hardware_layers">true</bool>
 
-    <!-- Whether to use cheap, less good looking shadows for recents -->
-    <bool name="config_recents_fake_shadows">true</bool>
-
     <!-- Allow Flashlight service to use wakelock -->
     <bool name="flashlight_use_wakelock">true</bool>
 </resources>
