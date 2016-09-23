@@ -1719,7 +1719,7 @@ void *exynos_camera_auto_focus_thread(void *data)
 		rc = exynos_camera_params_apply(exynos_camera);
 		if (rc < 0) {
 			ALOGE("%s: Unable to apply params", __func__);
-			return -1;
+			goto thread_exit;
 		}
 
 	}
