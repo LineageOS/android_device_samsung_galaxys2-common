@@ -10,7 +10,7 @@
 /dev/block/mmcblk0p1                        /efs                    ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check_spo
 /dev/block/mmcblk0p10                       /data                   f2fs      noatime,nosuid,nodev,inline_data,inline_xattr,discard     wait,encryptable=footer,length=-16384
 /dev/block/mmcblk0p10                       /data                   ext4      noatime,nosuid,nodev,noauto_da_alloc,journal_async_commit,errors=panic    wait,check_spo,encryptable=footer,length=-16384
-/dev/block/mmcblk0p12                       /preload                ext4      noatime,nosuid,nodev,journal_async_commit                 wait
+/dev/block/mmcblk0p12                       /preload                ext4      noatime,nosuid,nodev                                      wait
 
 # vold-managed volumes ("block device" is actually a sysfs devpath)
 /devices/platform/dw_mmc/mmc_host/mmc0/mmc0*                  auto    auto    defaults        wait,voldmanaged=sdcard0:11,noemulatedsd,nonremovable
