@@ -573,6 +573,7 @@ typedef struct {
              * clir == 2 on "CLIR suppression" (allow CLI presentation)
              */
     RIL_UUS_Info *  uusInfo;    /* NULL or Pointer to User-User Signaling Information */
+    int reserved; /* Fix for outgoing call */
 } RIL_Dial;
 
 typedef struct {
