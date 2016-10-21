@@ -422,7 +422,6 @@ typedef uint8_t GpsNavigationMessageType;
  */
 #define AGPS_USE_PSC
 
-
 /** Represents a location. */
 typedef struct {
     /** set to sizeof(GpsLocation) */
@@ -513,6 +512,11 @@ typedef struct {
     uint16_t psc;
 #endif
     uint32_t cid;
+    /* The new properties below are new since N and will be 'removed' by GPS-shim */
+    /** Tracking Area Code in LTE. */
+    uint16_t tac;
+    /** Physical Cell id in LTE (not used in 2G and 3G) */
+    uint16_t pcid;
 } AGpsRefLocationCellID;
 
 typedef struct {
@@ -583,6 +587,9 @@ typedef struct {
     gps_release_wakelock release_wakelock_cb;
     gps_create_thread create_thread_cb;
     gps_request_utc_time request_utc_time_cb;
+    /* The new properties below are new since N and will be 'removed' by GPS-shim */
+    gnss_set_system_info set_system_info_cb;
+    gnss_sv_status_callback gnss_sv_status_cb;
 } GpsCallbacks;
 
 
