@@ -65,6 +65,10 @@ PRODUCT_PACKAGES += \
     libsamsung_symbols \
     libsecril-shim
 
+# Legacy GPS
+PRODUCT_PACKAGES += \
+    gps.smdk4210
+
 # Audio Packages
 PRODUCT_PACKAGES += \
     AdvancedDisplay \
