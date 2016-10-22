@@ -63,7 +63,8 @@ PRODUCT_PACKAGES := \
 # Legacy RIL
 PRODUCT_PACKAGES += \
     libsamsung_symbols \
-    ril-wrapper
+    libsecril-shim
+
 # Legacy GPS
 PRODUCT_PACKAGES += \
     gps.smdk4210
