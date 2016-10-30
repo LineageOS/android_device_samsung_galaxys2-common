@@ -67,6 +67,9 @@ on post-fs-data
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     chown wifi root /dev/rfkill
 
+# fix permission for telephony
+    chmod 0644 /proc/cmdline
+
 #DRM directory creation
     mkdir /system/etc/security/.drm 0775
     chown root root /system/etc/security/.drm
