@@ -89,4 +89,17 @@ status_t CameraSource::isCameraColorFormatSupported(
     return OK;
 }
 
+MetadataBufferType CameraSource::metaDataStoredInVideoBuffers() const {
+    ALOGV("metaDataStoredInVideoBuffers");
+
+    // Output buffers will contain metadata if camera sends us buffer in metadata mode or via
+    // buffer queue.
+    switch (mVideoBufferMode) {
+        case hardware::ICamera::VIDEO_BUFFER_MODE_BUFFER_QUEUE:
+            return kMetadataBufferTypeANWBuffer;
+        default:
+            return kMetadataBufferTypeInvalid;
+    }
+}
+
 } // namespace android
