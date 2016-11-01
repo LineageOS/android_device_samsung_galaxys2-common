@@ -363,10 +363,10 @@ service cpboot-daemon /sbin/cbd -d -p 8
     group radio cache inet misc audio sdcard_rw log sdcard_r
     seclabel u:r:cpboot-daemon:s0
 
-service charger /sbin/healthd -c
+service charger /charger
     class charger
     critical
-    seclabel u:r:healthd:s0
+    seclabel u:r:charger:s0
 
 service p2p_supplicant /vendor/bin/hw/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
