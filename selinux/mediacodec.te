@@ -1,1 +1,3 @@
 allow mediacodec system_file:dir { open read };
+allow mediacodec system_file:file execmod;
+allow mediacodec mfc_device:chr_file { read write open ioctl};
