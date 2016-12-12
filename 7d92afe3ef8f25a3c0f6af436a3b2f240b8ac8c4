@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_1c13545e",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-12T10:58:15Z",
+      "side": 1,
+      "message": "unused, remove",
+      "revId": "7d92afe3ef8f25a3c0f6af436a3b2f240b8ac8c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_9cff6400",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-12T10:58:15Z",
+      "side": 1,
+      "message": "this is a boardflag as well: BOARD_EGL_WORKAROUND_BUG_10194508",
+      "range": {
+        "startLine": 86,
+        "startChar": 52,
+        "endLine": 86,
+        "endChar": 76
+      },
+      "revId": "7d92afe3ef8f25a3c0f6af436a3b2f240b8ac8c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_7c02480b",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-12T10:58:15Z",
+      "side": 1,
+      "message": "unused, remove",
+      "revId": "7d92afe3ef8f25a3c0f6af436a3b2f240b8ac8c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_dc09dc2c",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-12T10:58:15Z",
+      "side": 1,
+      "message": "unused, remove",
+      "revId": "7d92afe3ef8f25a3c0f6af436a3b2f240b8ac8c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
