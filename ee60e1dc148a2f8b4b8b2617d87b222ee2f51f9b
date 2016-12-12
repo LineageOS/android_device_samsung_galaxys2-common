@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_7549bbce",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-12T23:03:40Z",
+      "side": 1,
+      "message": "remove these two lines, they\u0027re handled in build/",
+      "revId": "ee60e1dc148a2f8b4b8b2617d87b222ee2f51f9b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_55447fb7",
+        "filename": "BoardCommonConfig.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-12T23:03:40Z",
+      "side": 1,
+      "message": "what i meant was something like this: https://github.com/CyanogenMod/android_device_samsung_smdk4412-common/commit/150b4402bf368f581664000b72be798f3f3027dd#diff-a5ecec4305a32a2cd2de357b6b74b682R77",
+      "revId": "ee60e1dc148a2f8b4b8b2617d87b222ee2f51f9b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
