@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_cef91981",
+        "filename": "overlay/packages/apps/CMFileManager/res/xml/command_list.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 13873
+      },
+      "writtenOn": "2016-12-14T05:37:00Z",
+      "side": 1,
+      "message": "This is the command which was failing",
+      "revId": "ba62b6ed4ecd8aa8e185af5bfe8c92e1263989fd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
