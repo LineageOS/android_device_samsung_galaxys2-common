@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_65ed808a",
+        "filename": "cmhw/org/cyanogenmod/hardware/DisplayModeControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7880
+      },
+      "writtenOn": "2016-12-15T11:19:43Z",
+      "side": 1,
+      "message": "Advertise \u00273\u0027 in this sysfs node instead.",
+      "revId": "dd0c439907be375813759ff914200c2240fbcd58",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
