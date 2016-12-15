@@ -1,0 +1,2 @@
+allow ueventd sensors_device:chr_file { relabelfrom relabelto };
+allow ueventd sysfs_display:file { open write };

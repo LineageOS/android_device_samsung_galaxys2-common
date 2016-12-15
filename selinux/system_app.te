@@ -1,1 +1,2 @@
 allow system_app sysfs_display:file { write getattr open };
+allow system_app sysfs_display:dir search;
