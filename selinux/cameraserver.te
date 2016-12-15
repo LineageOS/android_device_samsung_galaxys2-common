@@ -1,0 +1,2 @@
+allow cameraserver rootfs:lnk_file getattr;
+
