@@ -12,6 +12,7 @@
 /dev/umts_rfs0                                                   u:object_r:radio_device:s0
 /data/misc/radio(/.*)?                                           u:object_r:radio_data:s0
 /sys/devices/platform/s5p-ehci/ehci_power                        u:object_r:sysfs_radio:s0
+/dev/__cbd_msg_                                                  u:object_r:cbd_device:s0
 
 # Block labeling
 /dev/block/mmcblk0p1                                             u:object_r:efs_block_device:s0
@@ -19,6 +20,7 @@
 /dev/block/mmcblk0p8                                             u:object_r:efs_block_device:s0
 /dev/block/mmcblk0p9                                             u:object_r:system_block_device:s0
 /dev/block/mmcblk0p10                                            u:object_r:userdata_block_device:s0
+/dev/block/mmcblk0p12                                            u:object_r:preload_block_device:s0
 /dev/block/zram0                                                 u:object_r:swap_block_device:s0
 /efs                                                             u:object_r:efs_device_file:s0
 
@@ -46,9 +48,7 @@
 /system/vendor/firmware/mfc_fw.bin                               u:object_r:firmware_mfc:s0
 
 # Display
-/sys/devices/platform/samsung-pd.2/mdnie/mdnie/mdnie/scenario    u:object_r:sysfs_display:s0
-/sys/devices/platform/samsung-pd.2/mdnie/mdnie/mdnie/mode        u:object_r:sysfs_display:s0
-/sys/devices/platform/samsung-pd.2/mdnie/mdnie/mdnie/negative    u:object_r:sysfs_display:s0
+/sys/devices/platform/samsung-pd.2/mdnie/mdnie(/.*)?             u:object_r:sysfs_display:s0
 
 # Executables
 /system/bin/macloader                                            u:object_r:macloader_exec:s0
