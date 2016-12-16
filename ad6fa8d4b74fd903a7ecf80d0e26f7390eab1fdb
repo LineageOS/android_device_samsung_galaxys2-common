@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_34fe1b37",
+        "filename": "selinux/audioserver.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-16T06:21:09Z",
+      "side": 1,
+      "message": "won\u0027t need this if https://review.cyanogenmod.org/#/c/176918/ gets merged",
+      "revId": "ad6fa8d4b74fd903a7ecf80d0e26f7390eab1fdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_14f95f4c",
+        "filename": "selinux/bootanim.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-16T06:21:09Z",
+      "side": 1,
+      "message": "won\u0027t need this if https://review.cyanogenmod.org/#/c/176918/ gets merged",
+      "revId": "ad6fa8d4b74fd903a7ecf80d0e26f7390eab1fdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_749533e4",
+        "filename": "selinux/cameraserver.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-16T06:21:09Z",
+      "side": 1,
+      "message": "won\u0027t need this if https://review.cyanogenmod.org/#/c/176918/ gets merged",
+      "revId": "ad6fa8d4b74fd903a7ecf80d0e26f7390eab1fdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_5498f719",
+        "filename": "selinux/macloader.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-16T06:21:09Z",
+      "side": 1,
+      "message": "won\u0027t need this if https://review.cyanogenmod.org/#/c/176918/ gets merged",
+      "revId": "ad6fa8d4b74fd903a7ecf80d0e26f7390eab1fdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_94a28f4a",
+        "filename": "selinux/mediacodec.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-16T06:21:09Z",
+      "side": 1,
+      "message": "what\u0027s this for? should probably label it",
+      "revId": "ad6fa8d4b74fd903a7ecf80d0e26f7390eab1fdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_b49fcb01",
+        "filename": "selinux/mediacodec.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-16T06:21:09Z",
+      "side": 1,
+      "message": "won\u0027t need this if https://review.cyanogenmod.org/#/c/176918/ gets merged",
+      "revId": "ad6fa8d4b74fd903a7ecf80d0e26f7390eab1fdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_f48823c7",
+        "filename": "selinux/mediadrmserver.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-16T06:21:09Z",
+      "side": 1,
+      "message": "won\u0027t need this if https://review.cyanogenmod.org/#/c/176918/ gets merged",
+      "revId": "ad6fa8d4b74fd903a7ecf80d0e26f7390eab1fdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_d48367a8",
+        "filename": "selinux/sysinit.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-16T06:21:09Z",
+      "side": 1,
+      "message": "won\u0027t need this if https://review.cyanogenmod.org/#/c/176918/ gets merged",
+      "revId": "ad6fa8d4b74fd903a7ecf80d0e26f7390eab1fdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
