@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_17032111",
+        "filename": "cmhw/org/cyanogenmod/hardware/DisplayColorCalibration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-16T15:26:09Z",
+      "side": 1,
+      "message": "this is unused",
+      "revId": "01c9583bfed6ed24c8969a68f5c530d43fa66060",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
