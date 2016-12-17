@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_1e55f6c6",
+        "filename": "selinux/file.te",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-17T21:41:39Z",
+      "side": 1,
+      "message": "don\u0027t need this now",
+      "revId": "06b980d55209d425e9cbaad3105a2f7d20b47499",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
