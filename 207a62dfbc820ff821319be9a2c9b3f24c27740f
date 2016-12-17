@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "5f681702_03b47f34",
+        "filename": "selinux/file.te",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-17T09:49:44Z",
+      "side": 1,
+      "message": "\u0027type fimc_library, file_type;\u0027",
+      "revId": "207a62dfbc820ff821319be9a2c9b3f24c27740f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_83f6cff8",
+        "filename": "selinux/file_contexts",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-17T09:49:44Z",
+      "side": 1,
+      "message": "/system/lib/libfimc.so u:object_r:fimc_library:s0",
+      "revId": "207a62dfbc820ff821319be9a2c9b3f24c27740f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f681702_c33ba7c5",
         "filename": "selinux/mediacodec.te",
         "patchSetId": 2
@@ -13,6 +47,30 @@
       "writtenOn": "2016-12-17T09:27:23Z",
       "side": 1,
       "message": "This is for system/lib/libfimc.so How to label this?",
+      "range": {
+        "startLine": 2,
+        "startChar": 34,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "207a62dfbc820ff821319be9a2c9b3f24c27740f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_23925b9f",
+        "filename": "selinux/mediacodec.te",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-17T09:49:44Z",
+      "side": 1,
+      "message": "\u0027allow mediacodec fimc_library:file execmod;\u0027",
+      "parentUuid": "5f681702_c33ba7c5",
       "range": {
         "startLine": 2,
         "startChar": 34,
