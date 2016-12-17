@@ -87,6 +87,24 @@
     },
     {
       "key": {
+        "uuid": "5f681702_4350370b",
+        "filename": "selinux/mediacodec.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 13873
+      },
+      "writtenOn": "2016-12-17T09:27:23Z",
+      "side": 1,
+      "message": "it is for /system/lib/libfimc.so",
+      "parentUuid": "5f681702_94a28f4a",
+      "revId": "ad6fa8d4b74fd903a7ecf80d0e26f7390eab1fdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f681702_b49fcb01",
         "filename": "selinux/mediacodec.te",
         "patchSetId": 1
