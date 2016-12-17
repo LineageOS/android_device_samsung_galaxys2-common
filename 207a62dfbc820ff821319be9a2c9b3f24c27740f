@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_c33ba7c5",
+        "filename": "selinux/mediacodec.te",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 13873
+      },
+      "writtenOn": "2016-12-17T09:27:23Z",
+      "side": 1,
+      "message": "This is for system/lib/libfimc.so How to label this?",
+      "range": {
+        "startLine": 2,
+        "startChar": 34,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "207a62dfbc820ff821319be9a2c9b3f24c27740f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
