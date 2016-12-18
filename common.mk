@@ -137,6 +137,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.call_ring.delay=3000
 
+# Services
+PRODUCT_PROPERTY_OVERRIDES += \
+    config.disable_atlas=true
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
