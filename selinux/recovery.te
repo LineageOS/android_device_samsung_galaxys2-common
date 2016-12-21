@@ -1,0 +1,10 @@
+recovery_only(`
+allow recovery rootfs:dir rw_dir_perms;
+allow recovery rootfs:file {  create write setattr relabelto append unlink link rename getattr open };
+allow recovery adbsecure_prop:file { getattr open };
+allow recovery adbsecure_prop:property_service set;
+allow recovery adbtcp_prop:file { getattr open };
+allow recovery recovery_prop:file { getattr open };
+allow recovery safemode_prop:file { getattr open };
+allow recovery userinit_prop:file { getattr open };
+')
