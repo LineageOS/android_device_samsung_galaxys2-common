@@ -16,16 +16,25 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">進階顯示</string>
-  <string name="defaults_button">重設為預設值</string>
-  <!-- Screen Preference -->
-  <string name="category_screen_title">螢幕</string>
-  <string name="screen_colors_title">色彩</string>
-  <!-- mDNIe -->
-  <string name="mdnie_scenario_title_head">場景</string>
-  <string name="mdnie_scenario_summary_head">設定 mDNIe 場景</string>
-  <string name="mdnie_mode_title_head">模式</string>
-  <string name="mdnie_mode_summary_head">設定 mDNIe 模式</string>
-  <string name="mdnie_negative_title_head">負片模式</string>
-  <string name="mdnie_negative_summary_head">啟用/停用反轉顏色</string>
+  <string-array name="mdnie_scenario_entries">
+    <item>CyanogenMod (預設)</item>
+    <item>使用者介面</item>
+    <item>影片</item>
+    <item>影片 (暖色)</item>
+    <item>影片 (冷色)</item>
+    <item>相機</item>
+    <item>導航</item>
+    <item>圖片庫</item>
+    <item>VT</item>
+  </string-array>
+  <string-array name="mdnie_mode_entries">
+    <item>動態 (預設)</item>
+    <item>標準</item>
+    <item>自然</item>
+    <item>電影</item>
+  </string-array>
+  <string-array name="mdnie_negative_entries">
+    <item>適中</item>
+    <item>負片</item>
+  </string-array>
 </resources>
