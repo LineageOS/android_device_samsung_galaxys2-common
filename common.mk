@@ -141,6 +141,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     config.disable_atlas=true
 
+PRODUCT_PACKAGES += \
+    SamsungDoze
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
