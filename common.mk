@@ -70,6 +70,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.smdk4210
 
+# SamsungPowerHAL
+PRODUCT_PACKAGES += \
+    power.smdk4210
+
 # Audio Packages
 PRODUCT_PACKAGES += \
     AdvancedDisplay \
