@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a202591_d5853cae",
+        "filename": "power/power.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-29T13:37:14Z",
+      "side": 1,
+      "message": "this should be int32_t",
+      "range": {
+        "startLine": 194,
+        "startChar": 29,
+        "endLine": 194,
+        "endChar": 37
+      },
+      "revId": "ff935f4d3d86ca577a00fead9c43a1bb65e5a573",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_f58838c8",
+        "filename": "power/power.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-29T13:37:14Z",
+      "side": 1,
+      "message": "don\u0027t remember exactly but I think the framework automatically sets the power profile to POWER_SAVE on PROFILE_HINT_LOW_POWER.",
+      "revId": "ff935f4d3d86ca577a00fead9c43a1bb65e5a573",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_b592c0f4",
+        "filename": "power/power.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 11604
+      },
+      "writtenOn": "2016-12-29T13:37:14Z",
+      "side": 1,
+      "message": "int32_t",
+      "range": {
+        "startLine": 200,
+        "startChar": 28,
+        "endLine": 200,
+        "endChar": 36
+      },
+      "revId": "ff935f4d3d86ca577a00fead9c43a1bb65e5a573",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
