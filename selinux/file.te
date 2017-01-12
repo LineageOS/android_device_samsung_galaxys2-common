@@ -2,5 +2,7 @@ type firmware_mfc, file_type;
 type efs_device_file, file_type;
 type sysfs_display, fs_type, sysfs_type;
 type sysfs_radio, fs_type, sysfs_type;
+type sysfs_root, fs_type, sysfs_type;
+type sysfs_cgroup, fs_type, sysfs_type;
 type radio_data, file_type;
 type cbd_device, dev_type;
