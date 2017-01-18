@@ -19,10 +19,19 @@ DEVICE_PACKAGE_OVERLAYS := $(COMMON_PATH)/overlay
 
 # Rootdir
 PRODUCT_COPY_FILES := \
-    $(COMMON_PATH)/rootdir/fstab.smdk4210:root/fstab.smdk4210 \
     $(COMMON_PATH)/rootdir/init.smdk4210.usb.rc:root/init.smdk4210.usb.rc \
     $(COMMON_PATH)/rootdir/init.smdk4210.rc:root/init.smdk4210.rc \
     $(COMMON_PATH)/rootdir/ueventd.smdk4210.rc:root/ueventd.smdk4210.rc
+
+ifeq ($(TARGET_USE_EMULATED_STORAGE),true)
+    PRODUCT_COPY_FILES := \
+        $(COMMON_PATH)/rootdir/fstab.smdk4210-emu:root/fstab.smdk4210
+else
+    PRODUCT_COPY_FILES := \
+        $(COMMON_PATH)/rootdir/fstab.smdk4210:root/fstab.smdk4210
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.vold.primary_physical=1
+endif
 
 # Recovery rootdir
 PRODUCT_COPY_FILES += \
