@@ -160,28 +160,28 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.focus_mode = "fixed",
 			.focus_mode_values = "fixed",
 			.focus_distances = "0.20,0.25,Infinity",
-			.focus_areas = NULL,
+			.focus_areas = "",
 			.max_num_focus_areas = 0,
                         .touch_af_aec = "touch-off",
 
 			.zoom_supported = 0,
 
-			.flash_mode = NULL,
-			.flash_mode_values = NULL,
+			.flash_mode = "off",
+			.flash_mode_values = "off",
 
 			.exposure_compensation = 0,
 			.exposure_compensation_step = 0.5,
 			.min_exposure_compensation = -4,
 			.max_exposure_compensation = 4,
 
-			.whitebalance = NULL,
-			.whitebalance_values = NULL,
+			.whitebalance = "none",
+			.whitebalance_values = "none",
 
 			.scene_mode = "none",
 			.scene_mode_values = "none",
 
-			.effect = NULL,
-			.effect_values = NULL,
+			.effect = "none",
+			.effect_values = "none",
 
 			.iso = "auto",
 			.iso_values = "auto",
