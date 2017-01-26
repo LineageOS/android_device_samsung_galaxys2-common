@@ -89,6 +89,7 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.focus_distances = "0.15,1.20,Infinity",
 			.focus_areas = "(0,0,0,0,0)",
 			.max_num_focus_areas = 1,
+                        .touch_af_aec = "touch-on",
 
 			.zoom_supported = 1,
 			.smooth_zoom_supported = 0,
@@ -161,6 +162,7 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
 			.focus_distances = "0.20,0.25,Infinity",
 			.focus_areas = NULL,
 			.max_num_focus_areas = 0,
+                        .touch_af_aec = "touch-off",
 
 			.zoom_supported = 0,
 
@@ -402,6 +404,8 @@ int exynos_camera_params_init(struct exynos_camera *exynos_camera, int id)
 		exynos_param_int_set(exynos_camera, "max-num-focus-areas",
 			exynos_camera->config->presets[id].params.max_num_focus_areas);
 	}
+	exynos_param_string_set(exynos_camera, "touch-af-aec",
+		exynos_camera->config->presets[id].params.touch_af_aec);
 
 	// Zoom
 	if (exynos_camera->config->presets[id].params.zoom_supported == 1) {

@@ -110,6 +110,7 @@ struct exynos_camera_params {
 	char *focus_distances;
 	char *focus_areas;
 	int max_num_focus_areas;
+        char *touch_af_aec;
 
 	int zoom_supported;
 	int smooth_zoom_supported;
