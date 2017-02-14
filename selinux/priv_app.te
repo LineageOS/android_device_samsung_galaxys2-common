@@ -1,4 +1,0 @@
-allow priv_app device:dir { getattr open read };
-allow priv_app zygote:dir search;
-allow priv_app zygote:file { getattr open read };
-
