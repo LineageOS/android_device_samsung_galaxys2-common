@@ -16,20 +16,10 @@
 
 #include <bootloader_message/bootloader_message.h>
 
-#include <ctype.h>
-#include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <stdlib.h>
 #include <string.h>
 #include <sys/system_properties.h>
-#include <sys/mount.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <unistd.h>
-
-#include <fs_mgr.h>
 
 #include <string>
 #include <vector>
@@ -39,73 +29,46 @@
 #include <android-base/unique_fd.h>
 #include <fs_mgr.h>
 
-#include <roots.h>
-
-#define LOGE(...) fprintf(stdout, "E:" __VA_ARGS__)
-#define LOGW(...) fprintf(stdout, "W:" __VA_ARGS__)
-#define LOGI(...) fprintf(stdout, "I:" __VA_ARGS__)
-
-#if 0
-#define LOGV(...) fprintf(stdout, "V:" __VA_ARGS__)
-#define LOGD(...) fprintf(stdout, "D:" __VA_ARGS__)
-#else
-#define LOGV(...) do {} while (0)
-#define LOGD(...) do {} while (0)
-#endif
-
-#define CACHE_COMMAND_FILE "/cache/recovery/command-misc"
-
+#define CACHE_UPDATE_FILE "/cache/recovery/command"
 
 static bool read_cache_file(void* p, size_t size, size_t offset, std::string* err) {
-  if (ensure_path_mounted(CACHE_COMMAND_FILE) != 0) {
-      LOGE("Can't mount %s\n", CACHE_COMMAND_FILE);
-      return false;
-  }
-  android::base::unique_fd fd(open(CACHE_COMMAND_FILE, O_RDONLY));
+  android::base::unique_fd fd(open(CACHE_UPDATE_FILE, O_RDONLY));
   if (fd.get() == -1) {
-    *err = android::base::StringPrintf("failed to open %s: %s", CACHE_COMMAND_FILE,
+    *err = android::base::StringPrintf("failed to open %s: %s", CACHE_UPDATE_FILE,
                                        strerror(errno));
-      return false;
+    return false;
   }
   if (lseek(fd.get(), static_cast<off_t>(offset), SEEK_SET) != static_cast<off_t>(offset)) {
-    *err = android::base::StringPrintf("failed to lseek %s: %s", CACHE_COMMAND_FILE,
+    *err = android::base::StringPrintf("failed to lseek %s: %s", CACHE_UPDATE_FILE,
                                        strerror(errno));
-      return false;
+    return false;
   }
   if (!android::base::ReadFully(fd.get(), p, size)) {
-    *err = android::base::StringPrintf("failed to read %s: %s", CACHE_COMMAND_FILE,
+    *err = android::base::StringPrintf("failed to read %s: %s", CACHE_UPDATE_FILE,
                                        strerror(errno));
-      return false;
+    return false;
   }
   return true;
 }
 
 static bool write_cache_file(const void* p, size_t size, size_t offset, std::string* err) {
-  if (ensure_path_mounted(CACHE_COMMAND_FILE) != 0) {
-      LOGE("Can't mount %s\n", CACHE_COMMAND_FILE);
-      return false;
-  }
-  android::base::unique_fd fd(open(CACHE_COMMAND_FILE, O_WRONLY | O_CREAT | O_SYNC));
-  if (fd.get() == -1) {
-    *err = android::base::StringPrintf("failed to create %s: %s", CACHE_COMMAND_FILE,
-                                       strerror(errno));
-      return false;
-  }
+  android::base::unique_fd fd(open(CACHE_UPDATE_FILE, O_WRONLY | O_CREAT | O_SYNC));
   if (lseek(fd.get(), static_cast<off_t>(offset), SEEK_SET) != static_cast<off_t>(offset)) {
-    *err = android::base::StringPrintf("failed to lseek %s: %s", CACHE_COMMAND_FILE,
+    *err = android::base::StringPrintf("failed to lseek %s: %s", CACHE_UPDATE_FILE,
                                        strerror(errno));
-      return false;
+    return false;
   }
   if (!android::base::WriteFully(fd.get(), p, size)) {
-    *err = android::base::StringPrintf("failed to write %s: %s", CACHE_COMMAND_FILE,
+    *err = android::base::StringPrintf("failed to write %s: %s", CACHE_UPDATE_FILE,
                                        strerror(errno));
-      return false;
+    return false;
   }
+
   // TODO: O_SYNC and fsync duplicates each other?
   if (fsync(fd.get()) == -1) {
-    *err = android::base::StringPrintf("failed to fsync %s: %s", CACHE_COMMAND_FILE,
+    *err = android::base::StringPrintf("failed to fsync %s: %s", CACHE_UPDATE_FILE,
                                        strerror(errno));
-      return false;
+    return false;
   }
   return true;
 }
