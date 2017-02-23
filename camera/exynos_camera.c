@@ -486,6 +486,10 @@ void exynos_camera_get_supported_preview_size(struct exynos_camera *exynos_camer
 	int w;
 	int h;
 
+	bool use_fallback = true;
+	int fallback_width = 0;
+	int fallback_height = 0;
+
 	ALOGD("%s: Find supported preview-size for %d x %d", __func__, preview_width, preview_height);
 
 	k = exynos_param_string_get(exynos_camera, "preview-size-values");
@@ -494,12 +498,19 @@ void exynos_camera_get_supported_preview_size(struct exynos_camera *exynos_camer
 			break;
 
 		sscanf(k, "%dx%d", &w, &h);
+
+		if (fallback_width == 0)
+			fallback_width = w;
+		if (fallback_height == 0)
+			fallback_height = h;
+
 		ALOGD("%s: Find preview => %d x %d", __func__, w, h);
 		// Look for same aspect ratio, but with same width or lower
 		if (((preview_width * h) / preview_height == w) && (preview_width >= w)) {
 			ALOGD("%s: Found preview => %d x %d", __func__, w, h);
 			(*supported_preview_width) = w;
 			(*supported_preview_height) = h;
+			use_fallback = false;
 			break;
 		}
 
@@ -508,6 +519,13 @@ void exynos_camera_get_supported_preview_size(struct exynos_camera *exynos_camer
 			break;
 
 		k++;
+	}
+
+	if (use_fallback) {
+		ALOGE("%s: No supported preview-size found! Fallback to %d x %d", __func__, fallback_width, fallback_height);
+
+		(*supported_preview_width) = fallback_width;
+		(*supported_preview_height) = fallback_height;
 	}
 }
 
