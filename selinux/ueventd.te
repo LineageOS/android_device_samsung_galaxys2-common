@@ -1,2 +1,6 @@
 allow ueventd sensors_device:chr_file { relabelfrom relabelto };
 allow ueventd sysfs_display:file { open write };
+allow ueventd sysfs_bln:dir search;
+allow ueventd sysfs_bln:file { getattr open read write };
+allow ueventd sysfs_blnled:dir search;
+allow ueventd sysfs_blnled:file { getattr open read write };
