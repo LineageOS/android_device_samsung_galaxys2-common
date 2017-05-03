@@ -243,6 +243,37 @@ on post-fs-data
     write /sys/class/mdnie/mdnie/scenario 0
     write /sys/class/mdnie/mdnie/mode 1
 
+# Permissions for BLN
+    chown system media_rw /sys/devices/virtual/misc/backlightnotification/version
+    chown system media_rw /sys/devices/virtual/misc/backlightnotification/enabled
+    chown system media_rw /sys/devices/virtual/misc/backlightnotification/notification_led
+    chown system media_rw /sys/devices/virtual/misc/backlightnotification/blink_control
+
+# Permissions for BLN-LED
+    chown system media_rw /sys/devices/virtual/misc/notification/bl_timeout
+    chown system media_rw /sys/devices/virtual/misc/notification/blnww
+    chown system media_rw /sys/devices/virtual/misc/notification/breathing
+    chown system media_rw /sys/devices/virtual/misc/notification/breathing_steps
+    chown system media_rw /sys/devices/virtual/misc/notification/dyn_brightness
+    chown system media_rw /sys/devices/virtual/misc/notification/led
+    chown system media_rw /sys/devices/virtual/misc/notification/led_fadein
+    chown system media_rw /sys/devices/virtual/misc/notification/led_fadeout
+    chown system media_rw /sys/devices/virtual/misc/notification/led_on_touch
+    chown system media_rw /sys/devices/virtual/misc/notification/led_timeout_ms
+    chown system media_rw /sys/devices/virtual/misc/notification/notification_enabled
+    chown system media_rw /sys/devices/virtual/misc/notification/notification_timeout
+
+
+# BLN Default configuration
+    write /sys/devices/virtual/misc/notification/led_timeout_ms 4000
+    write /sys/devices/virtual/misc/notification/breathing_steps reset
+    write /sys/devices/virtual/misc/notification/breathing_steps "2500 3300 50 100"
+    write /sys/devices/virtual/misc/notification/breathing_steps "3300 2500 50 100"
+    write /sys/devices/virtual/misc/notification/breathing 1
+    write /sys/devices/virtual/misc/notification/led_fadein 1
+    write /sys/devices/virtual/misc/notification/led_fadeout 1
+    write /sys/devices/virtual/misc/notification/notification_enabled 1
+
 # Permissions for uart_sel and usb_sel
     chown system radio /sys/class/sec/switch/uart_sel/value
     chown system radio /sys/class/sec/switch/usb_sel
