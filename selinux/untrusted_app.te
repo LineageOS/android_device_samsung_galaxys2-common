@@ -1,0 +1,10 @@
+# Allow BLN control from apps
+allow untrusted_app sysfs_bln:dir { search getattr open read };
+allow untrusted_app sysfs_bln:file { getattr open read write };
+allow untrusted_app sysfs_bln:lnk_file read;
+
+allow untrusted_app sysfs_blnled:dir { search getattr open read };
+allow untrusted_app sysfs_blnled:file { getattr open read write };
+allow untrusted_app sysfs_blnled:lnk_file read;
+
+
