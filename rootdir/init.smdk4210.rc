@@ -272,6 +272,7 @@ on post-fs-data
     write /sys/devices/virtual/misc/notification/breathing 1
     write /sys/devices/virtual/misc/notification/led_fadein 1
     write /sys/devices/virtual/misc/notification/led_fadeout 1
+    write /sys/devices/virtual/misc/notification/dyn_brightness 1
     write /sys/devices/virtual/misc/notification/notification_enabled 1
 
 # Permissions for uart_sel and usb_sel
