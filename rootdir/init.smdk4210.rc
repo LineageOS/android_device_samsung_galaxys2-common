@@ -142,6 +142,18 @@ on post-fs-data
     chown system radio /sys/class/sec/sec_key/wakeup_keys 
     write /sys/class/sec/sec_key/wakeup_keys  102,116
 
+# Touchkey Fade-in/out
+    write /sys/class/sec/sec_touchkey/touchkey_fadein 1
+    write /sys/class/sec/sec_touchkey/touchkey_fadeout 1
+
+# Touchkey BLN
+    write /sys/devices/virtual/misc/backlightnotification/enabled 1
+    write /sys/devices/virtual/misc/backlightnotification/notification_timeout 90000
+    write /sys/devices/virtual/misc/backlightnotification/breathing 1
+    write /sys/devices/virtual/misc/backlightnotification/breathing_steps reset
+    write /sys/devices/virtual/misc/backlightnotification/breathing_steps "2500 3300 50 100"
+    write /sys/devices/virtual/misc/backlightnotification/breathing_steps "3300 2500 50 100"
+
 # Add permission for ATM. 2010.03.20
     chown system radio /sys/devices/platform/i2c-gpio.9/i2c-9/9-0036/power_supply/fuelgauge/fg_read_soc
     chown system radio /sys/devices/platform/i2c-gpio.9/i2c-9/9-0036/power_supply/fuelgauge/fg_reset_soc
