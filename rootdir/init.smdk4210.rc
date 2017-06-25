@@ -304,6 +304,10 @@ on post-fs-data
 # Touchkeys
     write /sys/devices/virtual/sec/sec_touchkey/touchkey_led_on_keypress 1
 
+# Enable LED-notification via BLN
+    write /sys/devices/virtual/misc/backlightnotification/enabled 1
+    write /sys/devices/virtual/misc/backlightnotification/led_blink_enabled 1
+
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     setprop wifi.interface wlan0
