@@ -529,6 +529,133 @@ void exynos_camera_get_supported_preview_size(struct exynos_camera *exynos_camer
 	}
 }
 
+int exynos_camera_params_set_scene_mode(struct exynos_camera *exynos_camera, int force)
+{
+	char *scene_mode_string;
+	int scene_mode;
+	char *focus_mode_string;
+	int rc = 0;
+
+	// Scene mode
+	scene_mode_string = exynos_param_string_get(exynos_camera, "scene-mode");
+	if (scene_mode_string != NULL) {
+		if (strcmp(scene_mode_string, "auto") == 0)
+			scene_mode = SCENE_MODE_NONE;
+		else if (strcmp(scene_mode_string, "portrait") == 0)
+			scene_mode = SCENE_MODE_PORTRAIT;
+		else if (strcmp(scene_mode_string, "landscape") == 0)
+			scene_mode = SCENE_MODE_LANDSCAPE;
+		else if (strcmp(scene_mode_string, "night") == 0)
+			scene_mode = SCENE_MODE_NIGHTSHOT;
+		else if (strcmp(scene_mode_string, "beach") == 0)
+			scene_mode = SCENE_MODE_BEACH_SNOW;
+		else if (strcmp(scene_mode_string, "snow") == 0)
+			scene_mode = SCENE_MODE_BEACH_SNOW;
+		else if (strcmp(scene_mode_string, "sunset") == 0)
+			scene_mode = SCENE_MODE_SUNSET;
+		else if (strcmp(scene_mode_string, "fireworks") == 0)
+			scene_mode = SCENE_MODE_FIREWORKS;
+		else if (strcmp(scene_mode_string, "action") == 0)
+			scene_mode = SCENE_MODE_SPORTS;
+		else if (strcmp(scene_mode_string, "party") == 0)
+			scene_mode = SCENE_MODE_PARTY_INDOOR;
+		else if (strcmp(scene_mode_string, "candlelight") == 0)
+			scene_mode = SCENE_MODE_CANDLE_LIGHT;
+		else if (strcmp(scene_mode_string, "dusk-dawn") == 0)
+			scene_mode = SCENE_MODE_DUSK_DAWN;
+		else if (strcmp(scene_mode_string, "fall-color") == 0)
+			scene_mode = SCENE_MODE_FALL_COLOR;
+		else if (strcmp(scene_mode_string, "back-light") == 0)
+			scene_mode = SCENE_MODE_BACK_LIGHT;
+		else if (strcmp(scene_mode_string, "text") == 0)
+			scene_mode = SCENE_MODE_TEXT;
+		else
+			scene_mode = SCENE_MODE_NONE;
+
+		if (scene_mode != exynos_camera->scene_mode || force) {
+			exynos_camera->scene_mode = scene_mode;
+
+			// Set focus-mode temporary to 'continuous' if not set
+			// This sets actually the camera in full automatic-mode
+			// (like exposure, focus and probably other things)
+			focus_mode_string = exynos_param_string_get(exynos_camera, "focus-mode");
+			if (strcmp(focus_mode_string, "continuous-video") != 0 &&
+				!exynos_camera->recording_enabled)
+				exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, FOCUS_MODE_CONTINOUS);
+
+			ALOGD("%s: scene-mode => %d %s", __func__, exynos_camera->scene_mode, scene_mode_string);
+			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SCENE_MODE, scene_mode);
+			if (rc < 0)
+				ALOGE("%s: s ctrl failed!", __func__);
+
+			// Restore focus-mode
+			if (strcmp(focus_mode_string, "continuous-video") != 0 &&
+				!exynos_camera->recording_enabled)
+				exynos_camera_params_set_focus_mode(exynos_camera, 1);
+		}
+	}
+	return rc;
+}
+
+int exynos_camera_params_set_focus_mode(struct exynos_camera *exynos_camera, int force)
+{
+	char *focus_mode_string;
+	int focus_mode = 0;
+	int rc = 0;
+
+	focus_mode_string = exynos_param_string_get(exynos_camera, "focus-mode");
+	if (focus_mode_string != NULL) {
+		if (focus_mode == 0) {
+			if (strcmp(focus_mode_string, "auto") == 0)
+				focus_mode = FOCUS_MODE_AUTO;
+			else if (strcmp(focus_mode_string, "infinity") == 0)
+				focus_mode = FOCUS_MODE_INFINITY;
+			else if (strcmp(focus_mode_string, "macro") == 0)
+				focus_mode = FOCUS_MODE_MACRO;
+			else if (strcmp(focus_mode_string, "fixed") == 0)
+				focus_mode = FOCUS_MODE_FIXED;
+			else if (strcmp(focus_mode_string, "facedetect") == 0)
+				focus_mode = FOCUS_MODE_FACEDETECT;
+			else if (strcmp(focus_mode_string, "continuous-video") == 0)
+				focus_mode = FOCUS_MODE_CONTINOUS;
+			else if (strcmp(focus_mode_string, "continuous-picture") == 0)
+				focus_mode = FOCUS_MODE_CONTINOUS;
+			else
+				focus_mode = FOCUS_MODE_AUTO;
+		}
+
+		if (focus_mode != exynos_camera->focus_mode || force) {
+			if (exynos_camera->recording_enabled) {
+				ALOGE("%s: Pausing recording", __func__);
+
+				//Stop recording the stream.
+				rc = exynos_v4l2_streamoff_cap(exynos_camera, 2);
+				if (rc < 0) {
+					ALOGE("%s: streamoff failed!", __func__);
+				}
+			}
+			ALOGD("%s: focus-mode (s_ctrl) => %d %s ", __func__, focus_mode, focus_mode_string);
+			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, focus_mode);
+			if (rc < 0) {
+				ALOGE("%s: s ctrl failed!", __func__);
+			} else {
+				exynos_camera->focus_mode = focus_mode;
+			}
+			if (exynos_camera->recording_enabled) {
+				ALOGE("%s: Resuming recording", __func__);
+				rc = exynos_v4l2_streamon_cap(exynos_camera, 2);
+				if (rc < 0) {
+					ALOGE("%s: streamon failed!", __func__);
+				} else {
+					// Force scene-mode
+					exynos_camera_params_set_scene_mode(exynos_camera, 1);
+				}
+			}
+		}
+	}
+
+	return rc;
+}
 int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 {
 	char *recording_hint_string;
@@ -562,7 +689,6 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 	int camera_sensor_output_size;
 
 	char *focus_mode_string;
-	int focus_mode = 0;
 	char *focus_areas_string;
 	int focus_left, focus_top, focus_right, focus_bottom, focus_weigth;
 	int focus_x;
@@ -580,9 +706,6 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 
 	char *whitebalance_string;
 	int whitebalance;
-
-	char *scene_mode_string;
-	int scene_mode;
 
 	char *effect_string;
 	int effect;
@@ -818,53 +941,7 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 	}
 
 	// Focus
-	focus_mode_string = exynos_param_string_get(exynos_camera, "focus-mode");
-	if (focus_mode_string != NULL) {
-		if (focus_mode == 0) {
-			if (strcmp(focus_mode_string, "auto") == 0)
-				focus_mode = FOCUS_MODE_AUTO;
-			else if (strcmp(focus_mode_string, "infinity") == 0)
-				focus_mode = FOCUS_MODE_INFINITY;
-			else if (strcmp(focus_mode_string, "macro") == 0)
-				focus_mode = FOCUS_MODE_MACRO;
-			else if (strcmp(focus_mode_string, "fixed") == 0)
-				focus_mode = FOCUS_MODE_FIXED;
-			else if (strcmp(focus_mode_string, "facedetect") == 0)
-				focus_mode = FOCUS_MODE_FACEDETECT;
-			else if (strcmp(focus_mode_string, "continuous-video") == 0)
-				focus_mode = FOCUS_MODE_CONTINOUS;
-			else if (strcmp(focus_mode_string, "continuous-picture") == 0)
-				focus_mode = FOCUS_MODE_CONTINOUS;
-			else
-				focus_mode = FOCUS_MODE_AUTO;
-		}
-
-		if (focus_mode != exynos_camera->focus_mode || force) {
-			if (exynos_camera->recording_enabled) {
-				ALOGE("%s: Pausing recording", __func__);
-
-				//Stop recording the stream.
-				rc = exynos_v4l2_streamoff_cap(exynos_camera, 2);
-				if (rc < 0) {
-					ALOGE("%s: streamoff failed!", __func__);
-				}
-			}
-			ALOGD("%s: focus-mode (s_ctrl) => %d %s ", __func__, focus_mode, focus_mode_string);
-			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, focus_mode);
-			if (rc < 0) {
-				ALOGE("%s: s ctrl failed!", __func__);
-			} else {
-				exynos_camera->focus_mode = focus_mode;
-			}
-			if (exynos_camera->recording_enabled) {
-				ALOGE("%s: Resuming recording", __func__);
-				rc = exynos_v4l2_streamon_cap(exynos_camera, 2);
-				if (rc < 0) {
-					ALOGE("%s: streamon failed!", __func__);
-				}
-			}
-		}
-	}
+	exynos_camera_params_set_focus_mode(exynos_camera, force);
 
 	focus_areas_string = exynos_param_string_get(exynos_camera, "focus-areas");
 	if (focus_areas_string != NULL) {
@@ -991,50 +1068,8 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera)
 		}
 	}
 
-	// Scene mode
-	scene_mode_string = exynos_param_string_get(exynos_camera, "scene-mode");
-	if (scene_mode_string != NULL) {
-		if (strcmp(scene_mode_string, "auto") == 0)
-			scene_mode = SCENE_MODE_NONE;
-		else if (strcmp(scene_mode_string, "portrait") == 0)
-			scene_mode = SCENE_MODE_PORTRAIT;
-		else if (strcmp(scene_mode_string, "landscape") == 0)
-			scene_mode = SCENE_MODE_LANDSCAPE;
-		else if (strcmp(scene_mode_string, "night") == 0)
-			scene_mode = SCENE_MODE_NIGHTSHOT;
-		else if (strcmp(scene_mode_string, "beach") == 0)
-			scene_mode = SCENE_MODE_BEACH_SNOW;
-		else if (strcmp(scene_mode_string, "snow") == 0)
-			scene_mode = SCENE_MODE_BEACH_SNOW;
-		else if (strcmp(scene_mode_string, "sunset") == 0)
-			scene_mode = SCENE_MODE_SUNSET;
-		else if (strcmp(scene_mode_string, "fireworks") == 0)
-			scene_mode = SCENE_MODE_FIREWORKS;
-		else if (strcmp(scene_mode_string, "action") == 0)
-			scene_mode = SCENE_MODE_SPORTS;
-		else if (strcmp(scene_mode_string, "party") == 0)
-			scene_mode = SCENE_MODE_PARTY_INDOOR;
-		else if (strcmp(scene_mode_string, "candlelight") == 0)
-			scene_mode = SCENE_MODE_CANDLE_LIGHT;
-		else if (strcmp(scene_mode_string, "dusk-dawn") == 0)
-			scene_mode = SCENE_MODE_DUSK_DAWN;
-		else if (strcmp(scene_mode_string, "fall-color") == 0)
-			scene_mode = SCENE_MODE_FALL_COLOR;
-		else if (strcmp(scene_mode_string, "back-light") == 0)
-			scene_mode = SCENE_MODE_BACK_LIGHT;
-		else if (strcmp(scene_mode_string, "text") == 0)
-			scene_mode = SCENE_MODE_TEXT;
-		else
-			scene_mode = SCENE_MODE_NONE;
-
-		if (scene_mode != exynos_camera->scene_mode || force) {
-			exynos_camera->scene_mode = scene_mode;
-			ALOGD("%s: scene-mode => %d %s", __func__, exynos_camera->scene_mode, scene_mode_string);
-			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_SCENE_MODE, scene_mode);
-			if (rc < 0)
-				ALOGE("%s: s ctrl failed!", __func__);
-		}
-	}
+	// Scene-mode
+	exynos_camera_params_set_scene_mode(exynos_camera, force);
 
 	// Effect
 	effect_string = exynos_param_string_get(exynos_camera, "effect");
@@ -1657,6 +1692,9 @@ int exynos_camera_picture_start(struct exynos_camera *exynos_camera)
 		return -1;
 	}
 
+	// Force scene-mode
+	exynos_camera_params_set_scene_mode(exynos_camera, 1);
+
 	rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_CAPTURE, 0);
 	if (rc < 0) {
 		ALOGE("%s: s ctrl failed!", __func__);
@@ -2235,6 +2273,9 @@ int exynos_camera_preview_start(struct exynos_camera *exynos_camera)
 		goto error;
 	}
 
+	// Force scene-mode
+	exynos_camera_params_set_scene_mode(exynos_camera, 1);
+
 	// Thread
 
 	pthread_mutex_init(&exynos_camera->preview_mutex, NULL);
@@ -2448,6 +2489,9 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
 	if (rc < 0) {
 		ALOGE("%s: streamon failed!", __func__);
 		goto error;
+	} else {
+		// Force scene-mode
+		exynos_camera_params_set_scene_mode(exynos_camera, 1);
 	}
 
 	pthread_mutex_init(&exynos_camera->recording_mutex, NULL);
