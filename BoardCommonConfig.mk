@@ -28,12 +28,12 @@ TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_CPU_VARIANT := cortex-a9
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
-EXYNOS4210_ENHANCEMENTS := true
+#EXYNOS4210_ENHANCEMENTS := true
 
-ifdef EXYNOS4210_ENHANCEMENTS
-BOARD_GLOBAL_CFLAGS += -DEXYNOS4_ENHANCEMENTS
-BOARD_GLOBAL_CFLAGS += -DEXYNOS4210_ENHANCEMENTS
-endif
+#ifdef EXYNOS4210_ENHANCEMENTS
+#BOARD_GLOBAL_CFLAGS += -DEXYNOS4_ENHANCEMENTS
+#BOARD_GLOBAL_CFLAGS += -DEXYNOS4210_ENHANCEMENTS
+#endif
 
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos4
@@ -110,9 +110,9 @@ BOARD_USE_TINYALSA_AUDIO := true
 BOARD_USE_YAMAHA_MC1N2_AUDIO := true
 
 # RIL
-BOARD_PROVIDES_LIBRIL := true
+#BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6260
-BOARD_RIL_CLASS := ../../../device/samsung/galaxys2-common/ril
+#BOARD_RIL_CLASS := ../../../device/samsung/galaxys2-common/ril
 BOARD_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 
 # Camera
@@ -138,7 +138,7 @@ BOARD_HAVE_SAMSUNG_BLUETOOTH := true
 BOARD_CUSTOM_BT_CONFIG := device/samsung/galaxys2-common/bluetooth/vnd_smdk4210.txt
 
 # Selinux
-BOARD_SEPOLICY_DIRS += device/samsung/galaxys2-common/selinux
+#BOARD_SEPOLICY_DIRS += device/samsung/galaxys2-common/selinux
 
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys2-common/recovery/recovery_keys.c

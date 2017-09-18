@@ -163,7 +163,7 @@
 
     <!-- Control whether a car dock event should override the default bluetooth
          audio routing, FORCE_BT_CAR_DOCK, with an analog dock, FORCE_ANALOG_DOCK. -->
-    <bool name="config_forceAnalogCarDock">true</bool>
+<!--    <bool name="config_forceAnalogCarDock">true</bool> -->
 
     <!-- Set this to true to enable the platform's auto-power-save modes like doze and
          app standby.  These are not enabled by default because they require a standard
@@ -175,7 +175,7 @@
     <bool name="config_enableAutoPowerModes">true</bool>
 
     <!-- Configuration to support SIM contact batch operation.-->
-    <bool name="config_sim_phonebook_batch_operation">false</bool>
+<!--    <bool name="config_sim_phonebook_batch_operation">false</bool>-->
 
     <!-- Screen brightness when dozing. -->
     <integer name="config_screenBrightnessDoze">17</integer>
@@ -185,5 +185,5 @@
     <bool name="config_dozeAfterScreenOff">true</bool>
 
     <!-- Use wakelock for flashlight -->
-    <bool name="config_useWakeLockForFlashlight">true</bool>
+<!--    <bool name="config_useWakeLockForFlashlight">true</bool>-->
 </resources>

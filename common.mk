@@ -66,8 +66,8 @@ PRODUCT_PACKAGES += \
     libsecril-shim
 
 # Legacy GPS
-PRODUCT_PACKAGES += \
-    gps.smdk4210
+#PRODUCT_PACKAGES += \
+#    gps.smdk4210
 
 # SamsungPowerHAL
 PRODUCT_PACKAGES += \
@@ -75,7 +75,7 @@ PRODUCT_PACKAGES += \
 
 # Audio Packages
 PRODUCT_PACKAGES += \
-    AdvancedDisplay \
+#    AdvancedDisplay \
     audio.primary.exynos4 \
     audio.a2dp.default \
     audio.r_submix.default \
@@ -144,8 +144,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     config.disable_atlas=true
 
-PRODUCT_PACKAGES += \
-    SamsungDoze
+#PRODUCT_PACKAGES += \
+#    SamsungDoze
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
