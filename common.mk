@@ -91,6 +91,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@2.0-impl \
     android.hardware.keymaster@3.0-impl \
     android.hardware.bluetooth@1.0-impl \
+    libbt-vendor \
     android.hardware.camera.provider@2.4-impl \
     camera.smdk4210 \
     gralloc.exynos4 \
