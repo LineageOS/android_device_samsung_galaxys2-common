@@ -71,10 +71,13 @@ PRODUCT_PACKAGES += \
 
 # SamsungPowerHAL
 PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl \
     power.smdk4210
 
 # Audio Packages
 PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
 #    AdvancedDisplay \
     audio.primary.exynos4 \
     audio.a2dp.default \
@@ -84,15 +87,23 @@ PRODUCT_PACKAGES += \
 
 # HAL
 PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.camera.provider@2.4-impl \
     camera.smdk4210 \
     gralloc.exynos4 \
     hwcomposer.exynos4 \
     libnetcmdiface \
+    android.hardware.light@2.0-impl \
     lights.smdk4210 \
     libhwconverter \
     libs5pjpeg \
     libfimg \
     libsecion
+
+# HIDL manifest
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxys2-common/manifest.xml:system/vendor/manifest.xml
 
 # Charger
 PRODUCT_PACKAGES += \
