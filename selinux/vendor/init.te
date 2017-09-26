@@ -23,5 +23,5 @@ allow init sysfs_io_sched:file { setattr w_file_perms };
 allow init sysfs_sec_key:file { setattr open write };
 allow init sysfs_sec_touchkey:file { setattr open write };
 allow init sysfs_mmc:file { open write setattr};
-
+allow init { domain -lmkd -crash_dump }:process noatsecure;
 domain_trans(init, rootfs, cpboot-daemon)
