@@ -70,6 +70,21 @@ on post-fs-data
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     chown wifi root /dev/rfkill
 
+    # for WIFI TRP/TIS
+    write /data/.psm.info 0
+    chown system root /data/.psm.info
+    chmod 0664 /data/.psm.info
+
+    # for WIFI Version
+    write /data/.wifiver.info 0
+    chown system root /data/.wifiver.info
+    chmod 0666 /data/.wifiver.info
+
+    # for WIFI MAC address
+    write /data/.mac.info 0
+    chown system root /data/.mac.info
+    chmod 0664 /data/.mac.info
+
     #Added drm folder to copy drm plugins
     mkdir /system/lib/drm 0775
     chown root root /system/lib/drm
@@ -312,6 +327,8 @@ on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     setprop wifi.interface wlan0
 
+# Wifi firmware reload path
+    chown wifi wifi /sys/module/dhd/parameters/firmware_path
 # permissions for NFC
     setprop ro.nfc.port "I2C"
     chmod 0600 /dev/pn544
