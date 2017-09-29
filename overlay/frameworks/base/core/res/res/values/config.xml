@@ -183,4 +183,7 @@
         <item>SUPL_PORT=7276</item>
         <item>SUPL_MODE=1</item>
    </string-array>
+
+    <!-- Keep chosen default camera app pinned in memory for faster launching -->
+    <bool name="config_pinnerCameraApp">true</bool>
 </resources>
