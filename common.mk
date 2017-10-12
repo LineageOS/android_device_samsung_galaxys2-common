@@ -88,6 +88,9 @@ PRODUCT_PACKAGES += \
 
 # HAL
 PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.graphics.mapper@2.0-impl \
     android.hardware.keymaster@3.0-impl \
     android.hardware.bluetooth@1.0-impl \
     libbt-vendor \
