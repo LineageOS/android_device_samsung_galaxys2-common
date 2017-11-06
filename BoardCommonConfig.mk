@@ -30,12 +30,6 @@ ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_NEEDS_EXYNOS4_ENHANCEMENTS := true
 TARGET_USES_GRALLOC1 := true
-#EXYNOS4210_ENHANCEMENTS := true
-
-#ifdef EXYNOS4210_ENHANCEMENTS
-#BOARD_GLOBAL_CFLAGS += -DEXYNOS4_ENHANCEMENTS
-#BOARD_GLOBAL_CFLAGS += -DEXYNOS4210_ENHANCEMENTS
-#endif
 
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos4
@@ -76,8 +70,8 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_RELEASETOOLS_EXTENSIONS := ./device/samsung/galaxys2-common
 
 # Hardware tunables
-BOARD_HARDWARE_CLASS := hardware/samsung/cmhw \
-    device/samsung/galaxys2-common/cmhw
+#BOARD_HARDWARE_CLASS := hardware/samsung/cmhw \
+#    device/samsung/galaxys2-common/cmhw
 
 # Graphics
 BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
@@ -112,9 +106,9 @@ BOARD_USE_TINYALSA_AUDIO := true
 BOARD_USE_YAMAHA_MC1N2_AUDIO := true
 
 # RIL
-#BOARD_PROVIDES_LIBRIL := true
+BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6260
-#BOARD_RIL_CLASS := ../../../device/samsung/galaxys2-common/ril
+BOARD_RIL_CLASS := ../../../device/samsung/galaxys2-common/ril
 BOARD_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 
 # Camera

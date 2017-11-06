@@ -66,8 +66,8 @@ PRODUCT_PACKAGES += \
     libsecril-shim
 
 # Legacy GPS
-#PRODUCT_PACKAGES += \
-#    gps.smdk4210
+PRODUCT_PACKAGES += \
+    gps.smdk4210
 
 # SamsungPowerHAL
 PRODUCT_PACKAGES += \
@@ -78,7 +78,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
     android.hardware.audio.effect@2.0-impl \
-#    AdvancedDisplay \
     audio.primary.exynos4 \
     audio.a2dp.default \
     audio.r_submix.default \
