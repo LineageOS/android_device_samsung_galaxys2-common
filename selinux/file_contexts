@@ -34,7 +34,7 @@
 /sys/devices/platform/bcm4330_bluetooth/rfkill/rfkill0/state     u:object_r:sysfs_bluetooth_writable:s0
 
 # GPS
-/dev/ttySAC1                                                     u:object_r:gps_device:s0
+#/dev/ttySAC1                                                     u:object_r:gps_device:s0
 
 # Sensors
 /dev/akm8975                                                     u:object_r:sensors_device:s0
