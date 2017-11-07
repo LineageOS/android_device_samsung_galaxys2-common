@@ -29,7 +29,8 @@ LOCAL_C_INCLUDES += \
 LOCAL_SHARED_LIBRARIES := \
 	libc \
 	libcutils \
-	libutils
+	libutils \
+        liblog
 
 LOCAL_PRELINK_MODULE := false
 LOCAL_MODULE_TAGS := optional

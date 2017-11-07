@@ -40,7 +40,8 @@ LOCAL_SHARED_LIBRARIES := \
 	libexpat \
 	libtinyalsa \
 	libaudioutils \
-	libdl
+	libdl \
+        liblog
 
 ifeq ($(strip $(BOARD_USE_YAMAHA_MC1N2_AUDIO)),true)
 	LOCAL_CFLAGS += -DYAMAHA_MC1N2_AUDIO -DYAMAHA_MC1N2_AUDIO_DEVICE=\"galaxys2\"
