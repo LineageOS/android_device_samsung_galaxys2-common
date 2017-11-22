@@ -3006,6 +3006,7 @@ int exynos_camera_close(hw_device_t *device)
 	camera_device = (struct camera_device *) device;
 
 	if (camera_device->priv != NULL) {
+		exynos_camera_deinit(camera_device->priv);
 		free(camera_device->priv);
 	}
 
