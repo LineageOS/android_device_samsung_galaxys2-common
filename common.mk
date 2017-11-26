@@ -71,7 +71,8 @@ PRODUCT_PACKAGES += \
 
 # SamsungPowerHAL
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-impl \
+    vendor.lineage.power@1.0-impl \
+    vendor.lineage.power@1.0-service \
     power.smdk4210
 
 # Audio Packages
