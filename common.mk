@@ -102,6 +102,10 @@ PRODUCT_PACKAGES += \
     libfimg \
     libsecion
 
+#Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
+
 #Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl-legacy \
