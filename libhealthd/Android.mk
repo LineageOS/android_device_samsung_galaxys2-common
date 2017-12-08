@@ -18,5 +18,6 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := healthd_board_exynos4.cpp
 LOCAL_MODULE := libhealthd.exynos4
-LOCAL_C_INCLUDES := system/core/healthd
+LOCAL_C_INCLUDES := system/core/healthd/include/healthd \
+    system/core/base/include
 include $(BUILD_STATIC_LIBRARY)
