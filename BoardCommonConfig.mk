@@ -56,7 +56,7 @@ TARGET_ALLOWS_INVALID_PTHREAD := true
 # Don't dex preopt apps to avoid I/O congestion due to paging larger sized
 # pre-compiled .odex files as opposed to background generated interpret-only
 # odex files.
-WITH_DEXPREOPT_BOOT_IMG_ONLY := true
+WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
 
 # Bionic
 TARGET_LD_SHIM_LIBS := \
