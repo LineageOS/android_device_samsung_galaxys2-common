@@ -254,3 +254,6 @@ $(call inherit-product, hardware/samsung/exynos4210.mk)
 
 # Include non-open-source parts
 $(call inherit-product, vendor/samsung/galaxys2-common/common-vendor.mk)
+
+# Include debugging props
+$(call inherit-product, device/samsung/galaxys2-common/system_prop_debug.mk)
