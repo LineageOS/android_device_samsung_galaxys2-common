@@ -53,6 +53,17 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_ALLOWS_INVALID_PTHREAD := true
 
+# Enable dex-preoptimization to speed up first boot sequence
+ifeq ($(HOST_OS),linux)
+  ifneq ($(TARGET_BUILD_VARIANT),eng)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+    endif
+  endif
+endif
+
+WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
+
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
