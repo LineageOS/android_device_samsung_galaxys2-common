@@ -1,5 +1,6 @@
 #include <android/api-level.h>
 #include "secril-shim.h"
+#include "secril-sap.h"
 
 extern "C" {
     extern uint32_t android_get_application_target_sdk_version();
@@ -722,11 +723,12 @@ const RIL_RadioFunctions* RIL_Init(const struct RIL_Env *env, int argc, char **a
 		}
 	}
 
-	origRilFunctions = origRilInit(&shimmedEnv, argc, argv);
+	origRilFunctions = origRilInit(GetEnv(&shimmedEnv), argc, argv);
 	if (CC_UNLIKELY(!origRilFunctions)) {
 		RLOGE("%s: the original RIL_Init derped.\n", __FUNCTION__);
 		goto fail_after_dlopen;
 	}
+	SetRadioFunctions(origRilFunctions);
 
 	/* Shim functions as needed. */
 	shimmedFunctions = *origRilFunctions;
