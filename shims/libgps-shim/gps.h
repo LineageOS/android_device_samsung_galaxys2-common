@@ -15,9 +15,45 @@
  */
 #include <hardware/gps.h>
 
+/**
+ * Legacy struct to represents SV information.
+ * Deprecated, to be removed in the next Android release.
+ * Use GnssSvInfo instead.
+ */
 typedef struct {
-    /** set to sizeof(GpsCallbacks_Legacy) */
-    size_t      size;
+    /** set to sizeof(GpsSvInfo) */
+    size_t          size;
+    /** Pseudo-random number for the SV. */
+    int     prn;
+    /** Signal to noise ratio. */
+    float   snr;
+    /** Elevation of SV in degrees. */
+    float   elevation;
+    /** Azimuth of SV in degrees. */
+    float   azimuth;
+    /** Unknown field in Samsung I9100 libgps
+        May be an indicator for constellation type
+        (GPS, GLONASS, Galileo)?
+        Used on GT-I9100, likely also present on GT-N7000,
+        SGH-I717, SGH-I727 but this needs confirmation.
+    */
+    int vendor;
+} GpsSvInfo_vendor;
+
+typedef struct {
+    /** set to sizeof(GpsSvStatus) */
+    size_t size;
+    int num_svs;
+    GpsSvInfo_vendor sv_list[GPS_MAX_SVS];
+    uint32_t ephemeris_mask;
+    uint32_t almanac_mask;
+    uint32_t used_in_fix_mask;
+} GpsSvStatus_vendor;
+
+
+typedef struct {
+    /** set to sizeof(GpsCallbacks_vendor) */
+    size_t size;
     gps_location_callback location_cb;
     gps_status_callback status_cb;
     gps_sv_status_callback sv_status_cb;
@@ -27,12 +63,7 @@ typedef struct {
     gps_release_wakelock release_wakelock_cb;
     gps_create_thread create_thread_cb;
     gps_request_utc_time request_utc_time_cb;
-#if 0 //Introduced since N, but causes failure in init.
-    gnss_set_system_info set_system_info_cb;
-    gnss_sv_status_callback gnss_sv_status_cb;
-#endif
-
-} GpsCallbacks_Legacy;
+} GpsCallbacks_vendor;
 
 /* CellID for 2G, 3G and LTE, used in AGPS. */
 typedef struct {
@@ -46,26 +77,18 @@ typedef struct {
      * might rely in the old (wrong) behavior.
      */
     uint16_t lac;
-#ifdef AGPS_USE_PSC
     uint16_t psc;
-#endif
     /** Cell id in 2G. Utran Cell id in 3G. Cell Global Id EUTRA in LTE. */
     uint32_t cid;
-#if 0 // introduced in N.
-    /** Tracking Area Code in LTE. */
-    uint16_t tac;
-    /** Physical Cell id in LTE (not used in 2G and 3G) */
-    uint16_t pcid;
-#endif
-} AGpsRefLocationCellIDNoLTE;
+} AGpsRefLocationCellID_vendor;
 
 /** Represents ref locations */
 typedef struct {
     AGpsRefLocationType type;
     union {
-        AGpsRefLocationCellIDNoLTE	cellID;
-		AGpsRefLocationMac			mac;
+        AGpsRefLocationCellID_vendor	cellID;
+	AGpsRefLocationMac		mac;
     } u;
-} AGpsRefLocationNoLTE;
+} AGpsRefLocation_vendor;
 
 

@@ -30,11 +30,109 @@
 const GpsInterface* (*vendor_get_gps_interface)(struct gps_device_t* dev);
 const void* (*vendor_get_extension)(const char* name);
 int (*vendor_init)(GpsCallbacks* gpsCallbacks);
-void (*vendor_set_ref_location)(const AGpsRefLocationNoLTE *agps_reflocation, size_t sz_struct);
+void (*vendor_set_ref_location)(const AGpsRefLocation_vendor *agps_reflocation, size_t sz_struct);
+
+GpsCallbacks *orgGpsCallbacks = NULL;
+static GpsSvStatus gpsSvStatus_info;
+
+static void log_location_vendor(char* func, GpsLocation* location) {
+    ALOGD("%s: size=%3d flags=%x latitude=%f speed=%f bearing=%f accuracy=%f timestamp:%lu",
+        func,
+        location->size,
+        location->flags,
+        location->latitude,
+        location->altitude,
+        location->speed,
+        location->bearing,
+        location->accuracy,
+        location->timestamp);
+}
+
+static void log_sv_info_vendor(char* func, GpsSvStatus_vendor* sv_info) {
+    ALOGD("%s: size=%d num_svs=%d ephemeris_mask=%x almanac_mask=%x used_in_fix_mask=%x",
+       func,
+       sv_info->size,
+       sv_info->num_svs,
+       sv_info->ephemeris_mask,
+       sv_info->almanac_mask,
+       sv_info->used_in_fix_mask);
+    for (int index = 0; index < sv_info->num_svs; index++) {
+        ALOGD("%s:   svinfo[%d] - size=%3d prn=%3d snr=%3.1f elevation=%3.1f azimuth=%3.1f vendor=%3d",
+            func,
+            index,
+            sv_info->sv_list[index].size,
+            sv_info->sv_list[index].prn,
+            sv_info->sv_list[index].snr,
+            sv_info->sv_list[index].elevation,
+            sv_info->sv_list[index].azimuth,
+            sv_info->sv_list[index].vendor);
+    }
+}
+
+static void log_gpsStatus_vendor(char* func, GpsStatus* status) {
+    ALOGD("%s: size=%3d status=%3d", func, status->size, status->status);
+}
+
+static void copy_sv_info_from_vendor(GpsSvStatus_vendor source, GpsSvStatus* target) {
+    target->size = source.size;
+    target->num_svs = source.num_svs;
+    target->ephemeris_mask = source.ephemeris_mask;
+    target->almanac_mask = source.almanac_mask;
+    target->used_in_fix_mask = source.used_in_fix_mask;
+    for (int index = 0; index < source.num_svs; index++) {
+	target->sv_list[index].size = source.sv_list[index].size;
+        target->sv_list[index].prn = source.sv_list[index].prn;
+        target->sv_list[index].snr = source.sv_list[index].snr;
+        target->sv_list[index].elevation = source.sv_list[index].elevation;
+        target->sv_list[index].azimuth = source.sv_list[index].azimuth;
+    }
+}
+
+static void shim_location_cb(GpsLocation* location) {
+    log_location_vendor(__func__, location);
+    orgGpsCallbacks->location_cb(location);
+}
+
+static void shim_status_cb(GpsStatus* status) {
+    log_gpsStatus_vendor(__func__, status);
+    orgGpsCallbacks->sv_status_cb(status);
+}
+
+static void shim_sv_status_cb(GpsSvStatus* sv_info) {
+    GpsSvStatus_vendor* gpsSvStatus_vendor_info = (GpsSvStatus_vendor*)sv_info;
+    log_sv_info_vendor(__func__, gpsSvStatus_vendor_info);
+    copy_sv_info_from_vendor(*gpsSvStatus_vendor_info, &gpsSvStatus_info);
+    orgGpsCallbacks->sv_status_cb(&gpsSvStatus_info);
+}
+
+static void shim_nmea_cb(GpsUtcTime timestamp, const char* nmea, int length) {
+    orgGpsCallbacks->nmea_cb(timestamp, nmea, length);
+}
+
+static void shim_set_capabilities_cb(uint32_t capabilities) {
+    ALOGD("%s: capabilities=%d", __func__, capabilities);
+    orgGpsCallbacks->set_capabilities_cb(capabilities);
+}
+
+static void shim_acquire_wakelock_cb() {
+    orgGpsCallbacks->acquire_wakelock_cb();
+}
+
+static void shim_release_wakelock_cb() {
+    orgGpsCallbacks->release_wakelock_cb();
+}
+
+static pthread_t shim_create_thread_cb(const char* name, void (*start)(void *), void* arg) {
+    return orgGpsCallbacks->create_thread_cb(name, start, arg);
+}
+
+static void shim_request_utc_time_cb() {
+    orgGpsCallbacks->request_utc_time_cb();
+}
 
 void shim_set_ref_location(AGpsRefLocation *agps_reflocation, size_t sz_struct) {
-	AGpsRefLocationNoLTE vendor_ref;
-	if (sizeof(AGpsRefLocationNoLTE) > sz_struct) {
+	AGpsRefLocation_vendor vendor_ref;
+	if (sizeof(AGpsRefLocation_vendor) > sz_struct) {
 		ALOGE("%s: AGpsRefLocation is too small, bailing out!", __func__);
 		return;
 	}
@@ -44,19 +142,17 @@ void shim_set_ref_location(AGpsRefLocation *agps_reflocation, size_t sz_struct) 
 	vendor_ref.u.cellID.mcc = agps_reflocation->u.cellID.mcc;
 	vendor_ref.u.cellID.mnc = agps_reflocation->u.cellID.mnc;
 	vendor_ref.u.cellID.lac = agps_reflocation->u.cellID.lac;
-	vendor_ref.u.cellID.psc = agps_reflocation->u.cellID.psc;
 	vendor_ref.u.cellID.cid = agps_reflocation->u.cellID.cid;
 	vendor_ref.u.mac = agps_reflocation->u.mac;
-	ALOGD("%s: Size of AGpsRefLocation              : %d", __func__, sizeof(AGpsRefLocation));
-	ALOGD("%s: Size of vendor's AGpsRefLocationNoLTE: %d", __func__, sizeof(AGpsRefLocationNoLTE));
+	ALOGD("%s: Size of AGpsRefLocation       : %d", __func__, sizeof(AGpsRefLocation));
+	ALOGD("%s: Size of AGpsRefLocation_vendor: %d", __func__, sizeof(AGpsRefLocation_vendor));
 
-	vendor_set_ref_location(&vendor_ref, sizeof(AGpsRefLocationNoLTE));
+	vendor_set_ref_location(&vendor_ref, sizeof(AGpsRefLocation_vendor));
 	ALOGD("%s: Executed vendor's set_ref_location with following parameters:", __func__);
 	ALOGD("%s: type          : %d => %d", __func__, agps_reflocation->type, vendor_ref.type);
 	ALOGD("%s: cellID.u.type : %d => %d", __func__, agps_reflocation->u.cellID.type, vendor_ref.u.cellID.type);
 	ALOGD("%s: cellID.u.mcc  : %d => %d", __func__, agps_reflocation->u.cellID.mcc, vendor_ref.u.cellID.mcc);
 	ALOGD("%s: cellID.u.mnc  : %d => %d", __func__, agps_reflocation->u.cellID.mnc, vendor_ref.u.cellID.mnc);
-	ALOGD("%s: cellID.u.psc  : %d => %d", __func__, agps_reflocation->u.cellID.psc, vendor_ref.u.cellID.psc);
 	ALOGD("%s: cellID.u.cid  : %d => %d", __func__, agps_reflocation->u.cellID.cid, vendor_ref.u.cellID.cid);
 	ALOGD("%s: cellID.u.tac  : %d => NOT SUPPORTED", __func__, agps_reflocation->u.cellID.tac);
 	ALOGD("%s: cellID.u.pcid : %d => NOT SUPPORTED", __func__, agps_reflocation->u.cellID.pcid);
@@ -67,7 +163,6 @@ void shim_set_ref_location(AGpsRefLocation *agps_reflocation, size_t sz_struct) 
 	agps_reflocation->u.cellID.mcc = vendor_ref.u.cellID.mcc;
 	agps_reflocation->u.cellID.mnc = vendor_ref.u.cellID.mnc;
 	agps_reflocation->u.cellID.lac = vendor_ref.u.cellID.lac;
-	agps_reflocation->u.cellID.psc = vendor_ref.u.cellID.psc;
 	agps_reflocation->u.cellID.cid = vendor_ref.u.cellID.cid;
 	agps_reflocation->u.mac = vendor_ref.u.mac;
 }
@@ -89,17 +184,18 @@ const void* shim_get_extension(const char* name) {
 
 int shim_init (GpsCallbacks* gpsCallbacks) {
 	ALOGD("%s: shimming GpsCallbacks", __func__);
-	GpsCallbacks_Legacy vendor_gpsCallbacks;
-	vendor_gpsCallbacks.size = sizeof(GpsCallbacks_Legacy);
-	vendor_gpsCallbacks.location_cb = gpsCallbacks->location_cb;
-	vendor_gpsCallbacks.status_cb = gpsCallbacks->status_cb;
-	vendor_gpsCallbacks.sv_status_cb = gpsCallbacks->sv_status_cb;
-	vendor_gpsCallbacks.nmea_cb = gpsCallbacks->nmea_cb;
-	vendor_gpsCallbacks.set_capabilities_cb = gpsCallbacks->set_capabilities_cb;
-	vendor_gpsCallbacks.acquire_wakelock_cb = gpsCallbacks->acquire_wakelock_cb;
-	vendor_gpsCallbacks.release_wakelock_cb = gpsCallbacks->release_wakelock_cb;
-	vendor_gpsCallbacks.create_thread_cb = gpsCallbacks->create_thread_cb;
-	vendor_gpsCallbacks.request_utc_time_cb = gpsCallbacks->request_utc_time_cb;
+        orgGpsCallbacks = gpsCallbacks;
+        GpsCallbacks_vendor vendor_gpsCallbacks;
+	vendor_gpsCallbacks.size = sizeof(GpsCallbacks_vendor);
+	vendor_gpsCallbacks.location_cb = shim_location_cb;
+	vendor_gpsCallbacks.status_cb = shim_status_cb;
+	vendor_gpsCallbacks.sv_status_cb = shim_sv_status_cb;
+	vendor_gpsCallbacks.nmea_cb = shim_nmea_cb;
+	vendor_gpsCallbacks.set_capabilities_cb = shim_set_capabilities_cb;
+	vendor_gpsCallbacks.acquire_wakelock_cb = shim_acquire_wakelock_cb;
+	vendor_gpsCallbacks.release_wakelock_cb = shim_release_wakelock_cb;
+	vendor_gpsCallbacks.create_thread_cb = shim_create_thread_cb;
+	vendor_gpsCallbacks.request_utc_time_cb = shim_request_utc_time_cb;
 
 	ALOGD("%s: Calling vendor init", __func__);
 	return vendor_init(&vendor_gpsCallbacks);
