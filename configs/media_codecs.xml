@@ -83,5 +83,10 @@ Only the three quirks included above are recognized at this point:
         <MediaCodec name="OMX.SEC.H263.Decoder" type="video/3gpp" />
         <MediaCodec name="OMX.SEC.AVC.Decoder" type="video/avc" />
     </Decoders>
+    <Encoders>
+        <MediaCodec name="OMX.SEC.MPEG4.Encoder" type="video/mp4v-es" />
+        <MediaCodec name="OMX.SEC.H263.Encoder" type="video/3gpp" />
+        <MediaCodec name="OMX.SEC.AVC.Encoder" type="video/avc" />
+    </Encoders>
     <Include href="media_codecs_google_video.xml" />
 </MediaCodecs>
