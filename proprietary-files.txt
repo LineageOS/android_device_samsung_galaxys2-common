@@ -15,6 +15,7 @@ system/etc/wifi/nvram_net.txt_murata
 system/lib/egl/libEGL_mali.so
 system/lib/egl/libGLESv1_CM_mali.so
 system/lib/egl/libGLESv2_mali.so
+system/lib/libC.so
 system/lib/libMali.so
 system/lib/libfactoryutil.so
 system/lib/libomission_avoidance.so
