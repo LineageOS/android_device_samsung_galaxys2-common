@@ -27,14 +27,11 @@
 #include <sys/cdefs.h>
 #include <utils/Log.h>
 #include <sys/stat.h>
-
-#include "secril-sap.h"
-
 #define REAL_RIL_NAME				"/system/lib/libsec-ril.so"
 
 
-RIL_RadioFunctions const *mRealRadioFuncs;
-const struct RIL_Env *mEnv;
+static RIL_RadioFunctions const *mRealRadioFuncs;
+static const struct RIL_Env *mEnv;
 
 static void rilOnRequest(int request, void *data, size_t datalen, RIL_Token t)
 {
@@ -118,13 +115,11 @@ const RIL_RadioFunctions* RIL_Init(const struct RIL_Env *env, int argc, char **a
 	patchMem(realRilLibHandle);
 
 	//try to init the real ril
-	mRealRadioFuncs = fRealRilInit(GetEnv(env), argc, argv);
+	mRealRadioFuncs = fRealRilInit(env, argc, argv);
 	if (!mRealRadioFuncs) {
 		RLOGE("The real RIL's entry point failed\n");
 		goto out_fail;
 	}
-
-	SetRadioFunctions(mRealRadioFuncs);
 
 	//copy the real RIL's info struct, then replace the onRequest pointer with our own
 	rilInfo = *mRealRadioFuncs;
