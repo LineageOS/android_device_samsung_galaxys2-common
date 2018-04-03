@@ -42,8 +42,8 @@ on charger
 on post-fs-data
 # insmod kernel modules
     insmod /system/lib/modules/j4fs.ko
-    insmod /system/lib/modules/Si4709_driver.ko
-    
+    insmod /vendor/lib/modules/Si4709_driver.ko
+
 # mount param.lfs
     mount j4fs /dev/block/mmcblk0p4 /mnt/.lfs
 
