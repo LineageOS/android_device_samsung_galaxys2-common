@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include "gps.h"
-#define REAL_GPS_PATH "/system/lib/hw/gps.exynos4.vendor.so"
+#define REAL_GPS_PATH "system/vendor/lib/hw/gps.exynos4.vendor.so"
 
 const GpsInterface* (*vendor_get_gps_interface)(struct gps_device_t* dev);
 const void* (*vendor_get_extension)(const char* name);
