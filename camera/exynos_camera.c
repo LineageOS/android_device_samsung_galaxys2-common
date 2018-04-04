@@ -165,6 +165,10 @@ struct exynos_camera_preset exynos_camera_presets_galaxys2[] = {
                         .touch_af_aec = "touch-off",
 
 			.zoom_supported = 0,
+			.smooth_zoom_supported = 0,
+			.zoom_ratios = "100",
+			.zoom = 0,
+			.max_zoom = 0,
 
 			.flash_mode = NULL,
 			.flash_mode_values = NULL,
@@ -408,21 +412,14 @@ int exynos_camera_params_init(struct exynos_camera *exynos_camera, int id)
 		exynos_camera->config->presets[id].params.touch_af_aec);
 
 	// Zoom
-	if (exynos_camera->config->presets[id].params.zoom_supported == 1) {
-		exynos_param_string_set(exynos_camera, "zoom-supported", "true");
-
-		if (exynos_camera->config->presets[id].params.smooth_zoom_supported == 1)
-			exynos_param_string_set(exynos_camera, "smooth-zoom-supported", "true");
-
-		if (exynos_camera->config->presets[id].params.zoom_ratios != NULL)
-			exynos_param_string_set(exynos_camera, "zoom-ratios", exynos_camera->config->presets[id].params.zoom_ratios);
-
-		exynos_param_int_set(exynos_camera, "zoom", exynos_camera->config->presets[id].params.zoom);
-		exynos_param_int_set(exynos_camera, "max-zoom", exynos_camera->config->presets[id].params.max_zoom);
-
-	} else {
-		exynos_param_string_set(exynos_camera, "zoom-supported", "false");
-	}
+	exynos_param_string_set(exynos_camera, "zoom-supported",
+		exynos_camera->config->presets[id].params.zoom_supported == 1 ? "true" : "false");
+	exynos_param_string_set(exynos_camera, "smooth-zoom-supported",
+		exynos_camera->config->presets[id].params.smooth_zoom_supported == 1 ? "true": "false");
+	exynos_param_string_set(exynos_camera, "zoom-ratios",
+		exynos_camera->config->presets[id].params.zoom_ratios);
+	exynos_param_int_set(exynos_camera, "zoom", exynos_camera->config->presets[id].params.zoom);
+	exynos_param_int_set(exynos_camera, "max-zoom", exynos_camera->config->presets[id].params.max_zoom);
 
 	// Flash
 	exynos_param_string_set(exynos_camera, "flash-mode",
