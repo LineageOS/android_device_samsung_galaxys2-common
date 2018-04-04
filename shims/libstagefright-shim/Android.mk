@@ -46,8 +46,9 @@ LOCAL_SHARED_LIBRARIES := \
     libui \
     libutils
 
-LOCAL_MODULE := libstagefright_shim
+LOCAL_MODULE := libstagefright-shim
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_VENDOR_MODULE := true
 
 include $(BUILD_SHARED_LIBRARY)
