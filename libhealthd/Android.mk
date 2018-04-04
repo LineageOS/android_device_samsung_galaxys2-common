@@ -20,4 +20,5 @@ LOCAL_SRC_FILES := healthd_board_exynos4.cpp
 LOCAL_MODULE := libhealthd.exynos4
 LOCAL_C_INCLUDES := system/core/healthd/include/healthd \
     system/core/base/include
+LOCAL_VENDOR_MODULE := true
 include $(BUILD_STATIC_LIBRARY)
