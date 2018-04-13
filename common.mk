@@ -72,9 +72,7 @@ PRODUCT_PACKAGES += \
 
 # SamsungPowerHAL
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-impl \
-    android.hardware.power@1.0-service \
-    power.smdk4210
+    android.hardware.power@1.0-service.exynos4
 
 # Audio Packages
 PRODUCT_PACKAGES += \

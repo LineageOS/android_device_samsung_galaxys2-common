@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #define GOVERNOR_PATH "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
 
 #define GOV_PERFORMANCE      "performance"
@@ -211,3 +210,5 @@ static power_profile profiles_low_power[PROFILE_MAX] = {
         .launch_boost_time = 0,
     },
 };
+
+

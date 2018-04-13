@@ -32,8 +32,8 @@
 #include <unistd.h>
 
 #define LOG_NDEBUG 0
-#define DEBUG 0
-#include <utils/Log.h>
+#define DEBUG 1
+#include <log/log.h>
 
 #include "power.h"
 
@@ -43,8 +43,6 @@
 
 #define US_TO_NS (1000L)
 
-static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
-
 static int current_power_profile = -1;
 static bool is_low_power = false;
 static bool is_vsync_active = false;
@@ -52,7 +50,7 @@ static bool is_vsync_active = false;
 /**********************************************************
  *** HELPER FUNCTIONS
  **********************************************************/
-
+/*
 static int sysfs_read(char *path, char *s, int num_bytes)
 {
     char errno_str[64];
@@ -82,6 +80,7 @@ static int sysfs_read(char *path, char *s, int num_bytes)
 
     return ret;
 }
+*/
 
 static void sysfs_write(const char *path, char *s)
 {
@@ -313,7 +312,7 @@ static void set_power(bool low_power) {
  * called only by the Power HAL instance loaded by
  * PowerManagerService.
  */
-static void power_init(__attribute__((unused)) struct power_module *module) {
+void power_init(void) {
     set_power_profile(PROFILE_BALANCED);
     if (DEBUG) ALOGV("%s", __func__);
 }
@@ -341,7 +340,7 @@ static void power_init(__attribute__((unused)) struct power_module *module) {
  * screen (if present), and called to enter interactive state prior to turning
  * on the screen.
  */
-static void power_set_interactive(__attribute__((unused)) struct power_module *module, int on) {
+void power_set_interactive(int on) {
     if (!is_profile_valid(current_power_profile)) {
         ALOGD("%s: no power profile selected", __func__);
         return;
@@ -349,9 +348,7 @@ static void power_set_interactive(__attribute__((unused)) struct power_module *m
 
     if (!check_governor_pegasusq()) return;
     if (DEBUG) ALOGV("%s: setting interactive => %d", __func__, on);
-    pthread_mutex_lock(&lock);
     set_power(!on);
-    pthread_mutex_unlock(&lock);
 }
 
 /*
@@ -390,23 +387,20 @@ static void power_set_interactive(__attribute__((unused)) struct power_module *m
  *     be boosted for a specific duration. The data parameter is an
  *     integer value of the boost duration in microseconds.
  */
-static void power_hint(__attribute__((unused)) struct power_module *module, power_hint_t hint, void *data) {
+void power_hint(power_hint_t hint, void *data) {
     int32_t val;
 
     if (hint == POWER_HINT_SET_PROFILE) {
         if (DEBUG) ALOGV("%s: set profile %d", __func__, *(int32_t *)data);
-        pthread_mutex_lock(&lock);
         if (is_vsync_active) {
             is_vsync_active = false;
             end_boost();
         }
         set_power_profile(*(int32_t *)data);
-        pthread_mutex_unlock(&lock);
+
     }
 
     if (current_power_profile == PROFILE_POWER_SAVE) return;
-
-    pthread_mutex_lock(&lock);
 
     switch (hint) {
         case POWER_HINT_INTERACTION:
@@ -431,75 +425,4 @@ static void power_hint(__attribute__((unused)) struct power_module *module, powe
         default:
             break;
     }
-
-    pthread_mutex_unlock(&lock);
 }
-
-/*
- * (*getFeature) is called to get the current value of a particular
- * feature or capability from the hardware or PowerHAL
- */
-static int power_get_feature(__attribute__((unused)) struct power_module *module, feature_t feature) {
-    if (DEBUG) ALOGV("%s: %d", __func__, feature);
-    if (feature == POWER_FEATURE_SUPPORTED_PROFILES) {
-        return PROFILE_MAX;
-    }
-    if (DEBUG) ALOGV("%s: unknown feature %d", __func__, feature);
-    return -1;
-}
-
-static int power_device_open(const hw_module_t* module, const char* name,
-        hw_device_t** device);
-
-static struct hw_module_methods_t power_module_methods = {
-    .open = power_device_open
-};
-
-static int power_device_open(const hw_module_t* module, const char* name,
-        hw_device_t** device)
-{
-    int status = -EINVAL;
-    if (module && name && device) {
-        if (!strcmp(name, POWER_HARDWARE_MODULE_ID)) {
-            power_module_t *dev = (power_module_t *)malloc(sizeof(*dev));
-            memset(dev, 0, sizeof(*dev));
-
-            if(dev) {
-                /* initialize the fields */
-                dev->common.module_api_version = POWER_MODULE_API_VERSION_0_2;
-                dev->common.tag = HARDWARE_DEVICE_TAG;
-                dev->init = power_init;
-                dev->powerHint = power_hint;
-                dev->setInteractive = power_set_interactive;
-                /* At the moment we support 0.2 APIs */
-                dev->setFeature = NULL,
-                dev->get_number_of_platform_modes = NULL,
-                dev->get_platform_low_power_stats = NULL,
-                dev->get_voter_list = NULL,
-                *device = (hw_device_t*)dev;
-                status = 0;
-            } else {
-                status = -ENOMEM;
-            }
-        }
-    }
-
-    return status;
-}
-
-struct power_module HAL_MODULE_INFO_SYM = {
-    .common = {
-        .tag = HARDWARE_MODULE_TAG,
-        .module_api_version = POWER_MODULE_API_VERSION_0_2,
-        .hal_api_version = HARDWARE_HAL_API_VERSION,
-        .id = POWER_HARDWARE_MODULE_ID,
-        .name = "smdk4210 Power HAL",
-        .author = "The CyanogenMod Project",
-        .methods = &power_module_methods,
-    },
-
-    .init = power_init,
-    .setInteractive = power_set_interactive,
-    .powerHint = power_hint,
-    .getFeature = power_get_feature
-};
