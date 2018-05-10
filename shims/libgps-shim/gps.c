@@ -137,26 +137,25 @@ void shim_set_ref_location(AGpsRefLocation *agps_reflocation, size_t sz_struct) 
 		return;
 	}
 	ALOGD("%s: shimming AGpsRefLocation", __func__);
+	ALOGD("%s: AGpsRefLocation (%d) | AGpsRefLocation_vendor(%d)", __func__, sizeof(AGpsRefLocation), sizeof(AGpsRefLocation_vendor));
 	vendor_ref.type = agps_reflocation->type;
 	vendor_ref.u.cellID.type = agps_reflocation->u.cellID.type;
 	vendor_ref.u.cellID.mcc = agps_reflocation->u.cellID.mcc;
 	vendor_ref.u.cellID.mnc = agps_reflocation->u.cellID.mnc;
 	vendor_ref.u.cellID.lac = agps_reflocation->u.cellID.lac;
+	vendor_ref.u.cellID.psc = 65535;
 	vendor_ref.u.cellID.cid = agps_reflocation->u.cellID.cid;
 	vendor_ref.u.mac = agps_reflocation->u.mac;
-	ALOGD("%s: Size of AGpsRefLocation       : %d", __func__, sizeof(AGpsRefLocation));
-	ALOGD("%s: Size of AGpsRefLocation_vendor: %d", __func__, sizeof(AGpsRefLocation_vendor));
-
+	ALOGD("%s: Executing vendor_set_ref_location= > type:%d mcc:%d mnc:%d lac:%d psc:%d cid:%d mac:%d",
+		__func__,
+		vendor_ref.u.cellID.type,
+		vendor_ref.u.cellID.mcc,
+		vendor_ref.u.cellID.mnc,
+		vendor_ref.u.cellID.lac,
+		vendor_ref.u.cellID.psc,
+		vendor_ref.u.cellID.cid,
+		vendor_ref.u.mac);
 	vendor_set_ref_location(&vendor_ref, sizeof(AGpsRefLocation_vendor));
-	ALOGD("%s: Executed vendor's set_ref_location with following parameters:", __func__);
-	ALOGD("%s: type          : %d => %d", __func__, agps_reflocation->type, vendor_ref.type);
-	ALOGD("%s: cellID.u.type : %d => %d", __func__, agps_reflocation->u.cellID.type, vendor_ref.u.cellID.type);
-	ALOGD("%s: cellID.u.mcc  : %d => %d", __func__, agps_reflocation->u.cellID.mcc, vendor_ref.u.cellID.mcc);
-	ALOGD("%s: cellID.u.mnc  : %d => %d", __func__, agps_reflocation->u.cellID.mnc, vendor_ref.u.cellID.mnc);
-	ALOGD("%s: cellID.u.cid  : %d => %d", __func__, agps_reflocation->u.cellID.cid, vendor_ref.u.cellID.cid);
-	ALOGD("%s: cellID.u.tac  : %d => NOT SUPPORTED", __func__, agps_reflocation->u.cellID.tac);
-	ALOGD("%s: cellID.u.pcid : %d => NOT SUPPORTED", __func__, agps_reflocation->u.cellID.pcid);
-	ALOGD("%s: u.mac         : %d => %d", __func__, agps_reflocation->u.mac, vendor_ref.u.mac);
 
 	agps_reflocation->type = vendor_ref.type;
 	agps_reflocation->u.cellID.type = vendor_ref.u.cellID.type;
