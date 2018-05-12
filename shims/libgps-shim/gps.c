@@ -30,8 +30,21 @@
 const GpsInterface* (*vendor_get_gps_interface)(struct gps_device_t* dev);
 const void* (*vendor_get_extension)(const char* name);
 int (*vendor_init)(GpsCallbacks* gpsCallbacks);
-void (*vendor_set_ref_location)(const AGpsRefLocation_vendor *agps_reflocation, size_t sz_struct);
 
+/* AGPS-RIL methods */
+void (*vendor_agps_init)( AGpsRilCallbacks* callbacks );
+void (*vendor_agps_set_ref_location)(const AGpsRefLocation_vendor *agps_reflocation, size_t sz_struct);
+void (*vendor_agps_set_set_id) (AGpsSetIDType type, const char* setid);
+void (*vendor_agps_ni_message) (uint8_t *msg, size_t len);
+void (*vendor_agps_update_network_state) (int connected, int type, int roaming, const char* extra_info);
+void (*vendor_agps_update_network_availability) (int avaiable, const char* apn);
+
+/* AGPS-RIL callback-methods */
+void (*vendor_agps_cb_request_setid)(uint32_t flags);
+void (*vendor_agps_cb_request_refloc)(uint32_t flags);
+pthread_t (* vendor_agps_cb_create_thread_cb)(const char* name, void (*start)(void *), void* arg);
+
+AGpsRilCallbacks *orgAGpsRilCallbacks = NULL;
 GpsCallbacks *orgGpsCallbacks = NULL;
 static GpsSvStatus gpsSvStatus_info;
 
@@ -130,7 +143,40 @@ static void shim_request_utc_time_cb() {
     orgGpsCallbacks->request_utc_time_cb();
 }
 
-void shim_set_ref_location(AGpsRefLocation *agps_reflocation, size_t sz_struct) {
+/* AGPS-RIL shimmed methods */
+static void shim_agps_cb_request_setid(uint32_t flags) {
+    ALOGD("%s: called", __func__);
+    vendor_agps_cb_request_setid(flags);
+}
+
+static void shim_agps_cb_request_refloc(uint32_t flags) {
+    ALOGD("%s: called", __func__);
+    vendor_agps_cb_request_refloc(flags);
+}
+
+static pthread_t shim_agps_cb_create_thread_cb(const char* name, void (*start)(void *), void* arg) {
+    ALOGD("%s: called", __func__);
+    return vendor_agps_cb_create_thread_cb(name, start, arg);
+}
+
+static void shim_agps_init(AGpsRilCallbacks* callbacks) {
+    ALOGD("%s: called", __func__);
+
+    AGpsRilCallbacks shimmed_callbacks;
+
+    orgAGpsRilCallbacks = callbacks;
+    vendor_agps_cb_request_setid = orgAGpsRilCallbacks->request_setid;
+    vendor_agps_cb_request_refloc = orgAGpsRilCallbacks->request_refloc;
+    vendor_agps_cb_create_thread_cb = orgAGpsRilCallbacks->create_thread_cb;
+
+    shimmed_callbacks.request_setid = shim_agps_cb_request_setid;
+    shimmed_callbacks.request_refloc = shim_agps_cb_request_refloc;
+    shimmed_callbacks.create_thread_cb = shim_agps_cb_create_thread_cb;
+
+    vendor_agps_init(&shimmed_callbacks);
+}
+
+static void shim_agps_set_ref_location(AGpsRefLocation *agps_reflocation, size_t sz_struct) {
 	AGpsRefLocation_vendor vendor_ref;
 	if (sizeof(AGpsRefLocation_vendor) > sz_struct) {
 		ALOGE("%s: AGpsRefLocation is too small, bailing out!", __func__);
@@ -146,7 +192,7 @@ void shim_set_ref_location(AGpsRefLocation *agps_reflocation, size_t sz_struct) 
 	vendor_ref.u.cellID.psc = 65535;
 	vendor_ref.u.cellID.cid = agps_reflocation->u.cellID.cid;
 	vendor_ref.u.mac = agps_reflocation->u.mac;
-	ALOGD("%s: Executing vendor_set_ref_location= > type:%d mcc:%d mnc:%d lac:%d psc:%d cid:%d mac:%d",
+	ALOGD("%s: Executing vendor_agps_set_ref_location= > type:%d mcc:%d mnc:%d lac:%d psc:%d cid:%d mac:%d",
 		__func__,
 		vendor_ref.u.cellID.type,
 		vendor_ref.u.cellID.mcc,
@@ -155,7 +201,7 @@ void shim_set_ref_location(AGpsRefLocation *agps_reflocation, size_t sz_struct) 
 		vendor_ref.u.cellID.psc,
 		vendor_ref.u.cellID.cid,
 		vendor_ref.u.mac);
-	vendor_set_ref_location(&vendor_ref, sizeof(AGpsRefLocation_vendor));
+	vendor_agps_set_ref_location(&vendor_ref, sizeof(AGpsRefLocation_vendor));
 
 	agps_reflocation->type = vendor_ref.type;
 	agps_reflocation->u.cellID.type = vendor_ref.u.cellID.type;
@@ -166,15 +212,56 @@ void shim_set_ref_location(AGpsRefLocation *agps_reflocation, size_t sz_struct) 
 	agps_reflocation->u.mac = vendor_ref.u.mac;
 }
 
+static void shim_agps_set_set_id(AGpsSetIDType type, const char* setid) {
+    ALOGD("%s: called", __func__);
+    vendor_agps_set_set_id(type, setid);
+}
+
+static void shim_agps_ni_message(uint8_t *msg, size_t len) {
+    ALOGD("%s: called", __func__);
+    vendor_agps_ni_message(msg, len);
+}
+
+static void shim_agps_update_network_state(int connected, int type, int roaming, const char* extra_info) {
+    ALOGD("%s: called", __func__);
+    vendor_agps_update_network_state(connected, type, roaming, extra_info);
+}
+
+static void shim_agps_update_network_availability(int avaiable, const char* apn) {
+    ALOGD("%s: called", __func__);
+    vendor_agps_update_network_availability(avaiable, apn);
+}
+
 const void* shim_get_extension(const char* name) {
 	ALOGD("%s(%s)", __func__, name);
 	if (strcmp(name, AGPS_RIL_INTERFACE) == 0) {
 		// RIL interface
 		AGpsRilInterface *ril = (AGpsRilInterface*)vendor_get_extension(name);
-		// now we shim the ref_location callback
-		ALOGD("%s: shimming RIL ref_location callback", __func__);
-		vendor_set_ref_location = ril->set_ref_location;
-		ril->set_ref_location = shim_set_ref_location;
+
+		ALOGD("%s: shimming AGPS-RIL init", __func__);
+		vendor_agps_init = ril->init;
+		ril->init = shim_agps_init;
+
+		ALOGD("%s: shimming AGPS-RIL set_ref_location", __func__);
+		vendor_agps_set_ref_location = ril->set_ref_location;
+		ril->set_ref_location = shim_agps_set_ref_location;
+
+		ALOGD("%s: shimming AGPS-RIL set_set_id", __func__);
+		vendor_agps_set_set_id = ril->set_set_id;
+		ril->set_set_id = shim_agps_set_set_id;
+
+		ALOGD("%s: shimming AGPS-RIL ni_message", __func__);
+		vendor_agps_ni_message = ril->ni_message;
+		ril->ni_message = shim_agps_ni_message;
+
+		ALOGD("%s: shimming AGPS-RIL update_network_state", __func__);
+		vendor_agps_update_network_state = ril->update_network_state;
+		ril->update_network_state = shim_agps_update_network_state;
+
+		ALOGD("%s: shimming AGPS-RIL update_network_availability", __func__);
+		vendor_agps_update_network_availability = ril->update_network_availability;
+		ril->update_network_availability = shim_agps_update_network_availability;
+
 		return ril;
 	} else {
 		return vendor_get_extension(name);
