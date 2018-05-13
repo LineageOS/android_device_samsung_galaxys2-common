@@ -173,6 +173,12 @@ static void shim_agps_init(AGpsRilCallbacks* callbacks) {
     shimmed_callbacks.request_refloc = shim_agps_cb_request_refloc;
     shimmed_callbacks.create_thread_cb = shim_agps_cb_create_thread_cb;
 
+    ALOGD("%s: vendor: setid:%p refloc:%p create_thread_cb:%p",
+        __func__,
+        vendor_agps_cb_request_setid,
+        vendor_agps_cb_request_refloc,
+        vendor_agps_cb_create_thread_cb);
+
     vendor_agps_init(&shimmed_callbacks);
 }
 
@@ -223,12 +229,23 @@ static void shim_agps_ni_message(uint8_t *msg, size_t len) {
 }
 
 static void shim_agps_update_network_state(int connected, int type, int roaming, const char* extra_info) {
-    ALOGD("%s: called", __func__);
+    ALOGD("%s: connected:%d type:%d roaming:%d extra_info:%s",
+        __func__,
+        connected,
+        type,
+        roaming,
+        extra_info);
+
     vendor_agps_update_network_state(connected, type, roaming, extra_info);
 }
 
 static void shim_agps_update_network_availability(int avaiable, const char* apn) {
     ALOGD("%s: called", __func__);
+
+    ALOGD("%s: avaiable:%d apn:%s",
+        __func__,
+        avaiable,
+        apn);
     vendor_agps_update_network_availability(avaiable, apn);
 }
 
