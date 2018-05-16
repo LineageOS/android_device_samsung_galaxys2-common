@@ -31,7 +31,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#define LOG_NDEBUG 0
+//#define LOG_NDEBUG 0
 #define DEBUG 0
 #include <utils/Log.h>
 
