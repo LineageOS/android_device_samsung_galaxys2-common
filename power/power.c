@@ -410,10 +410,10 @@ static void power_hint(__attribute__((unused)) struct power_module *module, powe
 
     switch (hint) {
         case POWER_HINT_INTERACTION:
-            if (DEBUG) ALOGV("%s: interaction", __func__);
             if (data) {
+                if (DEBUG) ALOGV("%s: interaction", __func__);
                 val = *(int32_t *)data;
-                if (data) {
+                if (val > 0) {
                     boost(val * US_TO_NS);
                 } else {
                     boost(profiles[current_power_profile].interaction_boost_time);
