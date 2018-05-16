@@ -31,8 +31,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#define LOG_NDEBUG 0
-#define DEBUG 1
+// #define LOG_NDEBUG 0
+#define DEBUG 0
 #include <log/log.h>
 
 #include "power.h"
