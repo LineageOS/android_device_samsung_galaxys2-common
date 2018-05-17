@@ -27,9 +27,20 @@
 #include "gps.h"
 #define REAL_GPS_PATH "system/vendor/lib/hw/gps.exynos4.vendor.so"
 
-const GpsInterface* (*vendor_get_gps_interface)(struct gps_device_t* dev);
-const void* (*vendor_get_extension)(const char* name);
-int (*vendor_init)(GpsCallbacks* gpsCallbacks);
+/* GPS methods */
+GpsInterface* (*vendor_get_gps_interface)(struct gps_device_t* dev);
+void* (*vendor_gps_get_extension)(const char* name);
+int (*vendor_gps_init)(GpsCallbacks* gpsCallbacks);
+int (*vendor_gps_start)();
+int (*vendor_gps_stop)();
+void (*vendor_gps_cleanup)();
+int (*vendor_gps_inject_time)(GpsUtcTime time, int64_t timeReference,
+                         int uncertainty);
+int (*vendor_gps_inject_location)(double latitude, double longitude, float accuracy);
+void (*vendor_gps_delete_aiding_data)(GpsAidingData flags);
+int (*vendor_gps_set_position_mode)(GpsPositionMode mode, GpsPositionRecurrence recurrence,
+            uint32_t min_interval, uint32_t preferred_accuracy, uint32_t preferred_time);
+
 
 /* AGPS methods */
 void (*vendor_agps_init)(AGpsCallbacks* callbacks);
@@ -315,7 +326,62 @@ static int shim_agps_data_conn_open_with_apn_ip_type(
 	return result;
 }
 
-const void* shim_get_extension(const char* name) {
+static int shim_gps_start() {
+	ALOGD("%s", __func__);
+	int result = vendor_gps_start();
+	ALOGD("%s: result:%d", __func__, result);
+	return result;
+}
+
+static int shim_gps_stop() {
+	ALOGD("%s", __func__);
+	int result = vendor_gps_stop();
+	ALOGD("%s: result:%d", __func__, result);
+	return result;
+}
+
+static void shim_gps_cleanup() {
+	ALOGD("%s", __func__);
+	vendor_gps_cleanup();
+}
+
+static int shim_gps_inject_time(GpsUtcTime time, int64_t timeReference,
+                         int uncertainty) {
+	ALOGD("%s: time:%llu timeReference:%llu uncertainty:%d", __func__,
+		time, timeReference, uncertainty);
+	int result = vendor_gps_inject_time(time, timeReference, uncertainty);
+	ALOGD("%s: result:%d", __func__, result);
+	return result;
+}
+
+static int shim_gps_inject_location(double latitude, double longitude, float accuracy) {
+	ALOGD("%s: latitude:%f longitude:%f accuracy:%f", __func__,
+		latitude, longitude, accuracy);
+	int result = vendor_gps_inject_location(latitude, longitude, accuracy);
+	ALOGD("%s: result:%d", __func__, result);
+	return result;
+}
+
+static void shim_gps_delete_aiding_data(GpsAidingData flags) {
+	ALOGD("%s: flags:%x", __func__, flags);
+	vendor_gps_delete_aiding_data(flags);
+}
+
+static int shim_gps_set_position_mode(GpsPositionMode mode, GpsPositionRecurrence recurrence,
+            uint32_t min_interval, uint32_t preferred_accuracy, uint32_t preferred_time) {
+	ALOGD("%s: mode:%d recurrence:%d min_interval:%d preferred_accuracy, preffered_time:%x",
+		__func__, mode, recurrence, min_interval, preferred_accuracy, preferred_time);
+	int result = vendor_gps_set_position_mode(
+		mode,
+		recurrence,
+		min_interval,
+		preferred_accuracy,
+		preferred_time);
+	ALOGD("%s: result:%d", __func__, result);
+	return result;
+}
+
+const void* shim_gps_get_extension(const char* name) {
 	ALOGD("%s(%s)", __func__, name);
 	if (strcmp(name, AGPS_RIL_INTERFACE) == 0) {
 		if (aGpsInterface == NULL) {
@@ -325,13 +391,13 @@ const void* shim_get_extension(const char* name) {
 				AGPS_INTERFACE,
 				AGPS_RIL_INTERFACE
 				);
-			aGpsInterface = (AGpsInterface*)vendor_get_extension(name);
+			aGpsInterface = (AGpsInterface*)vendor_gps_get_extension(name);
 		}
 
 		ALOGD("%s: shimming AGPS-RIL init", __func__);
 
 		// RIL interface
-		AGpsRilInterface *aGpsRil = (AGpsRilInterface*)vendor_get_extension(name);
+		AGpsRilInterface *aGpsRil = (AGpsRilInterface*)vendor_gps_get_extension(name);
 
 		vendor_agpsril_init = aGpsRil->init;
 		aGpsRil->init = shim_agpsril_init;
@@ -356,7 +422,7 @@ const void* shim_get_extension(const char* name) {
 		ALOGD("%s: shimming AGPS", __func__);
 
 		// AGPS_RIL interface
-		aGpsInterface = (AGpsInterface*)vendor_get_extension(name);
+		aGpsInterface = (AGpsInterface*)vendor_gps_get_extension(name);
 		vendor_agps_init = aGpsInterface->init;
 		aGpsInterface->init = shim_agps_init;
 
@@ -376,10 +442,10 @@ const void* shim_get_extension(const char* name) {
 		aGpsInterface->data_conn_open_with_apn_ip_type = shim_agps_data_conn_open_with_apn_ip_type;
 		return aGpsInterface;
 	}
-	return vendor_get_extension(name);
+	return vendor_gps_get_extension(name);
 }
 
-int shim_init (GpsCallbacks* gpsCallbacks) {
+int shim_gps_init (GpsCallbacks* gpsCallbacks) {
 	ALOGD("%s: shimming GpsCallbacks", __func__);
         orgGpsCallbacks = gpsCallbacks;
         GpsCallbacks_vendor vendor_gpsCallbacks;
@@ -394,21 +460,39 @@ int shim_init (GpsCallbacks* gpsCallbacks) {
 	vendor_gpsCallbacks.create_thread_cb = shim_create_thread_cb;
 	vendor_gpsCallbacks.request_utc_time_cb = shim_request_utc_time_cb;
 
-	ALOGD("%s: Calling vendor init", __func__);
-	return vendor_init(&vendor_gpsCallbacks);
+	return vendor_gps_init(&vendor_gpsCallbacks);
 }
 
 const GpsInterface* shim_get_gps_interface(struct gps_device_t* dev) {
+	ALOGD("%s: shimming GpsInterface", __func__);
 	GpsInterface *halInterface = vendor_get_gps_interface(dev);
 
-	ALOGD("%s: shimming vendor get_extension", __func__);
-	vendor_get_extension = halInterface->get_extension;
-	halInterface->get_extension = &shim_get_extension;
+	vendor_gps_get_extension = halInterface->get_extension;
+	halInterface->get_extension = &shim_gps_get_extension;
 
-	ALOGD("%s: shimming vendor init", __func__);
-	vendor_init = halInterface->init;
-	halInterface->init = &shim_init;
+	vendor_gps_init = halInterface->init;
+	halInterface->init = &shim_gps_init;
 
+	vendor_gps_start = halInterface->start;
+	halInterface->start = &shim_gps_start;
+
+	vendor_gps_stop = halInterface->stop;
+	halInterface->stop = &shim_gps_stop;
+
+	vendor_gps_cleanup = halInterface->cleanup;
+	halInterface->cleanup = &shim_gps_cleanup;
+
+	vendor_gps_inject_time = halInterface->inject_time;
+	halInterface->inject_time = &shim_gps_inject_time;
+
+	vendor_gps_inject_location = halInterface->inject_location;
+	halInterface->inject_location = &shim_gps_inject_location;
+
+	vendor_gps_delete_aiding_data = halInterface->delete_aiding_data;
+	halInterface->delete_aiding_data = &shim_gps_delete_aiding_data;
+
+	vendor_gps_set_position_mode = halInterface->set_position_mode;
+	halInterface->set_position_mode = &shim_gps_set_position_mode;
 	return halInterface;
 }
 
