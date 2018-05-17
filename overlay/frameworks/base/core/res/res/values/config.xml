@@ -176,14 +176,4 @@
     <!-- Dream of notifications -->
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
     <bool name="config_dozeAfterScreenOff">true</bool>
-
-    <!-- Values for GPS configuration -->
-    <string-array translatable="false" name="config_gpsParameters">
-        <item>NTP_SERVER=north-america.pool.ntp.org</item>
-        <item>XTRA_SERVER_1=http://xtra1.gpsonextra.net/xtra.bin</item>
-        <item>XTRA_SERVER_2=http://xtra2.gpsonextra.net/xtra.bin</item>
-        <item>XTRA_SERVER_3=http://xtra3.gpsonextra.net/xtra.bin</item>
-        <item>SUPL_HOST=supl.google.com</item>
-        <item>SUPL_PORT=7276</item>
-   </string-array>
 </resources>
