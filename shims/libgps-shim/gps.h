@@ -91,4 +91,10 @@ typedef struct {
     } u;
 } AGpsRefLocation_vendor;
 
-
+typedef struct {
+    float accuracy;
+    bool enabled;
+    double locdiff;
+    float speed;
+    GpsUtcTime timeout;
+} GpsFilterLocation;

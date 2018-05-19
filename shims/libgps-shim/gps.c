@@ -27,6 +27,33 @@
 #include "gps.h"
 #define REAL_GPS_PATH "system/vendor/lib/hw/gps.exynos4.vendor.so"
 
+// Speed conversion km/h to gps speed-value
+#define SPEED_CONVERT 0.2728
+
+static const GpsFilterLocation defaultFilterLocation = { 10, true, 1.0f, 5, 60000 };
+
+static const GpsFilterLocation gpsFilterLocations[] = {
+    {   5, false,  0,    0,     0 },
+    {  10, true, 1.5f,   5, 60000 },
+    {  20, true, 4.0f,   6, 60000 },
+    {  30, true, 8.0f,   8, 60000 },
+    {  40, true, 12.0f,  8, 60000 },
+    {  50, true, 16.0f,  8, 60000 },
+};
+
+static gpsFilterLocationsLength = sizeof(gpsFilterLocations) / sizeof(GpsFilterLocation);
+
+static GpsFilterLocation get_filterlocation(float accuracy) {
+    for (int index = 0;index < gpsFilterLocationsLength; index++) {
+        if (gpsFilterLocations[index].accuracy >= accuracy)
+            return gpsFilterLocations[index];
+    }
+
+    return defaultFilterLocation;
+}
+
+static GpsLocation reportLocation;
+
 /* GPS methods */
 GpsInterface* (*vendor_get_gps_interface)(struct gps_device_t* dev);
 void* (*vendor_gps_get_extension)(const char* name);
@@ -73,40 +100,6 @@ AGpsRilCallbacks *orgAGpsRilCallbacks = NULL;
 GpsCallbacks *orgGpsCallbacks = NULL;
 static GpsSvStatus gpsSvStatus_info;
 
-static void log_location_vendor(char* func, GpsLocation* location) {
-    ALOGD("%s: size=%3d flags=%x latitude=%f speed=%f bearing=%f accuracy=%f timestamp:%lu",
-        func,
-        location->size,
-        location->flags,
-        location->latitude,
-        location->altitude,
-        location->speed,
-        location->bearing,
-        location->accuracy,
-        location->timestamp);
-}
-
-static void log_sv_info_vendor(char* func, GpsSvStatus_vendor* sv_info) {
-    ALOGD("%s: size=%d num_svs=%d ephemeris_mask=%x almanac_mask=%x used_in_fix_mask=%x",
-       func,
-       sv_info->size,
-       sv_info->num_svs,
-       sv_info->ephemeris_mask,
-       sv_info->almanac_mask,
-       sv_info->used_in_fix_mask);
-    for (int index = 0; index < sv_info->num_svs; index++) {
-        ALOGD("%s:   svinfo[%d] - size=%3d prn=%3d snr=%3.1f elevation=%3.1f azimuth=%3.1f vendor=%3d",
-            func,
-            index,
-            sv_info->sv_list[index].size,
-            sv_info->sv_list[index].prn,
-            sv_info->sv_list[index].snr,
-            sv_info->sv_list[index].elevation,
-            sv_info->sv_list[index].azimuth,
-            sv_info->sv_list[index].vendor);
-    }
-}
-
 static void log_gpsStatus_vendor(char* func, GpsStatus* status) {
     ALOGD("%s: size=%3d status=%3d", func, status->size, status->status);
 }
@@ -126,8 +119,92 @@ static void copy_sv_info_from_vendor(GpsSvStatus_vendor source, GpsSvStatus* tar
     }
 }
 
+static void copyGpsLocation(GpsLocation source, GpsLocation *target) {
+        target->size = source.size;
+        target->flags = source.flags;
+        target->latitude = source.latitude;
+        target->longitude = source.longitude;
+        target->altitude = source.altitude;
+        target->speed = source.speed;
+        target->bearing = source.bearing;
+        target->accuracy = source.accuracy;
+        target->timestamp = source.timestamp;
+}
+
 static void shim_location_cb(GpsLocation* location) {
-    log_location_vendor(__func__, location);
+    ALOGD("%s: vendor-data: speed:%f km/h latitude=%f longitude=%f altitude=%f speed=%f bearing=%f accuracy=%f timestamp:%lu",
+        __func__,
+        location->speed / SPEED_CONVERT,
+        location->latitude,
+        location->longitude,
+        location->altitude,
+        location->speed,
+        location->bearing,
+        location->accuracy,
+        location->timestamp);
+
+    GpsFilterLocation filterLocation = get_filterlocation(location->accuracy);
+    if (!filterLocation.enabled) {
+        orgGpsCallbacks->location_cb(location);
+        ALOGD("%s: FilterLocations: Disabled. Current accuracy:%1fm",
+            __func__,
+            location->accuracy);
+        reportLocation.timestamp = 0;
+        return;
+    }
+
+    if (filterLocation.enabled == 0) {
+        ALOGD("%s: FilterLocations: Enabled. speed:%.1f km/h locdiff:%f timeout:%dms",
+            __func__, filterLocation.speed, filterLocation.locdiff, filterLocation.timeout);
+        copyGpsLocation(*location, &reportLocation);
+        orgGpsCallbacks->location_cb(location);
+        return;
+    }
+
+    bool updateLocation = false;
+    float locDiff =
+            (location->latitude - reportLocation.latitude) +
+            (location->longitude - reportLocation.longitude) +
+            (location->altitude - reportLocation.altitude);
+    bool changedFlags = (location->flags != reportLocation.flags);
+    bool hasSpeed = (location->speed > filterLocation.speed * SPEED_CONVERT);
+    bool hasMovement = (locDiff > filterLocation.locdiff ||
+			 locDiff < -filterLocation.locdiff);
+    bool hasTimedout = (location->timestamp > reportLocation.timestamp + filterLocation.timeout);
+
+    // Determine if we are moving
+    updateLocation = (reportLocation.timestamp == 0) ||
+        changedFlags || hasSpeed || hasMovement || hasTimedout;
+
+    if (updateLocation) {
+        ALOGD("%s: FilterLocations: flags:%x speed:%.1f km/h locdiff:%f acc:%.0f m - Moving because of [%s,%s,%s,%s].",
+            __func__,
+            location->flags,
+            location->speed / SPEED_CONVERT,
+            locDiff,
+            location->accuracy,
+            hasSpeed ? "flags" : "",
+            hasSpeed ? "speed" : "",
+            hasMovement ? "movement" : "",
+            hasTimedout ? "timeout":"");
+        // Update location because we are moving
+        reportLocation.size = location->size;
+        reportLocation.flags = location->flags;
+        reportLocation.latitude = location->latitude;
+        reportLocation.longitude = location->longitude;
+        reportLocation.altitude = location->altitude;
+        reportLocation.speed = location->speed;
+        reportLocation.bearing = location->bearing;
+        reportLocation.accuracy = location->accuracy;
+        reportLocation.timestamp = location->timestamp;
+    } else {
+        // Not moving, use old location
+        location->latitude = reportLocation.latitude;
+        location->longitude = reportLocation.longitude;
+        location->altitude = reportLocation.altitude;
+        location->bearing = reportLocation.bearing;
+        location->speed = 0;
+    }
     orgGpsCallbacks->location_cb(location);
 }
 
@@ -138,7 +215,26 @@ static void shim_status_cb(GpsStatus* status) {
 
 static void shim_sv_status_cb(GpsSvStatus* sv_info) {
     GpsSvStatus_vendor* gpsSvStatus_vendor_info = (GpsSvStatus_vendor*)sv_info;
-    log_sv_info_vendor(__func__, gpsSvStatus_vendor_info);
+
+    ALOGD("%s: size=%d num_svs=%d ephemeris_mask=%x almanac_mask=%x used_in_fix_mask=%x",
+       __func__,
+       gpsSvStatus_vendor_info->size,
+       gpsSvStatus_vendor_info->num_svs,
+       gpsSvStatus_vendor_info->ephemeris_mask,
+       gpsSvStatus_vendor_info->almanac_mask,
+       gpsSvStatus_vendor_info->used_in_fix_mask);
+    for (int index = 0; index < sv_info->num_svs; index++) {
+        ALOGD("%s:   svinfo[%d] - size=%d prn=%d snr=%f elevation=%f azimuth=%f vendor=%d",
+            __func__,
+            index,
+            gpsSvStatus_vendor_info->sv_list[index].size,
+            gpsSvStatus_vendor_info->sv_list[index].prn,
+            gpsSvStatus_vendor_info->sv_list[index].snr,
+            gpsSvStatus_vendor_info->sv_list[index].elevation,
+            gpsSvStatus_vendor_info->sv_list[index].azimuth,
+            gpsSvStatus_vendor_info->sv_list[index].vendor);
+    }
+
     copy_sv_info_from_vendor(*gpsSvStatus_vendor_info, &gpsSvStatus_info);
     orgGpsCallbacks->sv_status_cb(&gpsSvStatus_info);
 }
