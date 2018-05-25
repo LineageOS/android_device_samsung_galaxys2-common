@@ -21,7 +21,7 @@ LOCAL_SHARED_LIBRARIES := \
 	libc
 
 LOCAL_C_INCLUDES += proto
-LOCAL_CFLAGS := -Wall -Werror -DPB_ENABLE_MALLOC -Wno-unused-parameter
+LOCAL_CFLAGS := -Wall -Werror -DPB_ENABLE_MALLOC -Wno-unused-parameter -DPB_FIELD_16BIT
 
 LOCAL_MODULE := libsecril-shim
 LOCAL_VENDOR_MODULE := true
