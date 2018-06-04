@@ -53,13 +53,8 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_ALLOWS_INVALID_PTHREAD := true
 
-# Don't dex preopt apps to avoid I/O congestion due to paging larger sized
-# pre-compiled .odex files as opposed to background generated interpret-only
-# odex files.
-WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
-
-# Generate debug info
-PRODUCT_DEX_PREOPT_BOOT_FLAGS += --generate-mini-debug-info
+# Disable ART optimizations
+WITH_DEXPREOPT := false
 
 # Bionic
 TARGET_LD_SHIM_LIBS := \
