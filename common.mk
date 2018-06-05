@@ -177,11 +177,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     config.disable_atlas=true
 
-# Don't optimize System and apps
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.image-dex2oat-filter=interpret-only \
-    dalvik.vm.dex2oat-filter=interpret-only
-
 #PRODUCT_PACKAGES += \
 #    SamsungDoze
 
@@ -263,6 +258,11 @@ $(call inherit-product, hardware/samsung/exynos4210.mk)
 
 # Include non-open-source parts
 $(call inherit-product, vendor/samsung/galaxys2-common/common-vendor.mk)
+
+# Art
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-threads=1 \
+    dalvik.vm.image-dex2oat-threads=1
 
 # Include debugging props
 $(call inherit-product, device/samsung/galaxys2-common/system_prop_debug.mk)
