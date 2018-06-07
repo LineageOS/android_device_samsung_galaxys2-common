@@ -18,6 +18,7 @@ on init
 
 on fs
     mount_all /fstab.smdk4210
+    swapon_all /fstab.smdk4210
 
     mkdir /efs/bluetooth
     mkdir /efs/wifi
