@@ -58,6 +58,11 @@ TARGET_ALLOWS_INVALID_PTHREAD := true
 # odex files.
 WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
 
+# Art use quicken for Boot, System and Apps
+PRODUCT_DEX_PREOPT_BOOT_FLAGS += --compiler-filter=quicken
+PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := quicken
+WITH_DEX_PREOPT_GENERATE_PROFILE := false
+
 # Generate debug info
 PRODUCT_DEX_PREOPT_BOOT_FLAGS += --generate-mini-debug-info
 

@@ -17,6 +17,18 @@ COMMON_PATH := device/samsung/galaxys2-common
 
 DEVICE_PACKAGE_OVERLAYS := $(COMMON_PATH)/overlay
 
+# Art compiler filter, don't use speed and speed-profile
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.image-dex2oat-filter=quicken \
+    dalvik.vm.dex2oat-filter=quicken \
+    pm.dexopt.first-boot=quicken \
+    pm.dexopt.boot=verify \
+    pm.dexopt.install=verify \
+    pm.dexopt.bg-dexopt=quicken \
+    pm.dexopt.ab-ota=quicken \
+    pm.dexopt.inactive=verify \
+    pm.dexopt.shared=quicken
+
 # Rootdir
 PRODUCT_COPY_FILES := \
     $(COMMON_PATH)/rootdir/fstab.smdk4210:root/fstab.smdk4210 \
