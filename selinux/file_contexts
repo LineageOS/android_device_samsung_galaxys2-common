@@ -52,3 +52,6 @@
 
 # Executables
 /system/bin/macloader                                            u:object_r:macloader_exec:s0
+
+# Vendor
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.0-service\.exynos4     u:object_r:hal_power_default_exec:s0
