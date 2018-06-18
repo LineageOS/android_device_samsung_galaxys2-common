@@ -1,0 +1,1 @@
+allow tzdatacheck sysfs:file { getattr open read };

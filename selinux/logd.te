@@ -1,0 +1,1 @@
+allow logd sysfs:file { getattr open read };
