@@ -70,10 +70,6 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
     gps.smdk4210
 
-# SamsungPowerHAL
-PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-service.exynos4
-
 # Audio Packages
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
