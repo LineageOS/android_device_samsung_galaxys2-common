@@ -144,7 +144,7 @@ BOARD_HAVE_SAMSUNG_BLUETOOTH := true
 BOARD_CUSTOM_BT_CONFIG := device/samsung/galaxys2-common/bluetooth/vnd_smdk4210.txt
 
 # Selinux
-# BOARD_SEPOLICY_DIRS += device/samsung/galaxys2-common/selinux
+BOARD_SEPOLICY_DIRS += device/samsung/galaxys2-common/selinux
 
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys2-common/recovery/recovery_keys.c
