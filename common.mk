@@ -108,8 +108,8 @@ PRODUCT_PACKAGES += \
     camera.smdk4210 \
     Snap
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/mediaserver.rc:system/etc/init/mediaserver.rc
+# PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/configs/mediaserver.rc:system/etc/init/mediaserver.rc
 
 
 PRODUCT_PROPERTY_OVERRIDES += \
