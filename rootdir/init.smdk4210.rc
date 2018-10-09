@@ -74,7 +74,7 @@ on post-fs-data
     mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
 
     # for WIFI TRP/TIS
-    write /data/.psm.info 0
+    write /data/.psm.info 1
     chown system root /data/.psm.info
     chmod 0664 /data/.psm.info
 
