@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+DEVICE_PATH := device/samsung/galaxys2-common
+
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
 BOARD_USES_GENERIC_AUDIO := false
@@ -112,6 +114,9 @@ BOARD_USE_YAMAHA_MC1N2_AUDIO := true
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6260
 BOARD_RIL_CLASS := ../../../device/samsung/galaxys2-common/ril
+
+# Key disabler
+JAVA_SOURCE_OVERLAYS := org.lineageos.keydisabler|$(DEVICE_PATH)/keydisabler|**/*.java
 
 # Camera
 BOARD_CAMERA_HAVE_ISO := true
