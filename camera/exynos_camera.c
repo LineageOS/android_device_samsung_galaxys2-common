@@ -2120,6 +2120,10 @@ void *exynos_camera_preview_thread(void *data)
 		exynos_camera->preview_thread_running = 1;
 	}
 
+	if (exynos_camera->preview_window == NULL) {
+		// Unlock preview lock mutex
+		pthread_mutex_unlock(&exynos_camera->preview_lock_mutex);
+	}
 	exynos_camera->preview_thread_running = 0;
 	exynos_camera->preview_thread_started = 0;
 	ALOGD("%s: Exiting thread", __func__);
@@ -2625,9 +2629,6 @@ int exynos_camera_set_preview_window(struct camera_device *dev,
 		ALOGE("%s: Unable to set buffers geometry", __func__);
 		return -1;
 	}
-
-	// Unlock preview lock
-	pthread_mutex_unlock(&exynos_camera->preview_lock_mutex);
 
 	return 0;
 }
