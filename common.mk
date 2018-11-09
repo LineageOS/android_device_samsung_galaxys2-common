@@ -107,7 +107,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl-legacy \
     camera.device@1.0-impl-legacy \
     camera.smdk4210 \
-    Snap
+    Snap \
+    libstagefright-shim
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/mediaserver.rc:system/etc/init/mediaserver.rc
