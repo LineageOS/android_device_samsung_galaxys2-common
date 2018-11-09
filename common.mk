@@ -169,6 +169,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.call_ring.delay=3000
 
+# Memory Optimizations
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.sys.fw.bg_apps_limit=8 \
+    ro.vendor.qti.am.reschedule_service=true \
+    ro.vendor.qti.sys.fw.bservice_enable=true \
+    ro.vendor.qti.sys.fw.bservice_age=5000 \
+    ro.vendor.qti.sys.fw.bservice_limit=5
+
 # Services
 PRODUCT_PROPERTY_OVERRIDES += \
     config.disable_atlas=true
