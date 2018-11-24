@@ -193,6 +193,8 @@
         <item>"/system/framework/arm/boot-core-libart.vdex"</item>
         <item>"/data/dalvik-cache/arm/system@framework@boot.oat"</item>
         <item>"/data/dalvik-cache/arm/system@framework@boot.vdex"</item>
+        <item>"/system/priv-app/SystemUI/SystemUI.apk"</item>
+        <item>"/system/lib/libsurfaceflinger.so"</item>
     </string-array>
 
 
