@@ -253,8 +253,6 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/excluded-input-devices.xml:system/etc/excluded-input-devices.xml
 
-$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
-
 # Include exynos4 platform specific parts
 TARGET_HAL_PATH := hardware/samsung/exynos4/hal
 TARGET_OMX_PATH := hardware/samsung/exynos/multimedia/openmax
@@ -265,6 +263,9 @@ $(call inherit-product, vendor/samsung/galaxys2-common/common-vendor.mk)
 
 # Build with specific settings for Galaxys2-common
 $(call inherit-product, $(LOCAL_PATH)/go_galaxys2-common.mk)
+
+# Apply Dalvik config for 1G phone
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 # Include debugging props
 $(call inherit-product, device/samsung/galaxys2-common/system_prop_debug.mk)
