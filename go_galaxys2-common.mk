@@ -16,8 +16,9 @@
 
 # Sets Android Go default values for properties specific for Galaxys2-common
 
-# Set lowram options, except ro.config.low_ram=true
+# Set lowram options
 PRODUCT_PROPERTY_OVERRIDES += \
+     ro.config.low_ram=true \
      ro.lmk.critical_upgrade=true \
      ro.lmk.upgrade_pressure=40 \
      ro.lmk.downgrade_pressure=60 \
@@ -64,3 +65,13 @@ PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 # the size of the system image. This has no bearing on stack traces, but will
 # leave less information available via JDWP.
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
+
+# 512MB specific properties.
+
+# lmkd can kill more now.
+PRODUCT_PROPERTY_OVERRIDES += \
+     ro.lmk.medium=700 \
+
+# madvise random in ART to reduce page cache thrashing.
+PRODUCT_PROPERTY_OVERRIDES += \
+     dalvik.vm.madvise-random=true
