@@ -1,0 +1,2 @@
+allow mediaextractor sysfs_cpuinfo:dir search;
+allow mediaextractor sysfs_cpuinfo:file { getattr open read };

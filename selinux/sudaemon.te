@@ -1,0 +1,8 @@
+allow sudaemon socket_device:dir write;
+allow sudaemon sysfs_cpuinfo:dir search;
+allow sudaemon sysfs_cpuinfo:file { getattr open read };
+allow sudaemon socket_device:dir { add_name create };
+allow sudaemon su_exec:file { entrypoint getattr read };
+allow sudaemon socket_device:sock_file { setattr create };
+allow sudaemon socket_device:dir setattr;
+

@@ -1,0 +1,2 @@
+allow perfprofd sysfs_cpuinfo:dir search;
+allow perfprofd sysfs_cpuinfo:file { getattr open read };

@@ -1,1 +1,4 @@
 allow platform_app battery_service:service_manager find;
+allow platform_app method_trace_data_file:file { execute read unlink };
+allow platform_app default_android_service:service_manager find;
+allow platform_app sysfs_cpuinfo:dir { open read };

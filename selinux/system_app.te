@@ -1,2 +1,4 @@
 allow system_app sysfs_display:file { write getattr open };
 allow system_app sysfs_display:dir search;
+allow system_app method_trace_data_file:file { execute read unlink };
+allow system_app sysfs_cpuinfo:dir { open read };

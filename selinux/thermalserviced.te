@@ -1,0 +1,2 @@
+allow thermalserviced sysfs_cpuinfo:dir search;
+allow thermalserviced sysfs_cpuinfo:file { getattr open read };

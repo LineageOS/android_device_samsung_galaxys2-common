@@ -1,0 +1,3 @@
+allow shell sysfs_cpuinfo:dir search;
+allow shell sysfs_cpuinfo:file { getattr open read };
+allow shell kernel:system syslog_read;

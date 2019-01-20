@@ -1,0 +1,4 @@
+allow toolbox sysfs_cpuinfo:dir search;
+allow toolbox sysfs_cpuinfo:file { getattr open read };
+allow toolbox init:fifo_file { getattr write };
+

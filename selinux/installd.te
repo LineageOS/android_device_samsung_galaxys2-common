@@ -1,0 +1,2 @@
+allow installd sysfs_cpuinfo:dir search;
+allow installd sysfs_cpuinfo:file { getattr open read };

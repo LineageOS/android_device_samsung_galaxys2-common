@@ -1,0 +1,4 @@
+allow adbd sysfs_cpuinfo:dir search;
+allow adbd sysfs_cpuinfo:file { getattr open read };
+allow adbd device:chr_file { open read write };
+

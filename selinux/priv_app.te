@@ -1,0 +1,5 @@
+allow priv_app method_trace_data_file:file { execute read unlink };
+allow priv_app sysfs_cpuinfo:dir { open read };
+allow priv_app system_data_file:dir { open read };
+allow priv_app sysfs_zram:file { getattr open read };
+
