@@ -1,0 +1,30 @@
+cc_binary {
+    proprietary: true,
+    defaults: ["hidl_defaults"],
+    relative_install_path: "hw",
+    name: "android.hardware.power@1.0-service.exynos4",
+    init_rc: ["android.hardware.power@1.0-service.exynos4.rc"],
+    srcs: [
+        "service.cpp",
+        "Power.cpp",
+        "power.c",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-DUSE_PEGASUSQ_BOOSTING",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libdl",
+        "libutils",
+        "libhardware",
+        "libhidlbase",
+        "libhidltransport",
+        "android.hardware.power@1.0",
+        "vendor.lineage.power@1.0",
+    ],
+}
+
