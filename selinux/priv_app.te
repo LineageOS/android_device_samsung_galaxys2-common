@@ -2,4 +2,9 @@ allow priv_app method_trace_data_file:file { execute read unlink };
 allow priv_app sysfs_cpuinfo:dir { open read };
 allow priv_app system_data_file:dir { open read };
 allow priv_app sysfs_zram:file { getattr open read };
-
+allow priv_app device:dir open;
+allow priv_app proc_interrupts:file open;
+allow priv_app proc_modules:file { getattr open };
+allow priv_app sysfs_cpuinfo:file { getattr open read };
+allow priv_app zygote:dir search;
+allow priv_app zygote:file { open read };

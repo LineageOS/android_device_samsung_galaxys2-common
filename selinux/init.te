@@ -13,5 +13,6 @@ allow init sysfs_cpuinfo:file { setattr open read };
 allow init su_exec:file { execute getattr open read };
 allow init sysfs_lmkd:file setattr;
 allow init sudaemon:process { noatsecure rlimitinh siginh transition };
+allow init sysfs_cpufreq:file setattr;
 
 domain_trans(init, rootfs, cpboot-daemon)
