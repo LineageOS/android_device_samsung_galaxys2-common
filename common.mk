@@ -101,7 +101,8 @@ PRODUCT_PACKAGES += \
     libhwconverter \
     libs5pjpeg \
     libfimg \
-    libsecion
+    libsecion \
+    libdl-shim
 
 #Vibrator
 PRODUCT_PACKAGES += \
