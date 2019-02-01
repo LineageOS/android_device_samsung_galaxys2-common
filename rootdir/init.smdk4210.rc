@@ -232,11 +232,21 @@ on post-fs-data
 
 # Permissions for mDNIe
     chown system media_rw /sys/class/mdnie/mdnie/mode
-    chown system media_rw /sys/class/mdnie/mdnie/outdoor
     chown system media_rw /sys/class/mdnie/mdnie/scenario
-    chown system media_rw /sys/class/mdnie/mdnie/negative
+    chown system media_rw /sys/class/mdnie/mdnie/accessibility
+    chown system media_rw /sys/class/mdnie/mdnie/rgb_adj_enable
+    chown system media_rw /sys/class/mdnie/mdnie/r_adj
+    chown system media_rw /sys/class/mdnie/mdnie/g_adj
+    chown system media_rw /sys/class/mdnie/mdnie/b_adj
+    chown system media_rw /sys/class/mdnie/mdnie/tuning
     write /sys/class/mdnie/mdnie/scenario 0
     write /sys/class/mdnie/mdnie/mode 1
+    write /sys/class/mdnie/mdnie/accessibility 0
+    write /sys/class/mdnie/mdnie/rgb_adj_enable 1
+    write /sys/class/mdnie/mdnie/r_adj 255
+    write /sys/class/mdnie/mdnie/g_adj 255
+    write /sys/class/mdnie/mdnie/b_adj 255
+    write /sys/class/mdnie/mdnie/tuning 0
 
 # Permissions for uart_sel and usb_sel
     chown system radio /sys/class/sec/switch/uart_sel/value
