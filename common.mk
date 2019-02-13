@@ -103,7 +103,8 @@ PRODUCT_PACKAGES += \
     libs5pjpeg \
     libfimg \
     libsecion \
-    libdl-shim
+    libdl-shim \
+    libC
 
 #Vibrator
 PRODUCT_PACKAGES += \
