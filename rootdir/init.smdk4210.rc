@@ -2,8 +2,6 @@ import init.smdk4210.usb.rc
 import init.gps.rc
 
 on init
-    export LD_PRELOAD /system/vendor/lib/libdl-shim.so
-
     mkdir /efs 0771 radio system
     mkdir /preload 0771 system system
     mkdir /mnt 0775 root system
