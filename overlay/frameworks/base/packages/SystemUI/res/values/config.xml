@@ -81,5 +81,5 @@
     <integer name="doze_small_icon_alpha">222</integer><!-- 87% of 0xff -->
 
     <!-- Use wakelock for flashlight -->
-    <bool name="config_useWakeLockForFlashlight">false</bool>
+    <bool name="config_useWakeLockForFlashlight">true</bool>
 </resources>
