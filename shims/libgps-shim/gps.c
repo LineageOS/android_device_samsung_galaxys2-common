@@ -17,6 +17,7 @@
 
 #include <utils/Log.h>
 #include <hardware/gps.h>
+#include <android/api-level.h>
 
 #include <dlfcn.h>
 #include <errno.h>
@@ -26,6 +27,9 @@
 
 #include "gps.h"
 #define REAL_GPS_PATH "system/vendor/lib/hw/gps.exynos4.vendor.so"
+
+extern uint32_t android_get_application_target_sdk_version();
+extern void android_set_application_target_sdk_version(uint32_t target);
 
 // Speed conversion km/h to gps speed-value
 #define SPEED_CONVERT 0.2728
@@ -600,6 +604,7 @@ static int open_gps(const struct hw_module_t* module, char const* name,
 
 	struct gps_device_t **gps = (struct gps_device_t **)device;
 
+	android_set_application_target_sdk_version(__ANDROID_API_L_MR1__);
 	realGpsLib = dlopen(REAL_GPS_PATH, RTLD_LOCAL);
 	if (!realGpsLib) {
 		ALOGE("Failed to load real GPS HAL '" REAL_GPS_PATH "': %s", dlerror());

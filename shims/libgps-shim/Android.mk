@@ -20,7 +20,8 @@ LOCAL_SRC_FILES := gps.c
 
 LOCAL_SHARED_LIBRARIES := \
 	libcutils \
-	liblog
+	liblog \
+	libc
 
 LOCAL_MODULE := gps.$(TARGET_BOOTLOADER_BOARD_NAME)
 LOCAL_MODULE_RELATIVE_PATH := hw
