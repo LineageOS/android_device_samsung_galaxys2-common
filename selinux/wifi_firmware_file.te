@@ -1,1 +1,1 @@
-allow wifi_firmware_file sysfs:filesystem associate;
+# allow wifi_firmware_file sysfs:filesystem associate;
