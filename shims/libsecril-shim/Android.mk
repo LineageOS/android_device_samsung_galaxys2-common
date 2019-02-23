@@ -10,7 +10,8 @@ LOCAL_SHARED_LIBRARIES := \
 	liblog \
 	libril \
 	libcutils \
-	libbinder
+	libbinder \
+	libc
 
 LOCAL_CFLAGS := -Wall -Werror
 

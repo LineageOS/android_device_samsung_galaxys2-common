@@ -1,4 +1,10 @@
+#include <android/api-level.h>
 #include "secril-shim.h"
+
+extern "C" {
+    extern uint32_t android_get_application_target_sdk_version();
+    extern void android_set_application_target_sdk_version(uint32_t target);
+}
 
 #define ATOI_NULL_HANDLED(x) (x ? atoi(x) : 0)
 
@@ -674,7 +680,7 @@ const RIL_RadioFunctions* RIL_Init(const struct RIL_Env *env, int argc, char **a
 	shimmedEnv.OnUnsolicitedResponse = onUnsolicitedResponseShim;
 
 	/* Open and Init the original RIL. */
-
+	android_set_application_target_sdk_version(__ANDROID_API_L_MR1__);
 	origRil = dlopen(RIL_LIB_PATH, RTLD_GLOBAL);
 	if (CC_UNLIKELY(!origRil)) {
 		RLOGE("%s: failed to load '" RIL_LIB_PATH  "': %s\n", __FUNCTION__, dlerror());
