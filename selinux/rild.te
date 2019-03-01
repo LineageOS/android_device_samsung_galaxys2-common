@@ -9,3 +9,5 @@ allow rild radio_data_file:dir { search write remove_name getattr add_name setat
 allow rild radio_data_file:file { getattr ioctl lock open read write };
 allow rild sysfs:file write;
 allow rild shell_exec:file { getattr execute_no_trans execute open read };
+allow rild system_file:file execmod;
+allow rild vendor_file:file execmod;
