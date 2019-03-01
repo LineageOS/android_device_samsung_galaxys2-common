@@ -73,3 +73,6 @@
 
 # zram
 /sys/devices/virtual/block/zram0(/.*)?                           u:object_r:sysfs_zram:s0
+
+# BLN
+/sys/devices/virtual/misc/backlightnotification(/.*)?            u:object_r:sysfs_bln:s0
