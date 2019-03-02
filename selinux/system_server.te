@@ -11,6 +11,9 @@ allow system_server ion_device:chr_file write;
 allow system_server rild:unix_stream_socket connectto;
 allow system_server sensors_device:chr_file { ioctl open read write };
 allow system_server device:chr_file { ioctl };
+allow system_server sysfs_bln:file write;
 
 # SELINUX_IGNORE_NEVERALLOWS
 allow system_server vendor_file:file execmod;
+allow system_server device:chr_file { open read write };
+allow system_server init:binder call;

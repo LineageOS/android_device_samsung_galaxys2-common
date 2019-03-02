@@ -42,7 +42,7 @@
 # WiFi
 /dev/rfkill                                                      u:object_r:rfkill_device:s0
 /efs/wifi/.mac.info                                              u:object_r:wifi_data_file:s0
-# /sys/module/dhd/parameters/firmware_path                         u:object_r:wifi_firmware_file:s0
+/sys/module/dhd/parameters/firmware_path                         u:object_r:wifi_firmware_file:s0
 
 # Firmwares
 /system/vendor/firmware/mfc_fw.bin                               u:object_r:firmware_mfc:s0
@@ -62,6 +62,8 @@
 /sys/devices/platform/sec-battery(/.*)?                          u:object_r:sysfs_batteryinfo:s0
 /sys/devices/platform/max8922-charger(/.*)?                      u:object_r:sysfs_batteryinfo:s0
 /sys/devices/platform/i2c-gpio.9/i2c-9/9-0036/power_supply(/.*)? u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/s3c-pl330.2/power(/.*)?                    u:object_r:sysfs_batteryinfo:s0
+/platform/s5pv210-uart.1/tty/ttySAC1(/.*)?                       u:object_r:sysfs_batteryinfo:s0
 
 # CPU
 /sys/devices/system/cpu(/.*)?                                    u:object_r:sysfs_cpuinfo:s0
@@ -76,3 +78,7 @@
 
 # BLN
 /sys/devices/virtual/misc/backlightnotification(/.*)?            u:object_r:sysfs_bln:s0
+
+# USB
+/sys/devices/virtual/android_usb/android0(/.*)?                  u:object_r:sysfs_usb:s0
+/sys/devices/virtual/net/rmnet0(/.*)?                            u:object_r:sysfs_rmnet:s0

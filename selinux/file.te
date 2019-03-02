@@ -6,6 +6,7 @@ type radio_data, file_type, data_file_type, core_data_file_type;
 type cbd_device, dev_type;
 type sysfs_cpuinfo, fs_type, sysfs_type;
 type sysfs_cpufreq, fs_type, sysfs_type;
-# type wifi_firmware_file, file_type, sysfs_type;
+type wifi_firmware_file, file_type, sysfs_type;
 type sysfs_lmkd, fs_type, sysfs_type;
 type sysfs_bln, fs_type, sysfs_type;
+type sysfs_rmnet, fs_type, sysfs_type;

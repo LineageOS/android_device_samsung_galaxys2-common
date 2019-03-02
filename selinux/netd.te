@@ -1,3 +1,5 @@
 allow netd self:capability sys_module;
 allow netd sysfs_cpuinfo:dir search;
 allow netd sysfs_cpuinfo:file { getattr open read };
+allow netd sysfs_rmnet:dir search;
+allow netd sysfs_rmnet:file { open write };
