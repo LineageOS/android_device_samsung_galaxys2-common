@@ -141,7 +141,7 @@ PRODUCT_COPY_FILES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger \
+    charger_exynos4 \
     charger_res_images
 
 # MFC API
