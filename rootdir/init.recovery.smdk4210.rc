@@ -7,3 +7,5 @@ on boot
 # Set mDNIe mode and scenario
     write /sys/class/mdnie/mdnie/scenario 0
     write /sys/class/mdnie/mdnie/mode 1
+
+    setprop sys.usb.ffs.aio_compat 1

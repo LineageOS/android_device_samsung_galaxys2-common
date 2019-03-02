@@ -340,6 +340,8 @@ on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     setprop wifi.interface wlan0
 
+    setprop sys.usb.ffs.aio_compat 1
+
 # Wifi firmware reload path
     chown wifi wifi /sys/module/dhd/parameters/firmware_path
 # permissions for NFC
