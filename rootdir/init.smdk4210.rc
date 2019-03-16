@@ -3,7 +3,7 @@ import init.gps.rc
 
 on init
     mkdir /efs 0771 radio system
-    mkdir /preload 0771 system system
+    mkdir /misc 0771 system system
     mkdir /mnt 0775 root system
     mkdir /mnt/.lfs 0755 root root
 
