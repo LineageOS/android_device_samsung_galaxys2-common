@@ -33,7 +33,7 @@ struct tinyalsa_audio_ril_interface {
 	pthread_mutex_t lock;
 };
 
-#define RIL_CLIENT_LIBPATH "libsecril-client.so"
+#define RIL_CLIENT_LIBPATH "/vendor/lib/libsecril-client.so"
 
 #define RIL_CLIENT_ERR_SUCCESS      0
 #define RIL_CLIENT_ERR_AGAIN        1
