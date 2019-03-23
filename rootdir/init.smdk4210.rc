@@ -400,3 +400,7 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
 service macloader /system/bin/macloader
     class main
     oneshot
+
+on property:sys.boot_completed=1
+# LMK
+    write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,36864,46080"
