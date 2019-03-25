@@ -16,5 +16,6 @@ allow init sysfs_cpufreq:file setattr;
 allow init sysfs_bln:file { open write };
 allow init sysfs_display:file read;
 allow init sysfs_usb:file { setattr write };
+allow init sysfs_lmkd:file { open write };
 
 domain_trans(init, rootfs, cpboot-daemon)
