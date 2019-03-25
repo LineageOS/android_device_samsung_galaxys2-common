@@ -84,3 +84,7 @@
 # USB
 /sys/devices/virtual/android_usb/android0(/.*)?                  u:object_r:sysfs_usb:s0
 /sys/devices/virtual/net/rmnet0(/.*)?                            u:object_r:sysfs_rmnet:s0
+
+# sysfs - block/storage
+/sys/devices/platform/dw_mmc/mmc_host/mmc[0-9]/mmc[0-9]:[0-9]+/block/mmcblk[0-9]/queue/iosched(/.*)?  u:object_r:sysfs_io_sched:s0
+
