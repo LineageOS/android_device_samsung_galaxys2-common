@@ -21,5 +21,6 @@ allow init sysfs_lmkd:file { open write };
 allow init sysfs_dm:dir relabelfrom;
 allow init sysfs_dm:file relabelfrom;
 allow init sysfs_io_sched:file { setattr w_file_perms };
+allow init sysfs_sec_key:file { setattr open write };
 
 domain_trans(init, rootfs, cpboot-daemon)
