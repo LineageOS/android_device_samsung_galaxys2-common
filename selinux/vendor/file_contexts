@@ -89,3 +89,4 @@
 /sys/devices/platform/dw_mmc/mmc_host/mmc[0-9]/mmc[0-9]:[0-9]+/block/mmcblk[0-9]/queue/iosched(/.*)?  u:object_r:sysfs_io_sched:s0
 
 /sys/devices/virtual/sec/sec_key(/.*)?                           u:object_r:sysfs_sec_key:s0
+/sys/devices/virtual/sec/sec_touchkey(/.*)?                      u:object_r:sysfs_sec_touchkey:s0
