@@ -1,0 +1,3 @@
+allow shal_livedisplay_default sysfs_display:dir search;
+allow shal_livedisplay_default sysfs_display:file { getattr open read write };
+allow shal_livedisplay_default hal_lineage_livedisplay_hwservice:hwservice_manager { add };

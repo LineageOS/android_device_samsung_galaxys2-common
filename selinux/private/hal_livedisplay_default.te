@@ -6,4 +6,3 @@ init_daemon_domain(shal_livedisplay_default)
 
 # Add vendor.lineage.livedisplay::IColor service to hwservicemanager
 add_hwservice(shal_livedisplay_default, shal_lineage_livedisplay_hwservice)
-
