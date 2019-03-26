@@ -1,0 +1,32 @@
+#============= bluetooth ==============
+allow bluetooth method_trace_data_file:file execute;
+
+#============= cpboot-daemon ==============
+allow cpboot-daemon device:chr_file { open read write };
+allow cpboot-daemon self:capability mknod;
+
+#============= init ==============
+allow init sysfs:file { open read write };
+
+#============= priv_app ==============
+allow priv_app method_trace_data_file:file { execute read unlink };
+allow priv_app sysfs_cpuinfo:dir { open read };
+allow priv_app sysfs_cpuinfo:file { getattr open read };
+
+#============= radio ==============
+allow radio method_trace_data_file:file execute;
+
+#============= shared_relro ==============
+allow shared_relro method_trace_data_file:file execute;
+
+#============= shell ==============
+allow shell kernel:system syslog_read;
+
+#============= system_app ==============
+allow system_app method_trace_data_file:file execute;
+
+#============= system_server ==============
+allow system_server dalvikcache_data_file:file execute;
+allow system_server device:chr_file { open read write };
+
+

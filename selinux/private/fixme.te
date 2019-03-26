@@ -1,0 +1,9 @@
+#============= storaged ==============
+allow storaged debugfs:file { getattr open read };
+
+#============= sysinit ==============
+allow sysinit app_data_file:dir search;
+allow sysinit app_data_file:file open;
+allow sysinit self:capability dac_override;
+
+allow shal_livedisplay_default hal_lineage_livedisplay_hwservice:hwservice_manager { add };
