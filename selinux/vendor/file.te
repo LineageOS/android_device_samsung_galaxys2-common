@@ -1,10 +1,8 @@
 type firmware_mfc, file_type;
 type efs_device_file, file_type;
-type sysfs_display, fs_type, sysfs_type;
 type sysfs_radio, fs_type, sysfs_type;
 type radio_data, file_type, data_file_type, core_data_file_type;
 type cbd_device, dev_type;
-type sysfs_cpuinfo, fs_type, sysfs_type;
 type sysfs_cpufreq, fs_type, sysfs_type;
 type wifi_firmware_path, file_type;
 type sysfs_lmkd, fs_type, sysfs_type;

@@ -68,7 +68,6 @@
 /platform/s5pv210-uart.1/tty/ttySAC1(/.*)?                       u:object_r:sysfs_batteryinfo:s0
 
 # CPU
-/sys/devices/system/cpu(/.*)?                                    u:object_r:sysfs_cpuinfo:s0
 /sys/power/cpufreq_max_limit                                     u:object_r:sysfs_cpufreq:s0
 /sys/power/cpufreq_min_limit                                     u:object_r:sysfs_cpufreq:s0
 

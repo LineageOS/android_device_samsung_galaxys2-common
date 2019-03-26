@@ -1,0 +1,9 @@
+# allow sysinit app_data_file:dir search;
+# allow sysinit app_data_file:file getattr;
+# allow sysinit rootfs:dir read;
+# allow sysinit shell_exec:file { getattr read };
+# allow sysinit sysfs_cpuinfo:dir search;
+# allow sysinit sysfs_cpuinfo:file { getattr open read };
+# allow sysinit system_file:dir { open read };
+# allow sysinit system_file:file execute_no_trans;
+# allow sysinit toolbox_exec:file getattr;

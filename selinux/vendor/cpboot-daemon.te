@@ -20,6 +20,7 @@ allow cpboot-daemon self:capability { setuid };
 allow cpboot-daemon sysfs_radio:file { read write open };
 allow cpboot-daemon usbfs:dir search;
 allow cpboot-daemon proc_cmdline:file { open read };
+allow cpboot-daemon block_device:dir search;
 
 # FIX ME
 # allow cpboot-daemon usbfs:filesystem mount;

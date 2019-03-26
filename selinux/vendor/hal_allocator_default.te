@@ -1,1 +1,0 @@
-#allow hal_allocator_default sysfs:file { getattr open read };

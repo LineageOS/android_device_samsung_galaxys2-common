@@ -4,3 +4,4 @@ allow vold efs_file:dir { add_name getattr remove_name write };
 allow vold efs_file:file { create unlink };
 allow vold sysfs_zram:file write;
 allow vold efs_device_file:dir { ioctl open read };
+allow vold sysfs_mmc:file write;
