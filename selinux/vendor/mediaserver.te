@@ -1,3 +1,4 @@
 allow mediaserver mfc_device:chr_file rw_file_perms;
+allow mediaserver ion_device:chr_file { write };
 allow mediaserver sysfs_cpuinfo:dir search;
 allow mediaserver sysfs_cpuinfo:file { getattr open read };
