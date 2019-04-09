@@ -69,6 +69,10 @@ PRODUCT_PACKAGES := \
     com.android.future.usb.accessory \
     Snap
 
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service.basic
+
 # Legacy RIL
 PRODUCT_PACKAGES += \
     libsamsung_symbols \
