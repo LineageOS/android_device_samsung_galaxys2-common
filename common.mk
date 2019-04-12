@@ -191,11 +191,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Memory Optimizations
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qti.sys.fw.bg_apps_limit=10 \
-    ro.vendor.qti.am.reschedule_service=true \
-    ro.vendor.qti.sys.fw.bservice_enable=true \
-    ro.vendor.qti.sys.fw.bservice_age=5000 \
-    ro.vendor.qti.sys.fw.bservice_limit=10
+     ro.vendor.qti.sys.fw.use_trim_settings=false
 
 # Services
 PRODUCT_PROPERTY_OVERRIDES += \
