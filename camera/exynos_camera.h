@@ -213,6 +213,7 @@ struct exynos_camera {
 	pthread_mutex_t preview_lock_mutex;
 	int preview_thread_running;
 	int preview_thread_started;
+	int preview_waiting_for_window;
 
 	int preview_enabled;
 	struct preview_stream_ops *preview_window;

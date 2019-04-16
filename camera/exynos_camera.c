@@ -2089,8 +2089,11 @@ void *exynos_camera_preview_thread(void *data)
 
 	ALOGD("%s: Starting thread", __func__);
 	if (exynos_camera->preview_window == NULL) {
+		exynos_camera->preview_waiting_for_window = 1;
+		ALOGD("%s: Waiting for preview-window...", __func__);
 		// Lock preview lock mutex
 		pthread_mutex_lock(&exynos_camera->preview_lock_mutex);
+		exynos_camera->preview_waiting_for_window = 0;
 	}
 
 	while (exynos_camera->preview_enabled == 1) {
@@ -2630,6 +2633,10 @@ int exynos_camera_set_preview_window(struct camera_device *dev,
 		return -1;
 	}
 
+	if (exynos_camera->preview_waiting_for_window) {
+		ALOGD("%s: Preview-window ready!", __func__);
+		pthread_mutex_unlock(&exynos_camera->preview_lock_mutex);
+	}
 	return 0;
 }
 
