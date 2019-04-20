@@ -152,6 +152,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libsecmfcapi
 
+# Legacy OMX
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.media.treble_omx=false
+
 # OMX
 PRODUCT_PACKAGES += \
     libstagefrighthw \
