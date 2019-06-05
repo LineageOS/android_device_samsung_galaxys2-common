@@ -18,7 +18,7 @@
 
 # Set lowram options
 PRODUCT_PROPERTY_OVERRIDES += \
-     ro.config.low_ram=false \
+     ro.config.low_ram=true \
      ro.lmk.critical_upgrade=true \
      ro.lmk.upgrade_pressure=40 \
      ro.lmk.downgrade_pressure=60 \
