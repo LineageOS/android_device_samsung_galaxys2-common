@@ -35,7 +35,6 @@
 #include "audio_hw.h"
 #include "mixer.h"
 
-static int stream_in_count = 0;
 /*
  * Functions
  */
@@ -670,13 +669,7 @@ void audio_hw_close_input_stream(struct audio_hw_device *dev,
 
 	pthread_mutex_lock(&tinyalsa_audio_device->lock);
 
-	stream_in_count--;
-	if (stream_in_count == 0) {
-		tinyalsa_mixer_set_input_state(tinyalsa_audio_device->mixer, 0);
-	} else {
-		ALOGD("%s: Ignoring tinyalsa_mixer_set_state. (%d) input streams active",
-			__func__, stream_in_count);
-	}
+	tinyalsa_mixer_set_input_state(tinyalsa_audio_device->mixer, 0);
 	tinyalsa_audio_device->stream_in = NULL;
 
 	pthread_mutex_unlock(&tinyalsa_audio_device->lock);
@@ -806,9 +799,6 @@ int audio_hw_open_input_stream(struct audio_hw_device *dev,
 	pthread_mutex_unlock(&tinyalsa_audio_stream_in->lock);
 
 	*stream_in = stream;
-
-	stream_in_count++;
-	ALOGD("%s: Input streams: %d", __func__, stream_in_count);
 
 	return 0;
 
