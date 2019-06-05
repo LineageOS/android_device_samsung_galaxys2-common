@@ -1,5 +1,5 @@
 # LiveDisplay HAL
-/(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.samsung     u:object_r:shal_livedisplay_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.samsung-exynos     u:object_r:shal_livedisplay_default_exec:s0
 
 # MMC
 /sys/devices/platform/dw_mmc/mmc_host/mmc[0-9]/mmc[0-9]:[0-9]+/block/mmcblk[0](/.*)?  u:object_r:sysfs_mmc:s0
