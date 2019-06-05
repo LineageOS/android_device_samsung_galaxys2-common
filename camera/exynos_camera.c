@@ -647,18 +647,8 @@ int exynos_camera_params_set_focus_mode(struct exynos_camera *exynos_camera, int
 				if (rc < 0) {
 					ALOGE("%s: streamon failed!", __func__);
 				} else {
-					// Scene mode
-					char *scene_mode_string;
-					scene_mode_string = exynos_param_string_get(exynos_camera, "scene-mode");
-					if (scene_mode_string != NULL &&
-						strcmp(scene_mode_string, "auto") != 0) {
-							ALOGE("%s: Forcing scene-mode %a after recording", __func__, scene_mode_string);
-							// Force scene-mode if not in auto-mode
-							exynos_camera_params_set_scene_mode(exynos_camera, 1);
-					} else {
-						ALOGE("%s: Not forcing scene-mode %s after recording.", __func__, scene_mode_string);
-
-					}
+					// Force scene-mode
+					exynos_camera_params_set_scene_mode(exynos_camera, 1);
 				}
 			}
 		}
@@ -2500,19 +2490,10 @@ int exynos_camera_recording_start(struct exynos_camera *exynos_camera)
 		ALOGE("%s: streamon failed!", __func__);
 		goto error;
 	} else {
-		// Scene mode
-		char *scene_mode_string;
-		scene_mode_string = exynos_param_string_get(exynos_camera, "scene-mode");
-		if (scene_mode_string != NULL &&
-			strcmp(scene_mode_string, "auto") != 0) {
-				ALOGE("%s: Forcing scene-mode %a after recording", __func__, scene_mode_string);
-				// Force scene-mode if not in auto-mode
-				exynos_camera_params_set_scene_mode(exynos_camera, 1);
-		} else {
-			ALOGE("%s: Not forcing scene-mode %s after recording.", __func__, scene_mode_string);
-
-		}
+		// Force scene-mode
+		exynos_camera_params_set_scene_mode(exynos_camera, 1);
 	}
+
 	pthread_mutex_init(&exynos_camera->recording_mutex, NULL);
 
 	exynos_camera->recording_enabled = 1;
