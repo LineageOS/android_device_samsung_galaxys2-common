@@ -26,7 +26,7 @@ PRODUCT_COPY_FILES := \
     $(COMMON_PATH)/rootdir/ueventd.smdk4210.rc:root/ueventd.smdk4210.rc
 
 # TWRP
-ifeq ($(WITH_TWRP),true)
+ifeq ($(RECOVERY_VARIANT),twrp)
 $(call inherit-product, device/samsung/galaxys2-common/twrp/twrp.mk)
 else
 TARGET_RECOVERY_FSTAB := device/samsung/galaxys2-common/rootdir/fstab.smdk4210
