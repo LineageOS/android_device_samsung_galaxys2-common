@@ -1,6 +1,0 @@
-allow shal_livedisplay_default sysfs_display:dir search;
-allow shal_livedisplay_default sysfs_display:file { getattr open read write };
-allow shal_livedisplay_default sysfs_cpuinfo:dir search;
-allow shal_livedisplay_default sysfs_cpuinfo:file { getattr open read };
-allow shal_livedisplay_default system_data_file:file { getattr open read };
-allow shal_livedisplay_default hwservicemanager_prop:file { getattr open read };
