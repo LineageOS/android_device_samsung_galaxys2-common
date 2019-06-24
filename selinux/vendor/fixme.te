@@ -29,4 +29,12 @@ allow system_app method_trace_data_file:file execute;
 allow system_server dalvikcache_data_file:file execute;
 allow system_server device:chr_file { open read write };
 
+#============= untrusted_app ==============
+allow untrusted_app method_trace_data_file:file { execute read unlink };
+
+#============= untrusted_app_25 ==============
+allow untrusted_app_25 method_trace_data_file:file { execute read unlink };
+
+#============= untrusted_app_27 ==============
+allow untrusted_app_27 method_trace_data_file:file { execute read unlink };
 
