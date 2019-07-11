@@ -1781,6 +1781,18 @@ void *exynos_camera_auto_focus_thread(void *data)
 	ALOGD("%s: Starting thread", __func__);
 	exynos_camera->auto_focus_thread_running = 1;
 
+	for (i = 0; i < 10; i++) {
+		if (exynos_camera->preview_thread_running) {
+			break;
+		}
+		ALOGE("%s: Cannot auto-focus when preview-thread isn't running! (Attempt %d)", __func__, i);
+		usleep(50000);
+	}
+	if (!exynos_camera->preview_thread_running) {
+		ALOGE("%s: Auto-focus ignored", __func__);
+		goto thread_exit;
+	}
+
 	if (exynos_camera->focus_mode != FOCUS_MODE_AUTO) {
 		exynos_param_string_set(exynos_camera, "focus-mode", "auto");
 		rc = exynos_camera_params_apply(exynos_camera);
@@ -1855,11 +1867,6 @@ int exynos_camera_auto_focus_start(struct exynos_camera *exynos_camera)
 
 	if (exynos_camera->auto_focus_thread_running) {
 		ALOGE("Auto-focus thread is already running!");
-		return 0;
-	}
-
-	if (!exynos_camera->preview_thread_running) {
-		ALOGE("Cannot auto-focus when preview-thread isn't running!");
 		return 0;
 	}
 
