@@ -83,6 +83,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-service.exynos4
 
+# Battery
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.small_battery=true
+
+
 # Audio Packages
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
