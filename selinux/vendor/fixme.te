@@ -10,8 +10,6 @@ allow init sysfs:file { open read write };
 
 #============= priv_app ==============
 allow priv_app method_trace_data_file:file { execute read unlink };
-allow priv_app sysfs_cpuinfo:dir { open read };
-allow priv_app sysfs_cpuinfo:file { getattr open read };
 
 #============= radio ==============
 allow radio method_trace_data_file:file execute;

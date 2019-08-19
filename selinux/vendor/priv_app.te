@@ -1,0 +1,2 @@
+allow priv_app sysfs_cpuinfo:dir { search open read };
+allow priv_app sysfs_cpuinfo:file r_file_perms;
