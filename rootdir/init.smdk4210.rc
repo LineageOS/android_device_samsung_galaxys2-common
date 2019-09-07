@@ -231,6 +231,7 @@ on post-fs-data
 # Permissions for mDNIe
     chown system media_rw /sys/class/mdnie/mdnie/mode
     chown system media_rw /sys/class/mdnie/mdnie/scenario
+    chown system media_rw /sys/class/mdnie/mdnie/outdoor
     chown system media_rw /sys/class/mdnie/mdnie/accessibility
     chown system media_rw /sys/class/mdnie/mdnie/rgb_adj_enable
     chown system media_rw /sys/class/mdnie/mdnie/r_adj
@@ -238,6 +239,7 @@ on post-fs-data
     chown system media_rw /sys/class/mdnie/mdnie/b_adj
     chown system media_rw /sys/class/mdnie/mdnie/tuning
     write /sys/class/mdnie/mdnie/scenario 0
+    write /sys/class/mdnie/mdnie/outdoor 0
     write /sys/class/mdnie/mdnie/mode 1
     write /sys/class/mdnie/mdnie/accessibility 0
     write /sys/class/mdnie/mdnie/rgb_adj_enable 1
