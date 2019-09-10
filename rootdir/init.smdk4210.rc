@@ -405,3 +405,9 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
 service macloader /system/bin/macloader
     class main
     oneshot
+
+on property:ro.vendor.build.type=userdebug
+    # Give writes to anyone for the trace folder on userdebug builds.
+    # The folder is used to store method traces.
+    chmod 0773 /data/misc/trace
+    start console
