@@ -46,5 +46,8 @@
     
     <!-- BurnIn protection. This should be enabled on devices that have OLED displays -->
     <bool name="config_enableBurnInProtection">true</bool>    
+
+    <!-- Don't activate Auto Outdoor mode by default -->
+    <bool name="config_defaultAutoOutdoorMode">false</bool>
 </resources>
 
