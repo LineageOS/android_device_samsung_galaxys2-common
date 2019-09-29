@@ -28,6 +28,9 @@ static int cdmaSubscriptionSource = -1;
 /* Store sim ruim status */
 int simRuimStatus = -1;
 
+/* Store SIM PIN attempts */
+int simPinAttempts = 3;
+
 /* Variables and methods for RIL_REQUEST_DEVICE_IDENTITY support */
 static char imei[16];
 static char imeisv[17];
@@ -164,6 +167,20 @@ static void onRequestDeviceIdentity(int request, void *data, size_t datalen, RIL
 		requestToString(request),
 		data, datalen);
 	onRequestCompleteDeviceIdentity(t, (gotIMEI && gotIMEISV) ? RIL_E_SUCCESS : RIL_E_GENERIC_FAILURE);
+}
+
+static bool onRequestEnterSimPin(int request, void *data, size_t datalen, RIL_Token t) {
+	int length = (int)datalen/ sizeof(char *);
+	if (length == 2) {
+		char **field = (char **) data;
+		char *pin = field[0];
+		if (pin == NULL) {
+			RLOGD("%s: got request %s: Simulating remaining attempts of %d\n", __FUNCTION__, requestToString(request), simPinAttempts);
+			rilEnv->OnRequestComplete(t, RIL_E_SUCCESS, &simPinAttempts, sizeof(simPinAttempts));
+			return true;
+		}
+	}
+	return false;
 }
 
 static void onRequestUnsupportedRequest(int request, void *data, size_t datalen, RIL_Token t) {
@@ -349,6 +366,12 @@ static void onRequestShim(int request, void *data, size_t datalen, RIL_Token t)
 				      requestToString(request), requestToString(RIL_REQUEST_SEND_SMS));
 			origRilFunctions->onRequest(RIL_REQUEST_SEND_SMS, data, datalen, t);
 			return;
+		case RIL_REQUEST_ENTER_SIM_PIN:
+			if (!onRequestEnterSimPin(request, data, datalen, t)) {
+				RLOGD("%s: got request %s: Forwarded to RIL.\n", __FUNCTION__, requestToString(request));
+				origRilFunctions->onRequest(request, data, datalen, t);
+				return;
+			}
 		/* The following requests were introduced post-4.3. */
 		case RIL_REQUEST_SIM_TRANSMIT_APDU_BASIC:
 		case RIL_REQUEST_SIM_OPEN_CHANNEL: /* !!! */
